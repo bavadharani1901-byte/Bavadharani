@@ -1,0 +1,27 @@
+{
+  "model_name": "wave_cv_model_v1",
+  "backbone": "efficientnet_b0",
+  "image_size": 224,
+  "tasks": [
+    "is_water_scene",
+    "floating_trash",
+    "turbid_water"
+  ],
+  "thresholds": {
+    "is_water_scene": 0.5,
+    "floating_trash": 0.85,
+    "turbid_water": 0.3
+  },
+  "severity_formula": {
+    "trash_weight": 0.5,
+    "turbidity_weight": 0.4,
+    "water_color_weight": 0.1
+  },
+  "photo_ai_score_formula": "severity_score * confidence * quality_score",
+  "notes": [
+    "floating_trash is binary only",
+    "water_color is derived using image processing",
+    "turbidity_level is heuristic from binary turbidity probability",
+    "non-water images are gated to severity_score=0 and photo_ai_score=0"
+  ]
+}

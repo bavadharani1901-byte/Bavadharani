@@ -1,25 +1,23 @@
-# CV_IMPLEMENTATION.md
-
 # WAVE AI Photo Validator — Computer Vision Implementation
 
-Dokumen ini menjelaskan implementasi lengkap modul **AI/CV Photo Validator** pada proyek **WAVE (Water Anomaly & Validation Engine)**. Modul ini digunakan untuk menganalisis foto laporan warga dan mengubahnya menjadi sinyal terstruktur yang bisa dipakai oleh backend/dashboard WAVE untuk mendukung penilaian risiko pencemaran air.
+This document explains the complete implementation of the **AI/CV Photo Validator** module for **WAVE (Water Anomaly & Validation Engine)**. The module analyzes citizen-submitted report photos and converts them into structured signals that can be consumed by the WAVE backend and dashboard to support water pollution risk assessment.
 
-Implementasi ini dibuat untuk kebutuhan **MVP / hackathon prototype**, sehingga fokus utamanya adalah:
+This implementation is designed for an **MVP / hackathon prototype**, so the main goals are:
 
-1. Mendeteksi apakah foto benar-benar menampilkan area air.
-2. Mendeteksi apakah ada indikasi sampah mengambang.
-3. Mendeteksi apakah air terlihat keruh/turbid secara visual.
-4. Mengecek kualitas gambar agar foto yang buruk bisa ditandai untuk review.
-5. Menentukan warna air dengan image processing sederhana.
-6. Menghasilkan JSON final yang siap dikonsumsi backend.
+1. Detect whether the uploaded photo actually shows a water area.
+2. Detect whether there is visible floating trash.
+3. Detect whether the water appears visually turbid.
+4. Check image quality so poor images can be flagged for review.
+5. Estimate water color using lightweight image processing.
+6. Produce a final JSON output that is ready for backend integration.
 
 ---
 
-## 1. Tujuan Modul
+## 1. Module Objective
 
-Modul AI/CV ini bertugas sebagai **photo validation layer** untuk laporan crowdsourcing WAVE.
+The AI/CV module acts as a **photo validation layer** for WAVE crowdsourced reports.
 
-Pada MVP awal, foto warga tidak hanya disimpan sebagai bukti visual, tetapi juga diproses menjadi sinyal AI:
+In the initial MVP, citizen photos are not only stored as visual evidence, but also processed into AI-generated signals:
 
 ```json
 {
@@ -39,41 +37,41 @@ Pada MVP awal, foto warga tidak hanya disimpan sebagai bukti visual, tetapi juga
 }
 ```
 
-Output tersebut bisa digunakan untuk:
+This output can be used to:
 
-- memvalidasi apakah foto laporan relevan dengan air,
-- memperkuat risk score zona air,
-- membantu dashboard inspector menampilkan evidence yang lebih bermakna,
-- memfilter foto non-water, blur, terlalu gelap, atau tidak valid,
-- menjadi dasar pengembangan model CV yang lebih kuat setelah MVP.
+- validate whether a submitted photo is relevant to a water body,
+- strengthen the water-zone risk score,
+- help inspectors view more meaningful evidence in the dashboard,
+- filter out non-water, blurry, too dark, or invalid photos,
+- provide a foundation for a stronger CV model after the MVP stage.
 
 ---
 
-## 2. Scope Implementasi v1
+## 2. v1 Implementation Scope
 
-### 2.1 Yang Dilatih dengan Deep Learning
+### 2.1 Deep Learning Tasks
 
-Model v1 hanya melatih tiga task utama:
+The v1 model only trains three main tasks:
 
-| Task | Tipe | Output |
+| Task | Type | Output |
 |---|---:|---|
 | `is_water_scene` | binary classification | `true / false` |
 | `floating_trash` | binary classification | `true / false` |
 | `turbid_water` | binary classification | `true / false` |
 
-### 2.2 Yang Tidak Dilatih di v1
+### 2.2 Fields Not Trained in v1
 
-Beberapa field tidak dilatih karena dataset belum cukup kuat atau label terlalu noisy:
+Several fields are not trained in v1 because the dataset is not strong enough yet or the labels are too noisy:
 
-| Field | Status v1 | Alasan |
+| Field | v1 Status | Reason |
 |---|---|---|
-| `trash_density` | tidak dipakai | butuh label manual low/medium/high atau segmentation |
-| `trash_coverage` | tidak dipakai | butuh bounding box/segmentation |
-| `water_color` | image processing | lebih aman dihitung dari warna piksel |
-| `turbidity_level` 5-class | heuristic | label 5-level belum cukup seimbang |
-| `scene_type` | dihapus | WAVE sudah punya `zone_id`, GPS, OSM, dan satellite context |
+| `trash_density` | not used | requires manual low/medium/high labels or segmentation |
+| `trash_coverage` | not used | requires bounding boxes or segmentation masks |
+| `water_color` | image processing | safer to compute from pixel colors |
+| `turbidity_level` 5-class | heuristic | 5-level labels are not balanced enough |
+| `scene_type` | removed | WAVE already has `zone_id`, GPS, OSM, and satellite context |
 
-Keputusan final v1:
+Final v1 decision:
 
 ```txt
 floating_trash = true / false only
@@ -84,19 +82,19 @@ trash_coverage = removed from v1
 
 ---
 
-## 3. Dataset yang Digunakan
+## 3. Datasets Used
 
-Dataset digabung dari beberapa sumber Kaggle yang tersedia di environment notebook.
+The dataset is built by combining several Kaggle datasets available in the notebook environment.
 
-| Dataset | Fungsi | Label yang Diambil |
+| Dataset | Purpose | Labels Used |
 |---|---|---|
-| Clean Dirty Water Dataset | contoh air bersih/kotor | turbidity awal |
-| Intel Image Dataset | negative non-water | `is_water_scene = 0` |
-| River Plastic Pollution Detection | sampah/plastik di sungai | `floating_trash = 1` |
-| Water Pollution Images for Plastic Detection | sampah/polusi visual | `floating_trash = 1` |
-| RIWA River Water Segmentation Dataset | gambar sungai + mask air | water scene + pseudo turbidity |
+| Clean Dirty Water Dataset | clean/dirty water examples | initial turbidity signal |
+| Intel Image Dataset | non-water negative samples | `is_water_scene = 0` |
+| River Plastic Pollution Detection | river plastic/trash samples | `floating_trash = 1` |
+| Water Pollution Images for Plastic Detection | visual pollution/trash samples | `floating_trash = 1` |
+| RIWA River Water Segmentation Dataset | river images + water masks | water scene + pseudo turbidity |
 
-Path dataset di Kaggle:
+Kaggle dataset paths:
 
 ```python
 CLEAN_DIRTY_ROOT = Path("/kaggle/input/datasets/elvinagammed/clean-dirty-water-dataset")
@@ -110,55 +108,55 @@ RIWA_ROOT = Path("/kaggle/input/datasets/franzwagner/river-water-segmentation-da
 
 ## 4. Label Schema
 
-Dataset final disimpan di:
+The final dataset is stored at:
 
 ```txt
 /kaggle/working/wave_cv_dataset/labels.csv
 ```
 
-Kolom utama:
+Main columns:
 
-| Kolom | Deskripsi |
+| Column | Description |
 |---|---|
-| `filename` | nama file hasil copy ke folder working |
-| `source_path` | path asli dari Kaggle input |
-| `source_dataset` | asal dataset |
+| `filename` | copied image filename in the working folder |
+| `source_path` | original path from Kaggle input |
+| `source_dataset` | source dataset name |
 | `is_water_scene` | 1 = water, 0 = non-water |
-| `floating_trash` | 1 = ada trash, 0 = tidak ada trash, -1 = unknown |
-| `turbid_water` | label awal turbidity |
-| `turbidity_level` | label awal clear/turbid/dirty/unknown |
-| `pseudo_turbidity_score` | skor pseudo-label dari RIWA water mask |
-| `turbidity_label_source` | sumber label turbidity |
-| `turbid_water_v1` | binary final untuk training |
-| `turbidity_level_v1` | `clear`, `turbid`, atau `unknown` |
+| `floating_trash` | 1 = trash present, 0 = no trash, -1 = unknown |
+| `turbid_water` | initial turbidity label |
+| `turbidity_level` | initial clear/turbid/dirty/unknown label |
+| `pseudo_turbidity_score` | pseudo-label score from RIWA water masks |
+| `turbidity_label_source` | source of turbidity label |
+| `turbid_water_v1` | final binary label for training |
+| `turbidity_level_v1` | `clear`, `turbid`, or `unknown` |
 
-### 4.1 Arti Label `-1`
+### 4.1 Meaning of Label `-1`
 
-Label `-1` berarti **unknown**, bukan false.
+The label `-1` means **unknown**, not false.
 
-Contoh:
+Example:
 
 ```txt
 floating_trash = -1
 ```
 
-Artinya gambar tersebut tidak digunakan untuk menghitung loss task `floating_trash`, tetapi masih bisa dipakai untuk task lain seperti `is_water_scene`.
+This means the image is ignored for the `floating_trash` loss, but it can still be used for other tasks such as `is_water_scene`.
 
 ---
 
 ## 5. Dataset Preparation Pipeline
 
-Pipeline dataset dilakukan dalam beberapa tahap.
+Dataset preparation is performed in several stages.
 
-### 5.1 Copy dan Standardisasi Gambar
+### 5.1 Copying and Standardizing Images
 
-Semua gambar dari dataset sumber dicopy ke satu folder:
+All images from the source datasets are copied into a single folder:
 
 ```txt
 /kaggle/working/wave_cv_dataset/images
 ```
 
-Nama file dibuat konsisten:
+Filenames are standardized:
 
 ```txt
 intel_negative_000001.jpg
@@ -172,17 +170,17 @@ clean_dirty_000005.jpg
 
 #### A. Intel Image Dataset
 
-Dipakai sebagai data non-water.
+Used as non-water data.
 
-Class yang digunakan:
+Classes used:
 
 ```python
 negative_classes = {"buildings", "forest", "glacier", "mountain", "street"}
 ```
 
-Class `sea` sengaja **tidak dipakai** karena tetap termasuk water scene.
+The `sea` class is intentionally **excluded** because it is still a water scene.
 
-Label:
+Labels:
 
 ```txt
 is_water_scene = 0
@@ -192,11 +190,11 @@ turbid_water = 0
 
 #### B. RIWA Dataset
 
-Dipakai sebagai data water scene.
+Used as water scene data.
 
-Mask/annotation file tidak dimasukkan sebagai training image.
+Mask/annotation files are not used as training images.
 
-Label awal:
+Initial labels:
 
 ```txt
 is_water_scene = 1
@@ -204,11 +202,11 @@ floating_trash = -1
 turbid_water = -1
 ```
 
-#### C. River Plastic dan Water Pollution
+#### C. River Plastic and Water Pollution
 
-Dipakai sebagai positive sample untuk floating trash.
+Used as positive samples for floating trash.
 
-Label:
+Labels:
 
 ```txt
 is_water_scene = 1
@@ -218,35 +216,35 @@ turbid_water = -1
 
 #### D. Clean Dirty Water Dataset
 
-Dipakai sebagai tambahan sinyal turbidity.
+Used as an additional turbidity signal.
 
 Important fix:
 
-Jangan menentukan clean/dirty hanya dari full path string karena root folder bernama:
+Do not determine clean/dirty labels only from the full path string because the root folder is named:
 
 ```txt
 clean-dirty-water-dataset
 ```
 
-Kalau logic-nya hanya `"clean" in path`, semua path bisa salah terbaca sebagai clean. Implementasi clean harus melihat folder parent spesifik seperti `Clean-samples`, dan dirty harus melihat `Dirty-samples`.
+If the logic only checks `"clean" in path`, every path may be incorrectly treated as clean. The implementation should check specific parent folders such as `Clean-samples` and `Dirty-samples`.
 
 ---
 
-## 6. Pseudo-label RIWA Turbidity
+## 6. RIWA Turbidity Pseudo-labeling
 
-Karena label turbidity real sangat terbatas, RIWA digunakan untuk pseudo-labeling turbidity berbasis water mask.
+Because real turbidity labels are limited, RIWA is used for water-mask-based pseudo-labeling.
 
-### 6.1 Prinsip
+### 6.1 Principle
 
-1. Ambil image RIWA.
-2. Cari mask air yang sesuai.
-3. Resize image dan mask ke `256x256`.
-4. Ambil hanya pixel yang termasuk water mask.
-5. Konversi RGB ke HSV.
-6. Hitung indikasi brown/gray/dark/green.
-7. Konversi skor ke label turbidity.
+1. Take a RIWA image.
+2. Find the corresponding water mask.
+3. Resize both image and mask to `256x256`.
+4. Use only pixels inside the water mask.
+5. Convert RGB to HSV.
+6. Calculate brown/gray/dark/green indicators.
+7. Convert the score into a turbidity label.
 
-### 6.2 Formula Pseudo Turbidity Score
+### 6.2 Pseudo Turbidity Score Formula
 
 ```python
 score = (
@@ -257,7 +255,7 @@ score = (
 )
 ```
 
-### 6.3 Mapping Score ke Label
+### 6.3 Score-to-Label Mapping
 
 ```python
 if score <= 0.12:
@@ -277,32 +275,32 @@ else:
     turbidity_level = "dirty"
 ```
 
-Ambiguous range sengaja dijadikan `unknown` agar tidak memasukkan label noisy ke training.
+The ambiguous range is intentionally labeled as `unknown` to avoid injecting noisy labels into training.
 
 ---
 
 ## 7. Binary Turbidity v1
 
-Karena data 5-class tidak seimbang, model v1 hanya menggunakan binary turbidity.
+Because the 5-class turbidity data is imbalanced, v1 only uses binary turbidity.
 
-Mapping final:
+Final mapping:
 
 ```txt
 clear       -> turbid_water_v1 = 0
-trubid      -> turbid_water_v1 = 1
+turbid      -> turbid_water_v1 = 1
 very_turbid -> turbid_water_v1 = 1
 dirty       -> turbid_water_v1 = 1
 unknown     -> turbid_water_v1 = -1
 ```
 
-Kolom final:
+Final columns:
 
 ```txt
 turbid_water_v1
 turbidity_level_v1
 ```
 
-Distribusi akhir yang digunakan:
+Final distribution used:
 
 ```txt
 turbidity_level_v1:
@@ -313,37 +311,37 @@ turbid  = 318
 
 ---
 
-## 8. Cleaning Corrupt Images
+## 8. Corrupt Image Cleaning
 
-Saat training ditemukan gambar corrupt seperti:
+During training, corrupt images were found, for example:
 
 ```txt
 water_pollution_004337.jpg
 ```
 
-Karena itu pipeline menambahkan validasi image.
+Therefore, image validation is added to the pipeline.
 
-Validasi dilakukan dengan:
+Validation is performed with:
 
 ```python
 with Image.open(path) as img:
     img.verify()
 ```
 
-Lalu image dibuka ulang dan dicek ukuran minimal:
+Then the image is reopened and checked for minimum size:
 
 ```python
 if width < 20 or height < 20:
     invalid
 ```
 
-File invalid dihapus dari folder working dan row terkait dihapus dari `labels.csv`.
+Invalid files are removed from the working image folder, and their rows are removed from `labels.csv`.
 
 ---
 
 ## 9. Train / Validation / Test Split
 
-Split dibuat dari dataset clean:
+The split is created from the cleaned dataset:
 
 ```txt
 train = 70%
@@ -351,9 +349,9 @@ val   = 15%
 test  = 15%
 ```
 
-Stratification dilakukan berdasarkan `is_water_scene`, karena label ini paling lengkap dan paling penting.
+Stratification is performed using `is_water_scene`, because it is the most complete and most important label.
 
-Distribusi split final:
+Final split sizes:
 
 ```txt
 Train: 3205
@@ -361,7 +359,7 @@ Val:    687
 Test:   687
 ```
 
-Distribusi label:
+Label distributions:
 
 ```txt
 TRAIN
@@ -384,13 +382,13 @@ turbid_water_v1: 0=81, 1=58, -1=548
 
 ## 10. Model Architecture
 
-Model menggunakan backbone:
+The model uses the following backbone:
 
 ```txt
-EfficientNet-B0 pretrained ImageNet
+EfficientNet-B0 pretrained on ImageNet
 ```
 
-Backbone classifier bawaan diganti menjadi identity, lalu ditambahkan tiga binary head.
+The original classifier head is replaced with identity, and three binary heads are added.
 
 ```python
 self.heads = nn.ModuleDict({
@@ -400,9 +398,9 @@ self.heads = nn.ModuleDict({
 })
 ```
 
-Output setiap head berupa logit scalar.
+Each head outputs one scalar logit.
 
-Logit dikonversi menjadi probabilitas dengan sigmoid:
+The logit is converted into probability using sigmoid:
 
 ```python
 prob = torch.sigmoid(logit)
@@ -412,7 +410,7 @@ prob = torch.sigmoid(logit)
 
 ## 11. Training Configuration
 
-Konfigurasi training:
+Training configuration:
 
 ```python
 IMG_SIZE = 224
@@ -423,7 +421,7 @@ WEIGHT_DECAY = 1e-4
 OPTIMIZER = AdamW
 ```
 
-Augmentasi training:
+Training augmentations:
 
 ```python
 transforms.Resize((224, 224))
@@ -447,11 +445,11 @@ transforms.Normalize(ImageNet mean/std)
 
 ---
 
-## 12. Loss Function dengan Masking Unknown Label
+## 12. Loss Function with Unknown-label Masking
 
-Loss menggunakan binary cross entropy with logits.
+The model uses binary cross entropy with logits.
 
-Karena beberapa task memiliki label `-1`, loss dihitung hanya untuk label valid.
+Because some tasks have `-1` labels, loss is computed only for valid labels.
 
 ```python
 def masked_bce_loss(logits, targets, pos_weight):
@@ -475,9 +473,9 @@ total_loss = loss_water + loss_trash + loss_turbid
 
 ### 12.1 Positive Weight
 
-Karena class imbalance cukup besar pada `floating_trash`, digunakan `pos_weight`.
+Because class imbalance is significant for `floating_trash`, `pos_weight` is used.
 
-Final pos weight:
+Final positive weights:
 
 ```txt
 is_water_scene = 1.192
@@ -489,7 +487,7 @@ turbid_water   = 1.717
 
 ## 13. Evaluation Metrics
 
-Metric yang digunakan:
+The metrics used are:
 
 - accuracy,
 - precision,
@@ -497,13 +495,13 @@ Metric yang digunakan:
 - F1 score,
 - TP/TN/FP/FN.
 
-Metric juga hanya dihitung pada label valid, bukan `-1`.
+Metrics are also computed only on valid labels, not `-1`.
 
 ---
 
 ## 14. Training Result
 
-Training terbaik tersimpan di:
+The best training checkpoint is saved at:
 
 ```txt
 /kaggle/working/wave_cv_dataset/wave_cv_model_v1_best.pth
@@ -543,19 +541,19 @@ f1=0.897
 tp=52 tn=66 fp=6 fn=6
 ```
 
-Interpretasi:
+Interpretation:
 
-- `is_water_scene` sangat kuat untuk prototype.
-- `floating_trash` sangat baik pada test set, tetapi tetap perlu hati-hati terhadap dataset bias.
-- `turbid_water` cukup baik untuk weak visual turbidity baseline, tetapi bukan pengukuran ilmiah/lab-grade.
+- `is_water_scene` is very strong for the prototype.
+- `floating_trash` performs very well on the test set, but dataset bias should still be considered.
+- `turbid_water` is good enough as a weak visual turbidity baseline, but it is not a scientific or lab-grade measurement.
 
 ---
 
 ## 15. Threshold Tuning
 
-Threshold awal semua task adalah `0.5`. Setelah dilihat pada sample prediction, `floating_trash` terlalu sensitif sehingga dilakukan threshold tuning di validation set.
+The initial threshold for all tasks was `0.5`. After inspecting sample predictions, `floating_trash` was too sensitive, so threshold tuning was performed on the validation set.
 
-Hasil threshold tuning:
+Threshold tuning result:
 
 ```txt
 Best water threshold  = 0.20
@@ -563,9 +561,9 @@ Best trash threshold  = 0.85
 Best turbid threshold = 0.30
 ```
 
-Namun untuk inference final, `is_water_scene` tetap dibuat `0.50` agar foto non-water tidak terlalu mudah lolos sebagai water scene.
+However, for final inference, `is_water_scene` is kept at `0.50` so non-water photos do not pass too easily as water scenes.
 
-Final threshold WAVE v1:
+Final WAVE v1 thresholds:
 
 ```python
 TASK_THRESHOLDS = {
@@ -579,9 +577,9 @@ TASK_THRESHOLDS = {
 
 ## 16. Inference Pipeline
 
-Inference pipeline menerima satu gambar, lalu menghasilkan JSON final.
+The inference pipeline accepts one image and returns the final JSON output.
 
-Urutan proses:
+Processing order:
 
 ```txt
 1. Load image
@@ -601,20 +599,20 @@ Urutan proses:
 
 ## 17. Image Quality Checker
 
-Image quality checker tidak menggunakan ML. Ini menggunakan heuristic berbasis piksel.
+The image quality checker does not use ML. It uses pixel-based heuristics.
 
-Yang dicek:
+Checks performed:
 
-| Issue | Kondisi |
+| Issue | Condition |
 |---|---|
-| `low_resolution` | width < 640 atau height < 480 |
+| `low_resolution` | width < 640 or height < 480 |
 | `too_dark` | mean brightness < 0.18 |
 | `too_bright` | mean brightness > 0.88 |
-| `overexposed` | area sangat terang > 25% |
+| `overexposed` | very bright area > 25% |
 | `blurry` | Laplacian variance < 80 |
-| `blank_or_blocked` | color standard deviation terlalu rendah |
+| `blank_or_blocked` | color standard deviation is too low |
 
-Quality score dimulai dari `1.0`, lalu dikurangi berdasarkan issue.
+Quality score starts from `1.0`, then is reduced based on detected issues.
 
 Mapping:
 
@@ -631,17 +629,17 @@ else:
 
 ## 18. Water Color Detection
 
-`water_color` tidak dilatih oleh model. Field ini dihitung menggunakan image processing dari area tengah-bawah gambar.
+`water_color` is not trained by the model. It is computed using image processing from the center-lower area of the image.
 
-Alasannya:
+Reasoning:
 
-- label warna air belum tersedia secara reliable,
-- model warna bisa bias terhadap dataset,
-- heuristic cukup untuk memberi explanation signal pada MVP.
+- reliable water color labels are not available,
+- a trained color model may inherit dataset bias,
+- the heuristic is sufficient as an explanation signal for the MVP.
 
 ### 18.1 Crop Region
 
-Crop yang dipakai:
+Crop used:
 
 ```python
 crop = arr[
@@ -651,18 +649,18 @@ crop = arr[
 ]
 ```
 
-Crop ini dipilih karena pada foto water scene, area air sering berada di tengah hingga bawah gambar.
+This crop is selected because in many water-scene photos, the water body appears in the center-to-lower part of the image.
 
 ### 18.2 HSV Rule
 
-Image RGB dikonversi ke HSV, lalu dicek rasio warna:
+The RGB image is converted into HSV, then color ratios are evaluated:
 
 - brown,
 - green,
 - gray,
 - dark/black.
 
-Output `water_color`:
+`water_color` output:
 
 ```txt
 clear
@@ -674,9 +672,9 @@ black
 unknown
 ```
 
-Setiap warna juga menghasilkan `abnormal_color_score`.
+Each color also produces an `abnormal_color_score`.
 
-Contoh:
+Example:
 
 ```txt
 clear      -> 0.00
@@ -692,7 +690,7 @@ unknown    -> 0.20
 
 ## 19. Non-water Gating
 
-Salah satu rule terpenting di inference:
+One of the most important inference rules:
 
 ```python
 if not is_water_scene:
@@ -705,9 +703,9 @@ if not is_water_scene:
     needs_review = True
 ```
 
-Tujuannya agar foto gedung, jalan, gunung, atau non-water tidak menghasilkan skor pencemaran air.
+This prevents building, road, mountain, or other non-water photos from generating water pollution scores.
 
-Contoh output non-water:
+Example non-water output:
 
 ```json
 {
@@ -726,9 +724,9 @@ Contoh output non-water:
 
 ## 20. Turbidity Level Heuristic
 
-Model hanya memprediksi binary `turbid_water`.
+The model only predicts binary `turbid_water`.
 
-`turbidity_level` dibuat heuristic:
+`turbidity_level` is created using a heuristic:
 
 ```python
 if turbid_prob < TASK_THRESHOLDS["turbid_water"]:
@@ -740,25 +738,25 @@ if turbid_prob >= 0.85 and water_color in {"dark_brown", "black", "gray"}:
 return "turbid"
 ```
 
-Catatan:
+Notes:
 
-- Ini bukan 5-class turbidity model.
-- Ini hanya label human-readable untuk dashboard.
-- Untuk scientific measurement, tetap dibutuhkan sensor/lab/ground-truth.
+- This is not a 5-class turbidity model.
+- It is only a human-readable dashboard label.
+- Scientific measurement still requires sensors, lab tests, or ground-truth observations.
 
 ---
 
 ## 21. Severity Score
 
-Severity score dihitung setelah model inference dan water color detection.
+Severity score is computed after model inference and water color detection.
 
-Jika bukan water scene:
+If the image is not a water scene:
 
 ```python
 severity_score = 0.0
 ```
 
-Jika water scene:
+If it is a water scene:
 
 ```python
 severity_score = (
@@ -768,15 +766,15 @@ severity_score = (
 )
 ```
 
-Keterangan:
+Components:
 
-| Komponen | Bobot | Sumber |
+| Component | Weight | Source |
 |---|---:|---|
-| `trash_score` | 0.50 | probabilitas model `floating_trash` |
-| `turbidity_score` | 0.40 | probabilitas model `turbid_water` |
+| `trash_score` | 0.50 | model probability for `floating_trash` |
+| `turbidity_score` | 0.40 | model probability for `turbid_water` |
 | `color_score` | 0.10 | image processing `water_color` |
 
-Agar lebih stabil, probability hanya dipakai jika final boolean task-nya true:
+For better stability, a probability is only used if the final boolean task is true:
 
 ```python
 trash_score = probs["floating_trash"] if floating_trash else 0.0
@@ -787,7 +785,7 @@ turbidity_score = probs["turbid_water"] if turbid_water else 0.0
 
 ## 22. Severity Level
 
-Mapping score ke level:
+Score-to-level mapping:
 
 ```python
 if score <= 0.25:
@@ -804,12 +802,12 @@ else:
 
 ## 23. Confidence Score
 
-Confidence dihitung sebagai rata-rata confidence dari tiga task model.
+Confidence is computed as the average confidence of the three model tasks.
 
-Untuk setiap task:
+For each task:
 
-- jika prediksi true, confidence = probability,
-- jika prediksi false, confidence = `1 - probability`.
+- if the prediction is true, confidence = probability,
+- if the prediction is false, confidence = `1 - probability`.
 
 ```python
 task_confidences = [
@@ -821,13 +819,13 @@ task_confidences = [
 confidence = mean(task_confidences)
 ```
 
-Confidence menggunakan raw model decision agar tidak misleading setelah non-water gating.
+Confidence uses the raw model decisions so it is not misleading after non-water gating.
 
 ---
 
 ## 24. Photo AI Score
 
-`photo_ai_score` adalah skor final kontribusi foto terhadap risiko pencemaran.
+`photo_ai_score` is the final score representing how strongly the photo contributes to the pollution-risk signal.
 
 Formula:
 
@@ -835,26 +833,26 @@ Formula:
 photo_ai_score = severity_score * confidence * quality_score
 ```
 
-Makna:
+Meaning:
 
-- `severity_score`: seberapa parah indikasi visual pencemaran,
-- `confidence`: seberapa yakin model,
-- `quality_score`: seberapa layak kualitas gambar.
+- `severity_score`: how severe the visual pollution indication is,
+- `confidence`: how confident the model is,
+- `quality_score`: how usable the image is.
 
-Jika foto non-water:
+For non-water photos:
 
 ```txt
 severity_score = 0
 photo_ai_score = 0
 ```
 
-Ini disengaja agar foto tidak relevan tidak menaikkan risk score WAVE.
+This is intentional so irrelevant photos do not increase the WAVE risk score.
 
 ---
 
 ## 25. Needs Review Logic
 
-Foto ditandai untuk review jika:
+A photo is flagged for review if:
 
 ```python
 needs_review = (
@@ -864,17 +862,17 @@ needs_review = (
 )
 ```
 
-Artinya foto akan masuk review jika:
+A photo goes to review if:
 
-- bukan foto air,
-- kualitas buruk,
-- model tidak yakin.
+- it is not a water photo,
+- the image quality is poor,
+- the model confidence is low.
 
 ---
 
 ## 26. Final JSON Output
 
-Output final inference:
+Final inference output:
 
 ```json
 {
@@ -894,13 +892,13 @@ Output final inference:
 }
 ```
 
-Debug mode juga tersedia:
+Debug mode is also available:
 
 ```python
 predict_photo_ai(image_path, include_debug=True)
 ```
 
-Debug output menambahkan:
+Debug output adds:
 
 ```json
 {
@@ -919,30 +917,30 @@ Debug output menambahkan:
 
 ## 27. Saved Artifacts
 
-Pipeline menghasilkan beberapa artifact:
+The pipeline produces the following artifacts:
 
-| File | Fungsi |
+| File | Purpose |
 |---|---|
-| `labels.csv` | label final dataset |
-| `splits/train.csv` | split training |
-| `splits/val.csv` | split validation |
-| `splits/test.csv` | split test |
-| `wave_cv_model_v1_best.pth` | checkpoint model terbaik |
-| `wave_cv_model_v1_state_dict.pth` | pure state dict model |
-| `photo_ai_config_v1.json` | config threshold dan formula |
-| `photo_ai_sample_predictions_v1.json` | contoh hasil prediksi |
+| `labels.csv` | final dataset labels |
+| `splits/train.csv` | training split |
+| `splits/val.csv` | validation split |
+| `splits/test.csv` | test split |
+| `wave_cv_model_v1_best.pth` | best model checkpoint |
+| `wave_cv_model_v1_state_dict.pth` | pure model state dict |
+| `photo_ai_config_v1.json` | thresholds and formula config |
+| `photo_ai_sample_predictions_v1.json` | sample prediction results |
 
 ---
 
 ## 28. Config JSON
 
-Config final disimpan sebagai:
+The final config is saved as:
 
 ```txt
 /kaggle/working/wave_cv_dataset/photo_ai_config_v1.json
 ```
 
-Isi config:
+Config content:
 
 ```json
 {
@@ -978,7 +976,7 @@ Isi config:
 
 ## 29. Backend Integration Plan
 
-Pada backend WAVE, modul ini bisa diekspos sebagai service/API.
+In the WAVE backend, this module can be exposed as a service/API.
 
 ### 29.1 Suggested Endpoint
 
@@ -1023,7 +1021,7 @@ Response:
 
 ### 29.2 Database Fields
 
-Suggested columns untuk tabel photo/report evidence:
+Suggested columns for a photo/report evidence table:
 
 ```sql
 photo_ai_is_water_scene BOOLEAN
@@ -1046,9 +1044,9 @@ photo_ai_debug JSONB -- optional, only for internal/dev
 
 ## 30. Integration with WAVE Risk Score
 
-`photo_ai_score` dapat menjadi salah satu komponen risk scoring WAVE.
+`photo_ai_score` can become one component of WAVE risk scoring.
 
-Contoh formula MVP:
+Example MVP formula:
 
 ```txt
 risk_score =
@@ -1058,66 +1056,66 @@ risk_score =
     0.10 * crowd_report_score
 ```
 
-Atau jika mengikuti formula PRD awal yang sudah memiliki `crowdsource_count`, modul Photo AI bisa menggantikan/meningkatkan komponen crowdsourcing:
+Alternatively, if following the initial PRD formula that already includes `crowdsource_count`, the Photo AI module can replace or improve the crowdsourcing component:
 
 ```txt
 photo_signal = normalize(crowdsource_count) * average(photo_ai_score)
 ```
 
-Dengan begitu laporan warga tidak hanya dihitung jumlahnya, tetapi juga kualitas dan indikasi visualnya.
+This way, citizen reports are not only counted by volume, but also weighted by image quality and visual pollution evidence.
 
 ---
 
 ## 31. Known Limitations
 
-Implementasi v1 sudah cukup untuk MVP, tetapi belum production-grade.
+The v1 implementation is sufficient for MVP, but it is not production-grade.
 
-Limitasi utama:
+Main limitations:
 
-1. Dataset berasal dari beberapa sumber berbeda, sehingga ada risiko dataset bias.
-2. `floating_trash` bisa belajar shortcut dari dataset source, bukan hanya objek sampah.
-3. `turbid_water` menggunakan pseudo-label, bukan ground-truth ilmiah.
-4. `water_color` hanya menggunakan crop heuristic, bukan segmentation model.
-5. Foto citizen real-world kemungkinan lebih noisy dibanding dataset Kaggle.
-6. Belum ada localization/segmentation untuk sampah.
-7. Belum ada calibration model probability.
-8. Belum ada geographic consistency check di dalam CV module.
+1. The dataset comes from multiple sources, which creates dataset-bias risk.
+2. `floating_trash` may learn shortcuts from dataset source instead of only trash objects.
+3. `turbid_water` uses pseudo-labels, not scientific ground truth.
+4. `water_color` uses a crop heuristic, not a segmentation model.
+5. Real citizen photos will likely be noisier than Kaggle dataset photos.
+6. There is no trash localization or segmentation yet.
+7. Model probabilities are not calibrated yet.
+8. Geographic consistency checking is not included inside the CV module.
 
 ---
 
 ## 32. Recommended Next Improvements
 
-Jika proyek dilanjutkan setelah MVP, improvement yang disarankan:
+If the project continues after the MVP, recommended improvements include:
 
 ### 32.1 Data Improvement
 
-- Tambah real citizen photos dari Vietnam.
-- Manual-label RIWA sebagai water no-trash hard negative.
-- Tambah label `floating_trash=0` untuk water scene tanpa sampah.
-- Buat dataset validation yang tidak overlap source dengan training.
-- Tambah label manual untuk turbidity 3-level: `clear`, `turbid`, `dirty`.
+- Add real citizen photos from Vietnam.
+- Manually label RIWA as water no-trash hard negatives.
+- Add `floating_trash=0` labels for water scenes without trash.
+- Build a validation dataset that does not share source distributions with training.
+- Add manual labels for 3-level turbidity: `clear`, `turbid`, `dirty`.
 
 ### 32.2 Model Improvement
 
-- Tambah segmentation model untuk water region.
-- Tambah object detection/segmentation untuk trash.
-- Gunakan calibrated probability.
-- Coba MobileNetV3 untuk deployment lebih ringan.
-- Export model ke ONNX untuk backend inference.
+- Add a segmentation model for water regions.
+- Add object detection/segmentation for trash.
+- Use calibrated probabilities.
+- Try MobileNetV3 for lighter deployment.
+- Export the model to ONNX for backend inference.
 
 ### 32.3 System Improvement
 
-- Tambah GPS-zone validation.
-- Tambah duplicate image detection.
-- Tambah EXIF timestamp validation.
-- Tambah async inference queue.
-- Simpan debug output hanya di environment development.
+- Add GPS-zone validation.
+- Add duplicate image detection.
+- Add EXIF timestamp validation.
+- Add an asynchronous inference queue.
+- Store debug output only in the development environment.
 
 ---
 
 ## 33. Final Status
 
-Status implementasi AI/CV WAVE v1:
+WAVE AI/CV v1 implementation status:
 
 ```txt
 Dataset preparation       DONE
@@ -1133,13 +1131,13 @@ Config artifact           DONE
 Sample prediction export  DONE
 ```
 
-Kesimpulan:
+Conclusion:
 
 ```txt
-AI/CV Photo Validator v1 is ready for WAVE MVP / hackathon prototype.
+AI/CV Photo Validator v1 is ready for the WAVE MVP / hackathon prototype.
 ```
 
-Modul ini belum diklaim sebagai production-grade environmental monitoring model, tetapi sudah cukup kuat untuk membuktikan workflow WAVE:
+This module is not claimed as a production-grade environmental monitoring model, but it is strong enough to demonstrate the WAVE workflow:
 
 ```txt
 Citizen photo -> AI validation -> photo_ai_score -> zone risk scoring -> dashboard insight

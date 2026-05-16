@@ -428,6 +428,30 @@ export function getCitizenById(id: string): Citizen | undefined {
   return getDb().citizens.find((c) => c.id === id);
 }
 
+export function getCitizenByUserId(userId: string): Citizen | undefined {
+  return getDb().citizens.find((c) => c.user_id === userId);
+}
+
+export function getOrCreateCitizenByUserId(
+  userId: string,
+  displayName: string,
+): Citizen {
+  const existing = getCitizenByUserId(userId);
+  if (existing) return existing;
+  const db = getDb();
+  const citizen: Citizen = {
+    id: userId,
+    user_id: userId,
+    display_name: displayName,
+    total_points: 0,
+    tier: "bronze",
+    created_at: nowIso(),
+  };
+  db.citizens.push(citizen);
+  persist();
+  return citizen;
+}
+
 export function updateCitizen(id: string, updates: Partial<Citizen>): Citizen | undefined {
   const db = getDb();
   const idx = db.citizens.findIndex((c) => c.id === id);

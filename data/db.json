@@ -9,10 +9,10 @@
       "river_name": "Saigon River",
       "province": "Ho Chi Minh City",
       "basin": "Dong Nai",
-      "risk_score": 46,
+      "risk_score": 44,
       "risk_level": "medium",
       "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T17:55:03.798Z"
+      "updated_at": "2026-05-16T18:10:25.318Z"
     },
     {
       "id": "mekong_delta_01",
@@ -26,7 +26,7 @@
       "risk_score": 20,
       "risk_level": "low",
       "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T09:18:36.340Z"
+      "updated_at": "2026-05-16T18:10:48.302Z"
     },
     {
       "id": "red_river_hanoi_01",
@@ -51,10 +51,10 @@
       "river_name": "Thai Binh River",
       "province": "Nam Dinh",
       "basin": "Thai Binh",
-      "risk_score": 20,
-      "risk_level": "low",
+      "risk_score": 40,
+      "risk_level": "medium",
       "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T09:18:36.341Z"
+      "updated_at": "2026-05-16T18:12:20.524Z"
     },
     {
       "id": "dong_nai_river_01",
@@ -107,10 +107,10 @@
       "river_name": "To Lich River",
       "province": "Hanoi",
       "basin": "Red River",
-      "risk_score": 29,
-      "risk_level": "low",
+      "risk_score": 45,
+      "risk_level": "medium",
       "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T09:18:36.344Z"
+      "updated_at": "2026-05-16T18:11:44.236Z"
     }
   ],
   "citizen_reports": [
@@ -230,6 +230,187 @@
       },
       "id": "report_1778954103795_j0hz05",
       "created_at": "2026-05-16T17:55:03.795Z"
+    },
+    {
+      "zone_id": "saigon_river_01",
+      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
+      "photo_url": "https://waste4change.com/blog/wp-content/uploads/image-430-1024x682.png",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "description": "",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.416,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "image_quality": "acceptable",
+        "quality_score": 0.707,
+        "quality_issues": [],
+        "floating_trash": true,
+        "turbid_water": true,
+        "turbidity_level": "turbid",
+        "water_color": "dark_brown",
+        "severity_score": 0.742,
+        "severity_level": "high",
+        "confidence": 0.793,
+        "photo_ai_score": 0.416,
+        "needs_review": false,
+        "source": "mock_fallback"
+      },
+      "id": "report_1778954996299_fto2nr",
+      "created_at": "2026-05-16T18:09:56.299Z"
+    },
+    {
+      "zone_id": "saigon_river_01",
+      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
+      "photo_url": "https://waste4change.com/blog/wp-content/uploads/image-431.png",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "description": "",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.106,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "image_quality": "acceptable",
+        "quality_score": 0.692,
+        "quality_issues": [],
+        "floating_trash": false,
+        "turbid_water": true,
+        "turbidity_level": "turbid",
+        "water_color": "dark_brown",
+        "severity_score": 0.289,
+        "severity_level": "moderate",
+        "confidence": 0.528,
+        "photo_ai_score": 0.106,
+        "needs_review": true,
+        "source": "mock_fallback"
+      },
+      "id": "report_1778955025316_srr6ui",
+      "created_at": "2026-05-16T18:10:25.316Z"
+    },
+    {
+      "zone_id": "mekong_delta_01",
+      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
+      "photo_url": "https://waste4change.com/blog/wp-content/uploads/image-434.png",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "description": "",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.106,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "image_quality": "acceptable",
+        "quality_score": 0.692,
+        "quality_issues": [],
+        "floating_trash": false,
+        "turbid_water": true,
+        "turbidity_level": "turbid",
+        "water_color": "dark_brown",
+        "severity_score": 0.289,
+        "severity_level": "moderate",
+        "confidence": 0.528,
+        "photo_ai_score": 0.106,
+        "needs_review": true,
+        "source": "mock_fallback"
+      },
+      "id": "report_1778955048299_0cdt2s",
+      "created_at": "2026-05-16T18:10:48.299Z"
+    },
+    {
+      "zone_id": "thai_binh_river_01",
+      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
+      "photo_url": "https://lh4.googleusercontent.com/proxy/Je9RIncoU0SzEsm5oRcfTb-7zv8HZ4zGe7FUJImdQHT0X378JPB08Ol8VN4HYZA-TFjV8_NjHrBMe3zqugj6TJ2oDfQ5T8FIiiY9t7HjsHfAYjEhc2fiFV_Ofs87GhQF5WIcEkrBwPrehYCokaU-FGQV_nmtPgEWkKI",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "description": "",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.556,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "image_quality": "good",
+        "quality_score": 0.75,
+        "quality_issues": [
+          "low_resolution"
+        ],
+        "floating_trash": true,
+        "turbid_water": true,
+        "turbidity_level": "turbid",
+        "water_color": "unknown",
+        "severity_score": 0.814,
+        "severity_level": "critical",
+        "confidence": 0.912,
+        "photo_ai_score": 0.556,
+        "needs_review": false,
+        "source": "wave_cv_model_v1",
+        "debug": null
+      },
+      "id": "report_1778955075958_czp2m1",
+      "created_at": "2026-05-16T18:11:15.958Z"
+    },
+    {
+      "zone_id": "hanoi_canal_01",
+      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
+      "photo_url": "https://images.squarespace-cdn.com/content/v1/5eb4846f9318591c9e20daa2/1732390633544-0YF9SYKB565Q506RCZ85/Untitled+%281600+x+600+px%29.jpg",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "description": "",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.47,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "image_quality": "good",
+        "quality_score": 1,
+        "quality_issues": [],
+        "floating_trash": true,
+        "turbid_water": false,
+        "turbidity_level": "clear",
+        "water_color": "green",
+        "severity_score": 0.493,
+        "severity_level": "moderate",
+        "confidence": 0.953,
+        "photo_ai_score": 0.47,
+        "needs_review": false,
+        "source": "wave_cv_model_v1",
+        "debug": null
+      },
+      "id": "report_1778955104233_i3vkoy",
+      "created_at": "2026-05-16T18:11:44.233Z"
+    },
+    {
+      "zone_id": "thai_binh_river_01",
+      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
+      "photo_url": "https://awsimages.detik.net.id/community/media/visual/2022/01/26/seorang-warga-tengah-mengais-sampah-di-aliran-sungai-cicadas-kota-bandung_169.jpeg?w=600&q=90",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "description": "",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.63,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "image_quality": "good",
+        "quality_score": 0.75,
+        "quality_issues": [
+          "low_resolution"
+        ],
+        "floating_trash": true,
+        "turbid_water": true,
+        "turbidity_level": "turbid",
+        "water_color": "unknown",
+        "severity_score": 0.874,
+        "severity_level": "critical",
+        "confidence": 0.961,
+        "photo_ai_score": 0.63,
+        "needs_review": false,
+        "source": "wave_cv_model_v1",
+        "debug": null
+      },
+      "id": "report_1778955140518_3w13hp",
+      "created_at": "2026-05-16T18:12:20.518Z"
     }
   ],
   "citizens": [
@@ -288,7 +469,7 @@
       "id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
       "user_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
       "display_name": "NGO User",
-      "total_points": 10,
+      "total_points": 60,
       "tier": "bronze",
       "created_at": "2026-05-16T17:53:53.650Z"
     }

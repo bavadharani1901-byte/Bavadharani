@@ -36,7 +36,7 @@ export default function HeroSection() {
         <div className="mx-auto w-full max-w-5xl text-center">
           {/* Eyebrow badge */}
           <span
-            className={`mb-6 inline-flex items-center gap-2 rounded-sm border border-white/20 bg-white/10 px-5 py-2 text-sm font-bold tracking-wide text-white/90 backdrop-blur-sm transition-all duration-700 ${
+            className={`mb-6 inline-flex items-center gap-2 rounded-sm border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-bold tracking-wide text-white/90 backdrop-blur-sm transition-all duration-700 sm:px-5 sm:py-2 sm:text-sm ${
               loaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}
           >
@@ -48,7 +48,7 @@ export default function HeroSection() {
           </span>
 
           {/* Display headline */}
-          <h1
+            <h1
             className={`text-7xl font-bold uppercase leading-[0.95] tracking-tight text-white transition-all delay-150 duration-700 md:text-8xl lg:text-9xl xl:text-[140px] ${
               loaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}

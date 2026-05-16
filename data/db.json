@@ -9,10 +9,10 @@
       "river_name": "Saigon River",
       "province": "Ho Chi Minh City",
       "basin": "Dong Nai",
-      "risk_score": 58,
+      "risk_score": 48,
       "risk_level": "medium",
       "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T09:18:36.339Z"
+      "updated_at": "2026-05-16T12:47:58.663Z"
     },
     {
       "id": "mekong_delta_01",
@@ -115,6 +115,34 @@
   ],
   "citizen_reports": [
     {
+      "zone_id": "saigon_river_01",
+      "citizen_id": "750ae9ff-b252-43f1-bce7-ff07d7aa9b58",
+      "photo_url": "https://i.pinimg.com/736x/52/f4/6a/52f46acaa677bd88c6dcc28a3992fa92.jpg",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "description": "I see my wealth incomingggggggggggggggggggggggggggg",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.081,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "image_quality": "acceptable",
+        "quality_score": 0.646,
+        "quality_issues": [],
+        "floating_trash": false,
+        "turbid_water": true,
+        "turbidity_level": "turbid",
+        "water_color": "dark_brown",
+        "severity_score": 0.251,
+        "severity_level": "moderate",
+        "confidence": 0.497,
+        "photo_ai_score": 0.081,
+        "needs_review": true
+      },
+      "id": "report_1778934795032_mzzm9k",
+      "created_at": "2026-05-16T12:33:15.032Z"
+    },
+    {
       "id": "report_03",
       "zone_id": "red_river_hanoi_01",
       "citizen_id": "citizen_03",
@@ -207,9 +235,26 @@
       "total_points": 60,
       "tier": "bronze",
       "created_at": "2026-05-16T09:18:36.296Z"
+    },
+    {
+      "id": "750ae9ff-b252-43f1-bce7-ff07d7aa9b58",
+      "user_id": "750ae9ff-b252-43f1-bce7-ff07d7aa9b58",
+      "display_name": "NGO User",
+      "total_points": 5,
+      "tier": "bronze",
+      "created_at": "2026-05-16T12:31:45.033Z"
     }
   ],
-  "inspector_actions": [],
+  "inspector_actions": [
+    {
+      "zone_id": "saigon_river_01",
+      "inspector_id": "inspector_01",
+      "action": "inspected",
+      "notes": "",
+      "resolved_at": "2026-05-16T12:47:58.660Z",
+      "id": "inspector_1778935678660_ou6j44"
+    }
+  ],
   "satellite_observations": [
     {
       "id": "sat_obs_0",

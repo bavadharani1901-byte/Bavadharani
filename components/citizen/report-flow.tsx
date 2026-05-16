@@ -8,6 +8,35 @@ interface ReportFlowProps {
   zones: Array<{ id: string; name: string }>;
 }
 
+function getBooleanValue(data: Record<string, unknown>, key: string) {
+  return data[key] === true;
+}
+
+function getNumberValue(data: Record<string, unknown>, key: string) {
+  const value = data[key];
+  return typeof value === "number" ? value : 0;
+}
+
+function getStringValue(data: Record<string, unknown>, key: string, fallback = "Unknown") {
+  const value = data[key];
+  return typeof value === "string" && value.length > 0 ? value : fallback;
+}
+
+function getStringListValue(data: Record<string, unknown>, key: string) {
+  const value = data[key];
+  return Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string")
+    : [];
+}
+
+function formatPercent(value: number) {
+  return `${Math.round(value * 100)}%`;
+}
+
+function formatLabel(value: string) {
+  return value.replaceAll("_", " ");
+}
+
 export default function ReportFlow({ zones }: ReportFlowProps) {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [selectedZone, setSelectedZone] = useState("");
@@ -20,6 +49,13 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
     photo_ai_score: number;
     ai_analysis: Record<string, unknown>;
   } | null>(null);
+  const aiAnalysis = result?.ai_analysis ?? {};
+  const photoAiScore = result?.photo_ai_score ?? 0;
+  const modelConfidence = getNumberValue(aiAnalysis, "confidence");
+  const qualityScore = getNumberValue(aiAnalysis, "quality_score");
+  const severityScore = getNumberValue(aiAnalysis, "severity_score");
+  const qualityIssues = getStringListValue(aiAnalysis, "quality_issues");
+  const needsReview = getBooleanValue(aiAnalysis, "needs_review");
 
   const handleSubmit = async () => {
     setSubmitting(true);
@@ -149,16 +185,16 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
             <div className="mb-4 text-left">
               <div className="mb-1 flex items-center justify-between">
                 <span className="text-xs font-bold uppercase tracking-wide text-[#757575]">
-                  AI Confidence
+                  Photo AI Score
                 </span>
                 <span className="text-xs font-bold text-[#000000]">
-                  {Math.round((result.photo_ai_score ?? 0) * 100)}%
+                  {formatPercent(photoAiScore)}
                 </span>
               </div>
               <div className="h-2 w-full bg-[#e5e5e5]">
                 <div
                   className="h-full bg-[#76b900] transition-all duration-700"
-                  style={{ width: `${Math.round((result.photo_ai_score ?? 0) * 100)}%` }}
+                  style={{ width: formatPercent(photoAiScore) }}
                 />
               </div>
             </div>
@@ -170,10 +206,43 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
                   Photo AI Analysis
                 </p>
               </div>
+              <div className="grid grid-cols-3 divide-x divide-[#e5e5e5] border-b border-[#e5e5e5] bg-white">
+                <div className="px-4 py-3">
+                  <p className="text-[11px] font-bold uppercase tracking-wide text-[#757575]">
+                    Model Confidence
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-[#000000]">
+                    {formatPercent(modelConfidence)}
+                  </p>
+                </div>
+                <div className="px-4 py-3">
+                  <p className="text-[11px] font-bold uppercase tracking-wide text-[#757575]">
+                    Image Quality
+                  </p>
+                  <p className="mt-1 text-lg font-bold capitalize text-[#000000]">
+                    {formatLabel(getStringValue(aiAnalysis, "image_quality"))}
+                  </p>
+                  <p className="text-xs text-[#757575]">
+                    {formatPercent(qualityScore)}
+                  </p>
+                </div>
+                <div className="px-4 py-3">
+                  <p className="text-[11px] font-bold uppercase tracking-wide text-[#757575]">
+                    Review Status
+                  </p>
+                  <p
+                    className={`mt-1 text-lg font-bold uppercase ${
+                      needsReview ? "text-[#ef9100]" : "text-[#3f8500]"
+                    }`}
+                  >
+                    {needsReview ? "Review" : "Accepted"}
+                  </p>
+                </div>
+              </div>
               <div className="divide-y divide-[#e5e5e5]">
                 <div className="flex items-center justify-between px-4 py-3">
                   <span className="text-sm text-[#000000]">Water scene</span>
-                  {(result.ai_analysis as any)?.is_water_scene ? (
+                  {getBooleanValue(aiAnalysis, "is_water_scene") ? (
                     <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#3f8500]">
                       <Check className="h-3.5 w-3.5" />
                       Detected
@@ -187,7 +256,7 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
                 </div>
                 <div className="flex items-center justify-between px-4 py-3">
                   <span className="text-sm text-[#000000]">Floating trash</span>
-                  {(result.ai_analysis as any)?.floating_trash ? (
+                  {getBooleanValue(aiAnalysis, "floating_trash") ? (
                     <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#ef9100]">
                       <AlertTriangle className="h-3.5 w-3.5" />
                       Visible
@@ -201,10 +270,10 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
                 </div>
                 <div className="flex items-center justify-between px-4 py-3">
                   <span className="text-sm text-[#000000]">Water turbidity</span>
-                  {(result.ai_analysis as any)?.turbid_water ? (
+                  {getBooleanValue(aiAnalysis, "turbid_water") ? (
                     <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#ef9100]">
                       <AlertTriangle className="h-3.5 w-3.5" />
-                      Turbid
+                      {formatLabel(getStringValue(aiAnalysis, "turbidity_level", "Turbid"))}
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#3f8500]">
@@ -216,7 +285,27 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
                 <div className="flex items-center justify-between px-4 py-3">
                   <span className="text-sm text-[#000000]">Severity</span>
                   <span className="text-xs font-bold uppercase tracking-wide text-[#000000]">
-                    {(result.ai_analysis as any)?.severity_level || "Unknown"}
+                    {getStringValue(aiAnalysis, "severity_level")} ({formatPercent(severityScore)})
+                  </span>
+                </div>
+                <div className="flex items-center justify-between px-4 py-3">
+                  <span className="text-sm text-[#000000]">Water color</span>
+                  <span className="text-xs font-bold capitalize tracking-wide text-[#000000]">
+                    {formatLabel(getStringValue(aiAnalysis, "water_color"))}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between px-4 py-3">
+                  <span className="text-sm text-[#000000]">Quality issues</span>
+                  <span className="max-w-[65%] text-right text-xs font-bold capitalize tracking-wide text-[#000000]">
+                    {qualityIssues.length > 0
+                      ? qualityIssues.map(formatLabel).join(", ")
+                      : "None"}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between px-4 py-3">
+                  <span className="text-sm text-[#000000]">Model source</span>
+                  <span className="max-w-[65%] text-right text-xs font-bold tracking-wide text-[#000000]">
+                    {getStringValue(aiAnalysis, "source")}
                   </span>
                 </div>
               </div>

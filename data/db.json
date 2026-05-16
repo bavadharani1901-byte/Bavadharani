@@ -9,10 +9,10 @@
       "river_name": "Saigon River",
       "province": "Ho Chi Minh City",
       "basin": "Dong Nai",
-      "risk_score": 48,
+      "risk_score": 46,
       "risk_level": "medium",
       "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T12:47:58.663Z"
+      "updated_at": "2026-05-16T17:55:03.798Z"
     },
     {
       "id": "mekong_delta_01",
@@ -198,6 +198,38 @@
         "severity_level": "critical"
       },
       "created_at": "2026-05-11T09:18:36.296Z"
+    },
+    {
+      "zone_id": "saigon_river_01",
+      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
+      "photo_url": "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,f_auto,q_auto:best,w_640/v1629274856/limbah_20rumah_20tangga_frttz8.jpg",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "description": "",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.54,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "image_quality": "good",
+        "quality_score": 0.75,
+        "quality_issues": [
+          "low_resolution"
+        ],
+        "floating_trash": true,
+        "turbid_water": true,
+        "turbidity_level": "turbid",
+        "water_color": "gray",
+        "severity_score": 0.823,
+        "severity_level": "critical",
+        "confidence": 0.875,
+        "photo_ai_score": 0.54,
+        "needs_review": false,
+        "source": "wave_cv_model_v1",
+        "debug": null
+      },
+      "id": "report_1778954103795_j0hz05",
+      "created_at": "2026-05-16T17:55:03.795Z"
     }
   ],
   "citizens": [
@@ -256,7 +288,7 @@
       "id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
       "user_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
       "display_name": "NGO User",
-      "total_points": 0,
+      "total_points": 10,
       "tier": "bronze",
       "created_at": "2026-05-16T17:53:53.650Z"
     }

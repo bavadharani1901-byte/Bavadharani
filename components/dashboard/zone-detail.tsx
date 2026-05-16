@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Zone } from "@/hooks/use-zones";
 import { useReports } from "@/hooks/use-reports";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,6 +15,26 @@ import { cn } from "@/lib/utils";
 interface ZoneDetailProps {
   zone: Zone | null;
   onInspect: (zoneId: string) => void;
+}
+
+interface SatelliteDetail {
+  anomaly_score: number;
+  confidence: number;
+  z_score: number;
+  anomaly_level: string;
+  explanation: string;
+  observation: {
+    ndwi: number;
+    mndwi: number;
+    turbidity_proxy: number;
+    historical_mean?: number;
+    historical_std?: number;
+    latest_value?: number;
+    cloud_percentage: number;
+    valid_pixel_ratio: number;
+    quality_status: string;
+    captured_at: string;
+  } | null;
 }
 
 function RiskProgress({
@@ -55,7 +75,29 @@ export default function ZoneDetail({ zone, onInspect }: ZoneDetailProps) {
   const [activeTab, setActiveTab] = useState("overview");
   const [inspecting, setInspecting] = useState(false);
   const [photoModal, setPhotoModal] = useState<string | null>(null);
+  const [satellite, setSatellite] = useState<SatelliteDetail | null>(null);
   const { reports } = useReports(zone?.id);
+
+  useEffect(() => {
+    if (!zone?.id) {
+      setSatellite(null);
+      return;
+    }
+
+    let ignore = false;
+    fetch(`/api/v1/zones/${zone.id}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (!ignore) setSatellite(data?.satellite ?? null);
+      })
+      .catch(() => {
+        if (!ignore) setSatellite(null);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [zone?.id]);
 
   if (!zone) {
     return (
@@ -200,20 +242,67 @@ export default function ZoneDetail({ zone, onInspect }: ZoneDetailProps) {
             <TabsContent value="satellite" className="m-0 p-4">
               <div className="space-y-4">
                 <p className="text-muted-foreground text-xs">
-                  Source: Sentinel-2 / GEE
+                  Source: Sentinel-2 / GEE precompute
                 </p>
+                <div className="grid grid-cols-2 gap-2">
+                  <StatCard
+                    label="Anomaly"
+                    value={satellite ? `${(satellite.anomaly_score * 100).toFixed(0)}%` : "-"}
+                  />
+                  <StatCard
+                    label="Level"
+                    value={satellite?.anomaly_level ?? "-"}
+                  />
+                  <StatCard
+                    label="Z-score"
+                    value={satellite ? satellite.z_score.toFixed(2) : "-"}
+                  />
+                  <StatCard
+                    label="Confidence"
+                    value={satellite ? `${(satellite.confidence * 100).toFixed(0)}%` : "-"}
+                  />
+                </div>
                 <div className="grid grid-cols-3 gap-2">
-                  <StatCard label="NDWI" value="0.21" />
-                  <StatCard label="MNDWI" value="0.18" />
-                  <StatCard label="Turbidity" value="0.78" />
+                  <StatCard
+                    label="NDWI"
+                    value={satellite?.observation ? satellite.observation.ndwi.toFixed(2) : "-"}
+                  />
+                  <StatCard
+                    label="MNDWI"
+                    value={satellite?.observation ? satellite.observation.mndwi.toFixed(2) : "-"}
+                  />
+                  <StatCard
+                    label="Turbidity"
+                    value={
+                      satellite?.observation
+                        ? satellite.observation.turbidity_proxy.toFixed(2)
+                        : "-"
+                    }
+                  />
                 </div>
                 <p className="text-foreground text-sm">
-                  Turbidity proxy is 2.4 standard deviations above this
-                  zone&apos;s baseline.
+                  {satellite?.explanation ?? "No satellite anomaly data available."}
                 </p>
                 <div className="text-muted-foreground space-y-1 text-xs">
-                  <p>Quality: Good | Confidence: 76%</p>
-                  <p>Captured: 2026-05-15</p>
+                  <p>
+                    Quality: {satellite?.observation?.quality_status ?? "-"} |
+                    Valid pixels:{" "}
+                    {satellite?.observation
+                      ? `${(satellite.observation.valid_pixel_ratio * 100).toFixed(0)}%`
+                      : "-"}
+                  </p>
+                  <p>
+                    Baseline:{" "}
+                    {satellite?.observation?.historical_mean !== undefined
+                      ? `${satellite.observation.historical_mean.toFixed(2)} mean / ${satellite.observation.historical_std?.toFixed(2)} std`
+                      : "-"}
+                  </p>
+                  <p>
+                    Captured:{" "}
+                    {satellite?.observation?.captured_at
+                      ? satellite.observation.captured_at.slice(0, 10)
+                      : "-"}
+                  </p>
                 </div>
               </div>
             </TabsContent>

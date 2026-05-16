@@ -62,6 +62,9 @@ export interface SatelliteObservation {
   ndwi: number;
   mndwi: number;
   turbidity_proxy: number;
+  historical_mean?: number;
+  historical_std?: number;
+  latest_value?: number;
   cloud_percentage: number;
   valid_pixel_ratio: number;
   quality_status: string;
@@ -77,6 +80,9 @@ export interface SatelliteAnomaly {
   anomaly_score: number;
   anomaly_level: string;
   confidence: number;
+  historical_mean?: number;
+  historical_std?: number;
+  latest_value?: number;
   explanation: string;
   created_at: string;
 }
@@ -134,6 +140,13 @@ function initDb(): DbSchema {
     ndwi: number;
     mndwi: number;
     turbidity_proxy: number;
+    historical_mean?: number;
+    historical_std?: number;
+    latest_value?: number;
+    z_score?: number;
+    anomaly_score?: number;
+    anomaly_level?: string;
+    explanation?: string;
     cloud_percentage: number;
     valid_pixel_ratio: number;
     quality_status: string;
@@ -180,6 +193,9 @@ function initDb(): DbSchema {
       ndwi: s.ndwi,
       mndwi: s.mndwi,
       turbidity_proxy: s.turbidity_proxy,
+      historical_mean: s.historical_mean,
+      historical_std: s.historical_std,
+      latest_value: s.latest_value,
       cloud_percentage: s.cloud_percentage,
       valid_pixel_ratio: s.valid_pixel_ratio,
       quality_status: s.quality_status,
@@ -189,12 +205,17 @@ function initDb(): DbSchema {
   );
 
   const satellite_anomalies: SatelliteAnomaly[] = seedSat.map((s, idx) => {
-    const zScore = (s.turbidity_proxy - 0.5) / 0.15;
-    const anomalyScore = Math.max(0, Math.min(1, (zScore + 2) / 4));
-    let anomalyLevel = "low";
-    if (anomalyScore > 0.7) anomalyLevel = "critical";
-    else if (anomalyScore > 0.5) anomalyLevel = "high";
-    else if (anomalyScore > 0.25) anomalyLevel = "medium";
+    const historicalMean = s.historical_mean ?? 0.5;
+    const historicalStd = s.historical_std && s.historical_std > 0 ? s.historical_std : 0.15;
+    const latestValue = s.latest_value ?? s.turbidity_proxy;
+    const zScore = s.z_score ?? (latestValue - historicalMean) / historicalStd;
+    const anomalyScore = s.anomaly_score ?? Math.max(0, Math.min(1, Math.abs(zScore) / 3));
+    let anomalyLevel = s.anomaly_level ?? "low";
+    if (!s.anomaly_level) {
+      if (anomalyScore > 0.85) anomalyLevel = "critical";
+      else if (anomalyScore > 0.6) anomalyLevel = "high";
+      else if (anomalyScore > 0.3) anomalyLevel = "medium";
+    }
 
     return {
       id: `sat_anom_${idx}`,
@@ -204,7 +225,12 @@ function initDb(): DbSchema {
       anomaly_score: parseFloat(anomalyScore.toFixed(3)),
       anomaly_level: anomalyLevel,
       confidence: s.confidence,
-      explanation: `Turbidity proxy is ${zScore.toFixed(1)} standard deviations above baseline.`,
+      historical_mean: s.historical_mean,
+      historical_std: s.historical_std,
+      latest_value: s.latest_value,
+      explanation:
+        s.explanation ??
+        `Turbidity proxy is ${zScore.toFixed(1)} standard deviations from baseline.`,
       created_at: s.captured_at,
     };
   });

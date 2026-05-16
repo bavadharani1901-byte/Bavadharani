@@ -1,9 +1,5 @@
 import { getSatelliteAnomalies, getSatelliteObservations } from "@/lib/db";
 
-// TODO: When the Python GEE pipeline is ready, call ai/satellite/gee_client.py
-//       via a Python subprocess or an internal microservice endpoint to get
-//       live Sentinel-2 data instead of reading from seed JSON fallback.
-
 export interface SatelliteData {
   anomaly_score: number;
   confidence: number;
@@ -14,6 +10,9 @@ export interface SatelliteData {
     ndwi: number;
     mndwi: number;
     turbidity_proxy: number;
+    historical_mean?: number;
+    historical_std?: number;
+    latest_value?: number;
     cloud_percentage: number;
     valid_pixel_ratio: number;
     quality_status: string;
@@ -50,6 +49,9 @@ export function getSatelliteDataForZone(zoneId: string): SatelliteData {
           ndwi: observation.ndwi,
           mndwi: observation.mndwi,
           turbidity_proxy: observation.turbidity_proxy,
+          historical_mean: observation.historical_mean ?? anomaly.historical_mean,
+          historical_std: observation.historical_std ?? anomaly.historical_std,
+          latest_value: observation.latest_value ?? anomaly.latest_value,
           cloud_percentage: observation.cloud_percentage,
           valid_pixel_ratio: observation.valid_pixel_ratio,
           quality_status: observation.quality_status,

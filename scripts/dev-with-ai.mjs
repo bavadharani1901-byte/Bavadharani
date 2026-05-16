@@ -1,4 +1,20 @@
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
+
+const skipSatellite = process.env.SKIP_SATELLITE_PRECOMPUTE === "true";
+
+if (!skipSatellite) {
+  console.log("[satellite] precompute start");
+  const result = spawnSync("python", ["ai/satellite/gee_precompute.py"], {
+    stdio: "inherit",
+    shell: process.platform === "win32",
+  });
+
+  if (result.status === 0) {
+    console.log("[satellite] precompute done");
+  } else {
+    console.warn("[satellite] precompute failed, continuing with cached data");
+  }
+}
 
 const processes = [
   {

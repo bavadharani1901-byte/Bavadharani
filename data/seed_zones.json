@@ -1,0 +1,82 @@
+[
+  {
+    "zone_id": "saigon_river_01",
+    "name": "Saigon River — HCMC Segment",
+    "river_name": "Saigon River",
+    "province": "Ho Chi Minh City",
+    "lat": 10.7769,
+    "lng": 106.7009,
+    "radius_km": 2.0,
+    "basin": "Dong Nai"
+  },
+  {
+    "zone_id": "mekong_delta_01",
+    "name": "Mekong Delta — Can Tho Segment",
+    "river_name": "Mekong River",
+    "province": "Can Tho",
+    "lat": 10.0341,
+    "lng": 105.7878,
+    "radius_km": 3.0,
+    "basin": "Mekong"
+  },
+  {
+    "zone_id": "red_river_hanoi_01",
+    "name": "Red River — Hanoi Segment",
+    "river_name": "Red River",
+    "province": "Hanoi",
+    "lat": 21.0245,
+    "lng": 105.8412,
+    "radius_km": 2.5,
+    "basin": "Red River"
+  },
+  {
+    "zone_id": "thai_binh_river_01",
+    "name": "Thai Binh River — Nam Dinh Segment",
+    "river_name": "Thai Binh River",
+    "province": "Nam Dinh",
+    "lat": 20.25,
+    "lng": 106.35,
+    "radius_km": 2.0,
+    "basin": "Thai Binh"
+  },
+  {
+    "zone_id": "dong_nai_river_01",
+    "name": "Dong Nai River — Bien Hoa Segment",
+    "river_name": "Dong Nai River",
+    "province": "Dong Nai",
+    "lat": 10.95,
+    "lng": 106.82,
+    "radius_km": 2.5,
+    "basin": "Dong Nai"
+  },
+  {
+    "zone_id": "perfume_river_01",
+    "name": "Perfume River — Hue Segment",
+    "river_name": "Perfume River",
+    "province": "Thua Thien Hue",
+    "lat": 16.47,
+    "lng": 107.58,
+    "radius_km": 2.0,
+    "basin": "Perfume"
+  },
+  {
+    "zone_id": "ca_river_01",
+    "name": "Ca River — Nghe An Segment",
+    "river_name": "Ca River",
+    "province": "Nghe An",
+    "lat": 18.67,
+    "lng": 105.68,
+    "radius_km": 3.0,
+    "basin": "Ca"
+  },
+  {
+    "zone_id": "hanoi_canal_01",
+    "name": "To Lich River — Hanoi Urban",
+    "river_name": "To Lich River",
+    "province": "Hanoi",
+    "lat": 21.03,
+    "lng": 105.82,
+    "radius_km": 1.5,
+    "basin": "Red River"
+  }
+]

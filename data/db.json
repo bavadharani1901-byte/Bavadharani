@@ -243,6 +243,14 @@
       "total_points": 5,
       "tier": "bronze",
       "created_at": "2026-05-16T12:31:45.033Z"
+    },
+    {
+      "id": "fa0e5acd-248d-466c-9cbc-6da496fd8a8f",
+      "user_id": "fa0e5acd-248d-466c-9cbc-6da496fd8a8f",
+      "display_name": "Government User",
+      "total_points": 0,
+      "tier": "bronze",
+      "created_at": "2026-05-16T17:07:34.668Z"
     }
   ],
   "inspector_actions": [

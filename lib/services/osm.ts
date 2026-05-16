@@ -1,9 +1,5 @@
 import { getOsmSources } from "@/lib/db";
 
-// TODO: When the Python Overpass pipeline is ready, call ai/osm/overpass_client.py
-//       via a Python subprocess or an internal microservice endpoint to get
-//       live OSM source attribution instead of reading from seed JSON fallback.
-
 export interface OsmAttribution {
   source_risk_score: number;
   dominant_source_type: string;
@@ -34,8 +30,6 @@ export function getSourceAttribution(zoneId: string): OsmAttribution {
   }
 
   const totalRisk = sources.reduce((sum, s) => sum + (s.risk_contribution || 0), 0);
-  const dominantType =
-    sources.length > 0 ? sources[0].source_type : "unknown";
 
   // Count source types
   const typeCounts: Record<string, number> = {};
@@ -47,6 +41,8 @@ export function getSourceAttribution(zoneId: string): OsmAttribution {
   Object.entries(typeCounts).forEach(([type, count]) => {
     attribution[type] = parseFloat((count / Math.max(totalRisk, 1)).toFixed(2));
   });
+  const dominantType =
+    Object.entries(attribution).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "unknown";
 
   const nearby = sources.map((s) => ({
     name: s.name,
@@ -61,7 +57,7 @@ export function getSourceAttribution(zoneId: string): OsmAttribution {
     dominant_source_type: dominantType,
     source_attribution: attribution,
     nearby_sources: nearby,
-    confidence: 0.7,
-    explanation: `Found ${nearby.length} pollution source(s) within river buffer zone.`,
+    confidence: nearby.length > 0 ? 0.7 : 0,
+    explanation: `Likely ${dominantType} source risk from ${nearby.length} OSM feature(s) near this zone.`,
   };
 }

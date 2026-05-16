@@ -37,6 +37,21 @@ interface SatelliteDetail {
   } | null;
 }
 
+interface OsmDetail {
+  source_risk_score: number;
+  dominant_source_type: string;
+  source_attribution: Record<string, number>;
+  nearby_sources: Array<{
+    name: string;
+    type: string;
+    distance_km: number;
+    position_context: string;
+    risk_contribution: number;
+  }>;
+  confidence: number;
+  explanation: string;
+}
+
 function RiskProgress({
   label,
   value,
@@ -76,11 +91,13 @@ export default function ZoneDetail({ zone, onInspect }: ZoneDetailProps) {
   const [inspecting, setInspecting] = useState(false);
   const [photoModal, setPhotoModal] = useState<string | null>(null);
   const [satellite, setSatellite] = useState<SatelliteDetail | null>(null);
+  const [osm, setOsm] = useState<OsmDetail | null>(null);
   const { reports } = useReports(zone?.id);
 
   useEffect(() => {
     if (!zone?.id) {
       setSatellite(null);
+      setOsm(null);
       return;
     }
 
@@ -88,10 +105,16 @@ export default function ZoneDetail({ zone, onInspect }: ZoneDetailProps) {
     fetch(`/api/v1/zones/${zone.id}`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (!ignore) setSatellite(data?.satellite ?? null);
+        if (!ignore) {
+          setSatellite(data?.satellite ?? null);
+          setOsm(data?.osm_attribution ?? null);
+        }
       })
       .catch(() => {
-        if (!ignore) setSatellite(null);
+        if (!ignore) {
+          setSatellite(null);
+          setOsm(null);
+        }
       });
 
     return () => {
@@ -310,31 +333,43 @@ export default function ZoneDetail({ zone, onInspect }: ZoneDetailProps) {
             <TabsContent value="sources" className="m-0 p-4">
               <div className="space-y-4">
                 <p className="text-foreground text-sm font-bold">
-                  Dominant: Industrial (65%)
+                  Dominant: {osm?.dominant_source_type ?? "Unknown"}{" "}
+                  {osm ? `(${(osm.source_risk_score * 100).toFixed(0)}%)` : ""}
                 </p>
+                {osm && (
+                  <div className="grid grid-cols-3 gap-2">
+                    {Object.entries(osm.source_attribution).map(([type, value]) => (
+                      <StatCard
+                        key={type}
+                        label={type}
+                        value={`${(value * 100).toFixed(0)}%`}
+                      />
+                    ))}
+                  </div>
+                )}
                 <div className="space-y-3">
-                  <div className="flex items-start gap-2 rounded-sm border p-3">
-                    <MapPin className="text-muted-foreground mt-0.5 h-4 w-4 shrink-0" />
-                    <div>
-                      <p className="text-sm font-bold">
-                        Binh Duong Industrial Zone
-                      </p>
-                      <p className="text-muted-foreground text-xs">
-                        0.7km upstream +0.31
-                      </p>
+                  {(osm?.nearby_sources ?? []).map((source) => (
+                    <div
+                      key={`${source.name}-${source.distance_km}`}
+                      className="flex items-start gap-2 rounded-sm border p-3"
+                    >
+                      <MapPin className="text-muted-foreground mt-0.5 h-4 w-4 shrink-0" />
+                      <div>
+                        <p className="text-sm font-bold">{source.name}</p>
+                        <p className="text-muted-foreground text-xs">
+                          {source.type} - {source.distance_km.toFixed(1)}km{" "}
+                          {source.position_context} +{source.risk_contribution.toFixed(2)}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start gap-2 rounded-sm border p-3">
-                    <MapPin className="text-muted-foreground mt-0.5 h-4 w-4 shrink-0" />
-                    <div>
-                      <p className="text-sm font-bold">Wastewater Plant B</p>
-                      <p className="text-muted-foreground text-xs">
-                        1.4km upstream +0.24
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-                <p className="text-muted-foreground text-xs">Confidence: 74%</p>
+                <p className="text-muted-foreground text-xs">
+                  {osm?.explanation ?? "No OSM source attribution data available."}
+                </p>
+                <p className="text-muted-foreground text-xs">
+                  Confidence: {osm ? `${(osm.confidence * 100).toFixed(0)}%` : "-"}
+                </p>
               </div>
             </TabsContent>
 

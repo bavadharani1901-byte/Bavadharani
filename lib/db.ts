@@ -165,6 +165,7 @@ function initDb(): DbSchema {
       distance_km: number;
       position_context: string;
       risk_contribution: number;
+      osm_id?: string;
     }>;
     confidence: number;
     explanation: string;
@@ -239,12 +240,12 @@ function initDb(): DbSchema {
     return o.nearby_sources.map((src, sIdx) => ({
       id: `osm_${idx}_${sIdx}`,
       zone_id: o.zone_id,
-      source_type: o.dominant_source_type,
+      source_type: src.type,
       name: src.name,
       distance_km: src.distance_km,
       position_context: src.position_context,
       risk_contribution: src.risk_contribution,
-      osm_id: `osm_${idx}_${sIdx}`,
+      osm_id: src.osm_id ?? `osm_${idx}_${sIdx}`,
     }));
   });
 

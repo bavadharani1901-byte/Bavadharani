@@ -1,13 +1,9 @@
 import fs from "fs";
 import path from "path";
 
-// TODO: When the real CV model runner is ready, replace this mock with a call
-//       to ai/photo_ai/validator.py (or an ONNX / FastAPI inference endpoint)
-//       that loads ai/water-cv/wave_cv_model_v1_best.pth for live predictions.
-//
-//       For now, this service reads the real AI config from ai/water-cv/ so
-//       thresholds match the trained model, then returns deterministic mock data.
-// Returns a mock prediction that varies deterministically by input hash.
+// Calls the FastAPI Photo AI service when PHOTO_AI_API_URL is configured.
+// Falls back to deterministic mock data so local demos still work if the
+// Python model service is not running.
 
 interface PhotoAiConfig {
   model_name: string;
@@ -85,9 +81,58 @@ export interface PhotoAiResult {
   confidence: number;
   photo_ai_score: number;
   needs_review: boolean;
+  source?: string;
 }
 
 export async function analyzePhoto(imagePath: string): Promise<PhotoAiResult> {
+  const fastApiResult = await analyzePhotoWithFastApi(imagePath);
+  if (fastApiResult) return fastApiResult;
+  return analyzePhotoWithMock(imagePath);
+}
+
+async function analyzePhotoWithFastApi(imageUrl: string): Promise<PhotoAiResult | null> {
+  const baseUrl = process.env.PHOTO_AI_API_URL?.replace(/\/$/, "");
+  if (!baseUrl) return null;
+
+  // The FastAPI service accepts fetchable URLs. Relative local demo paths keep
+  // using the mock fallback unless NEXT_PUBLIC_APP_URL is provided.
+  const resolvedImageUrl = resolveImageUrl(imageUrl);
+  if (!resolvedImageUrl) return null;
+
+  try {
+    const response = await fetch(`${baseUrl}/analyze`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        image_url: resolvedImageUrl,
+        include_debug: process.env.PHOTO_AI_DEBUG === "true",
+      }),
+      signal: AbortSignal.timeout(30_000),
+    });
+
+    if (!response.ok) {
+      console.warn("Photo AI FastAPI returned non-OK status", response.status);
+      return null;
+    }
+
+    const result = (await response.json()) as PhotoAiResult;
+    return result;
+  } catch (error) {
+    console.warn("Photo AI FastAPI unavailable; using mock fallback.", error);
+    return null;
+  }
+}
+
+function resolveImageUrl(imageUrl: string): string | null {
+  if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
+
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.AUTH_URL;
+  if (!appUrl || !imageUrl.startsWith("/")) return null;
+
+  return `${appUrl.replace(/\/$/, "")}${imageUrl}`;
+}
+
+async function analyzePhotoWithMock(imagePath: string): Promise<PhotoAiResult> {
   const config = loadConfig();
   const seed = hashString(imagePath);
 
@@ -164,5 +209,6 @@ export async function analyzePhoto(imagePath: string): Promise<PhotoAiResult> {
     confidence: parseFloat(confidence.toFixed(3)),
     photo_ai_score: parseFloat(photoAiScore.toFixed(3)),
     needs_review: needsReview,
+    source: "mock_fallback",
   };
 }

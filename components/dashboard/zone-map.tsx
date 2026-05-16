@@ -25,17 +25,21 @@ function riskColor(level: string) {
 export default function ZoneMap({ zones, selectedZoneId, onSelectZone }: MapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
+  const initializingRef = useRef(false);
   const markersRef = useRef<Record<string, any>>({});
   const [mapReadyKey, setMapReadyKey] = useState(0);
 
   const initMap = useCallback(async () => {
-    if (!mapRef.current || mapInstance.current) return;
-    const container = mapRef.current as any;
-    if (container._leaflet_id) {
-      container._leaflet_id = undefined;
-    }
+    if (!mapRef.current || mapInstance.current || initializingRef.current) return;
+    initializingRef.current = true;
+    const container = mapRef.current;
     const L = (await import("leaflet")).default;
     await import("leaflet/dist/leaflet.css");
+
+    if (!mapRef.current || mapInstance.current) {
+      initializingRef.current = false;
+      return;
+    }
 
     const map = L.map(container, {
       zoomControl: false,
@@ -113,6 +117,7 @@ export default function ZoneMap({ zones, selectedZoneId, onSelectZone }: MapProp
       .addTo(map);
 
     mapInstance.current = map;
+    initializingRef.current = false;
     setMapReadyKey((k) => k + 1);
   }, []);
 
@@ -123,6 +128,7 @@ export default function ZoneMap({ zones, selectedZoneId, onSelectZone }: MapProp
         mapInstance.current.remove();
         mapInstance.current = null;
       }
+      initializingRef.current = false;
       markersRef.current = {};
     };
   }, [initMap]);

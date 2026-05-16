@@ -1,0 +1,511 @@
+{
+  "zones": [
+    {
+      "id": "saigon_river_01",
+      "name": "Saigon River - HCMC Segment",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "radius_km": 2,
+      "river_name": "Saigon River",
+      "province": "Ho Chi Minh City",
+      "basin": "Dong Nai",
+      "risk_score": 58,
+      "risk_level": "medium",
+      "created_at": "2026-05-16T09:18:36.296Z",
+      "updated_at": "2026-05-16T09:18:36.339Z"
+    },
+    {
+      "id": "mekong_delta_01",
+      "name": "Mekong Delta - Can Tho Segment",
+      "lat": 10.0341,
+      "lng": 105.7878,
+      "radius_km": 3,
+      "river_name": "Mekong River",
+      "province": "Can Tho",
+      "basin": "Mekong",
+      "risk_score": 20,
+      "risk_level": "low",
+      "created_at": "2026-05-16T09:18:36.296Z",
+      "updated_at": "2026-05-16T09:18:36.340Z"
+    },
+    {
+      "id": "red_river_hanoi_01",
+      "name": "Red River - Hanoi Segment",
+      "lat": 21.0245,
+      "lng": 105.8412,
+      "radius_km": 2.5,
+      "river_name": "Red River",
+      "province": "Hanoi",
+      "basin": "Red River",
+      "risk_score": 19,
+      "risk_level": "low",
+      "created_at": "2026-05-16T09:18:36.296Z",
+      "updated_at": "2026-05-16T09:18:36.340Z"
+    },
+    {
+      "id": "thai_binh_river_01",
+      "name": "Thai Binh River - Nam Dinh Segment",
+      "lat": 20.25,
+      "lng": 106.35,
+      "radius_km": 2,
+      "river_name": "Thai Binh River",
+      "province": "Nam Dinh",
+      "basin": "Thai Binh",
+      "risk_score": 20,
+      "risk_level": "low",
+      "created_at": "2026-05-16T09:18:36.296Z",
+      "updated_at": "2026-05-16T09:18:36.341Z"
+    },
+    {
+      "id": "dong_nai_river_01",
+      "name": "Dong Nai River - Bien Hoa Segment",
+      "lat": 10.95,
+      "lng": 106.82,
+      "radius_km": 2.5,
+      "river_name": "Dong Nai River",
+      "province": "Dong Nai",
+      "basin": "Dong Nai",
+      "risk_score": 27,
+      "risk_level": "low",
+      "created_at": "2026-05-16T09:18:36.296Z",
+      "updated_at": "2026-05-16T09:18:36.342Z"
+    },
+    {
+      "id": "perfume_river_01",
+      "name": "Perfume River - Hue Segment",
+      "lat": 16.47,
+      "lng": 107.58,
+      "radius_km": 2,
+      "river_name": "Perfume River",
+      "province": "Thua Thien Hue",
+      "basin": "Perfume",
+      "risk_score": 17,
+      "risk_level": "low",
+      "created_at": "2026-05-16T09:18:36.296Z",
+      "updated_at": "2026-05-16T09:18:36.343Z"
+    },
+    {
+      "id": "ca_river_01",
+      "name": "Ca River - Nghe An Segment",
+      "lat": 18.67,
+      "lng": 105.68,
+      "radius_km": 3,
+      "river_name": "Ca River",
+      "province": "Nghe An",
+      "basin": "Ca",
+      "risk_score": 10,
+      "risk_level": "low",
+      "created_at": "2026-05-16T09:18:36.296Z",
+      "updated_at": "2026-05-16T09:18:36.343Z"
+    },
+    {
+      "id": "hanoi_canal_01",
+      "name": "To Lich River - Hanoi Urban",
+      "lat": 21.03,
+      "lng": 105.82,
+      "radius_km": 1.5,
+      "river_name": "To Lich River",
+      "province": "Hanoi",
+      "basin": "Red River",
+      "risk_score": 29,
+      "risk_level": "low",
+      "created_at": "2026-05-16T09:18:36.296Z",
+      "updated_at": "2026-05-16T09:18:36.344Z"
+    }
+  ],
+  "citizen_reports": [
+    {
+      "id": "report_03",
+      "zone_id": "red_river_hanoi_01",
+      "citizen_id": "citizen_03",
+      "photo_url": "/uploads/report_03.jpg",
+      "lat": 21.0245,
+      "lng": 105.8412,
+      "description": "Smell of chemicals near the bridge.",
+      "status": "pending",
+      "points_awarded": 0,
+      "photo_ai_score": 0.45,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-05-15T09:18:36.296Z"
+    },
+    {
+      "id": "report_01",
+      "zone_id": "saigon_river_01",
+      "citizen_id": "citizen_01",
+      "photo_url": "/uploads/report_01.jpg",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "description": "Dark water with visible foam near the embankment.",
+      "status": "verified",
+      "points_awarded": 15,
+      "photo_ai_score": 0.65,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-05-14T09:18:36.296Z"
+    },
+    {
+      "id": "report_02",
+      "zone_id": "saigon_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "/uploads/report_02.jpg",
+      "lat": 10.7775,
+      "lng": 106.7015,
+      "description": "Plastic bottles and bags floating downstream.",
+      "status": "verified",
+      "points_awarded": 20,
+      "photo_ai_score": 0.82,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "critical"
+      },
+      "created_at": "2026-05-11T09:18:36.296Z"
+    }
+  ],
+  "citizens": [
+    {
+      "id": "citizen_01",
+      "display_name": "Nguyen Van A",
+      "total_points": 420,
+      "tier": "silver",
+      "created_at": "2026-05-16T09:18:36.296Z"
+    },
+    {
+      "id": "citizen_02",
+      "display_name": "Tran Thi B",
+      "total_points": 850,
+      "tier": "gold",
+      "created_at": "2026-05-16T09:18:36.296Z"
+    },
+    {
+      "id": "citizen_03",
+      "display_name": "Le Van C",
+      "total_points": 120,
+      "tier": "bronze",
+      "created_at": "2026-05-16T09:18:36.296Z"
+    },
+    {
+      "id": "citizen_04",
+      "display_name": "Pham Thi D",
+      "total_points": 310,
+      "tier": "silver",
+      "created_at": "2026-05-16T09:18:36.296Z"
+    },
+    {
+      "id": "citizen_05",
+      "display_name": "Hoang Van E",
+      "total_points": 60,
+      "tier": "bronze",
+      "created_at": "2026-05-16T09:18:36.296Z"
+    }
+  ],
+  "inspector_actions": [],
+  "satellite_observations": [
+    {
+      "id": "sat_obs_0",
+      "zone_id": "saigon_river_01",
+      "source": "Sentinel-2 / GEE",
+      "ndwi": 0.21,
+      "mndwi": 0.18,
+      "turbidity_proxy": 0.78,
+      "cloud_percentage": 12.5,
+      "valid_pixel_ratio": 0.94,
+      "quality_status": "good",
+      "confidence": 0.76,
+      "captured_at": "2026-05-15T00:00:00Z"
+    },
+    {
+      "id": "sat_obs_1",
+      "zone_id": "mekong_delta_01",
+      "source": "Sentinel-2 / GEE",
+      "ndwi": 0.35,
+      "mndwi": 0.31,
+      "turbidity_proxy": 0.55,
+      "cloud_percentage": 8,
+      "valid_pixel_ratio": 0.97,
+      "quality_status": "good",
+      "confidence": 0.82,
+      "captured_at": "2026-05-14T00:00:00Z"
+    },
+    {
+      "id": "sat_obs_2",
+      "zone_id": "red_river_hanoi_01",
+      "source": "Sentinel-2 / GEE",
+      "ndwi": 0.12,
+      "mndwi": 0.09,
+      "turbidity_proxy": 0.42,
+      "cloud_percentage": 25,
+      "valid_pixel_ratio": 0.88,
+      "quality_status": "acceptable",
+      "confidence": 0.65,
+      "captured_at": "2026-05-13T00:00:00Z"
+    },
+    {
+      "id": "sat_obs_3",
+      "zone_id": "thai_binh_river_01",
+      "source": "Sentinel-2 / GEE",
+      "ndwi": 0.28,
+      "mndwi": 0.24,
+      "turbidity_proxy": 0.61,
+      "cloud_percentage": 15,
+      "valid_pixel_ratio": 0.91,
+      "quality_status": "good",
+      "confidence": 0.71,
+      "captured_at": "2026-05-15T00:00:00Z"
+    },
+    {
+      "id": "sat_obs_4",
+      "zone_id": "dong_nai_river_01",
+      "source": "Sentinel-2 / GEE",
+      "ndwi": 0.19,
+      "mndwi": 0.15,
+      "turbidity_proxy": 0.72,
+      "cloud_percentage": 10,
+      "valid_pixel_ratio": 0.95,
+      "quality_status": "good",
+      "confidence": 0.79,
+      "captured_at": "2026-05-14T00:00:00Z"
+    },
+    {
+      "id": "sat_obs_5",
+      "zone_id": "perfume_river_01",
+      "source": "Sentinel-2 / GEE",
+      "ndwi": 0.31,
+      "mndwi": 0.27,
+      "turbidity_proxy": 0.48,
+      "cloud_percentage": 5,
+      "valid_pixel_ratio": 0.98,
+      "quality_status": "good",
+      "confidence": 0.85,
+      "captured_at": "2026-05-15T00:00:00Z"
+    },
+    {
+      "id": "sat_obs_6",
+      "zone_id": "ca_river_01",
+      "source": "Sentinel-2 / GEE",
+      "ndwi": 0.15,
+      "mndwi": 0.11,
+      "turbidity_proxy": 0.38,
+      "cloud_percentage": 30,
+      "valid_pixel_ratio": 0.85,
+      "quality_status": "acceptable",
+      "confidence": 0.6,
+      "captured_at": "2026-05-12T00:00:00Z"
+    },
+    {
+      "id": "sat_obs_7",
+      "zone_id": "hanoi_canal_01",
+      "source": "Sentinel-2 / GEE",
+      "ndwi": 0.08,
+      "mndwi": 0.05,
+      "turbidity_proxy": 0.85,
+      "cloud_percentage": 18,
+      "valid_pixel_ratio": 0.9,
+      "quality_status": "good",
+      "confidence": 0.7,
+      "captured_at": "2026-05-15T00:00:00Z"
+    }
+  ],
+  "satellite_anomalies": [
+    {
+      "id": "sat_anom_0",
+      "zone_id": "saigon_river_01",
+      "observation_id": "sat_obs_0",
+      "z_score": 1.87,
+      "anomaly_score": 0.967,
+      "anomaly_level": "critical",
+      "confidence": 0.76,
+      "explanation": "Turbidity proxy is 1.9 standard deviations above baseline.",
+      "created_at": "2026-05-15T00:00:00Z"
+    },
+    {
+      "id": "sat_anom_1",
+      "zone_id": "mekong_delta_01",
+      "observation_id": "sat_obs_1",
+      "z_score": 0.33,
+      "anomaly_score": 0.583,
+      "anomaly_level": "high",
+      "confidence": 0.82,
+      "explanation": "Turbidity proxy is 0.3 standard deviations above baseline.",
+      "created_at": "2026-05-14T00:00:00Z"
+    },
+    {
+      "id": "sat_anom_2",
+      "zone_id": "red_river_hanoi_01",
+      "observation_id": "sat_obs_2",
+      "z_score": -0.53,
+      "anomaly_score": 0.367,
+      "anomaly_level": "medium",
+      "confidence": 0.65,
+      "explanation": "Turbidity proxy is -0.5 standard deviations above baseline.",
+      "created_at": "2026-05-13T00:00:00Z"
+    },
+    {
+      "id": "sat_anom_3",
+      "zone_id": "thai_binh_river_01",
+      "observation_id": "sat_obs_3",
+      "z_score": 0.73,
+      "anomaly_score": 0.683,
+      "anomaly_level": "high",
+      "confidence": 0.71,
+      "explanation": "Turbidity proxy is 0.7 standard deviations above baseline.",
+      "created_at": "2026-05-15T00:00:00Z"
+    },
+    {
+      "id": "sat_anom_4",
+      "zone_id": "dong_nai_river_01",
+      "observation_id": "sat_obs_4",
+      "z_score": 1.47,
+      "anomaly_score": 0.867,
+      "anomaly_level": "critical",
+      "confidence": 0.79,
+      "explanation": "Turbidity proxy is 1.5 standard deviations above baseline.",
+      "created_at": "2026-05-14T00:00:00Z"
+    },
+    {
+      "id": "sat_anom_5",
+      "zone_id": "perfume_river_01",
+      "observation_id": "sat_obs_5",
+      "z_score": -0.13,
+      "anomaly_score": 0.467,
+      "anomaly_level": "medium",
+      "confidence": 0.85,
+      "explanation": "Turbidity proxy is -0.1 standard deviations above baseline.",
+      "created_at": "2026-05-15T00:00:00Z"
+    },
+    {
+      "id": "sat_anom_6",
+      "zone_id": "ca_river_01",
+      "observation_id": "sat_obs_6",
+      "z_score": -0.8,
+      "anomaly_score": 0.3,
+      "anomaly_level": "medium",
+      "confidence": 0.6,
+      "explanation": "Turbidity proxy is -0.8 standard deviations above baseline.",
+      "created_at": "2026-05-12T00:00:00Z"
+    },
+    {
+      "id": "sat_anom_7",
+      "zone_id": "hanoi_canal_01",
+      "observation_id": "sat_obs_7",
+      "z_score": 2.33,
+      "anomaly_score": 1,
+      "anomaly_level": "critical",
+      "confidence": 0.7,
+      "explanation": "Turbidity proxy is 2.3 standard deviations above baseline.",
+      "created_at": "2026-05-15T00:00:00Z"
+    }
+  ],
+  "osm_sources": [
+    {
+      "id": "osm_0_0",
+      "zone_id": "saigon_river_01",
+      "source_type": "industrial",
+      "name": "Binh Duong Industrial Zone",
+      "distance_km": 0.7,
+      "position_context": "upstream",
+      "risk_contribution": 0.31,
+      "osm_id": "osm_0_0"
+    },
+    {
+      "id": "osm_0_1",
+      "zone_id": "saigon_river_01",
+      "source_type": "industrial",
+      "name": "Wastewater Treatment Plant B",
+      "distance_km": 1.4,
+      "position_context": "upstream",
+      "risk_contribution": 0.24,
+      "osm_id": "osm_0_1"
+    },
+    {
+      "id": "osm_1_0",
+      "zone_id": "mekong_delta_01",
+      "source_type": "agricultural",
+      "name": "Rice Paddy Cluster NW",
+      "distance_km": 0.5,
+      "position_context": "upstream",
+      "risk_contribution": 0.28,
+      "osm_id": "osm_1_0"
+    },
+    {
+      "id": "osm_2_0",
+      "zone_id": "red_river_hanoi_01",
+      "source_type": "domestic",
+      "name": "Urban Drainage Outlet A",
+      "distance_km": 0.3,
+      "position_context": "within",
+      "risk_contribution": 0.35,
+      "osm_id": "osm_2_0"
+    },
+    {
+      "id": "osm_2_1",
+      "zone_id": "red_river_hanoi_01",
+      "source_type": "domestic",
+      "name": "Long Bien Industrial Area",
+      "distance_km": 1.2,
+      "position_context": "upstream",
+      "risk_contribution": 0.22,
+      "osm_id": "osm_2_1"
+    },
+    {
+      "id": "osm_3_0",
+      "zone_id": "thai_binh_river_01",
+      "source_type": "agricultural",
+      "name": "Coastal Shrimp Farm Cluster",
+      "distance_km": 0.8,
+      "position_context": "downstream",
+      "risk_contribution": 0.26,
+      "osm_id": "osm_3_0"
+    },
+    {
+      "id": "osm_4_0",
+      "zone_id": "dong_nai_river_01",
+      "source_type": "industrial",
+      "name": "Bien Hoa Industrial Zone 1",
+      "distance_km": 0.9,
+      "position_context": "upstream",
+      "risk_contribution": 0.3,
+      "osm_id": "osm_4_0"
+    },
+    {
+      "id": "osm_5_0",
+      "zone_id": "perfume_river_01",
+      "source_type": "domestic",
+      "name": "Hue City Drainage Outlet",
+      "distance_km": 0.4,
+      "position_context": "within",
+      "risk_contribution": 0.24,
+      "osm_id": "osm_5_0"
+    },
+    {
+      "id": "osm_6_0",
+      "zone_id": "ca_river_01",
+      "source_type": "agricultural",
+      "name": "Nghe An Farm Belt",
+      "distance_km": 1,
+      "position_context": "upstream",
+      "risk_contribution": 0.25,
+      "osm_id": "osm_6_0"
+    },
+    {
+      "id": "osm_7_0",
+      "zone_id": "hanoi_canal_01",
+      "source_type": "domestic",
+      "name": "Cau Giay Residential Drainage",
+      "distance_km": 0.2,
+      "position_context": "within",
+      "risk_contribution": 0.4,
+      "osm_id": "osm_7_0"
+    }
+  ]
+}

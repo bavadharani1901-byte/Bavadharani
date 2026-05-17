@@ -53,6 +53,11 @@ export async function POST(request: Request) {
 
     // Award points
     const pointsAwarded = aiResult.needs_review ? 5 : 10;
+    const previousPoints =
+      typeof citizen.total_points === "number" && Number.isFinite(citizen.total_points)
+        ? citizen.total_points
+        : 0;
+    const updatedPoints = previousPoints + pointsAwarded;
 
     const report = createReport({
       zone_id,
@@ -68,9 +73,9 @@ export async function POST(request: Request) {
     });
 
     // Update citizen points
-    updateCitizen(citizen.id, {
-      total_points: citizen.total_points + pointsAwarded,
-      tier: computeTier(citizen.total_points + pointsAwarded),
+    const updatedCitizen = updateCitizen(citizen.id, {
+      total_points: updatedPoints,
+      tier: computeTier(updatedPoints),
     });
 
     // Recompute zone risk score
@@ -83,6 +88,8 @@ export async function POST(request: Request) {
     return NextResponse.json({
       report_id: report.id,
       points_earned: pointsAwarded,
+      total_points: updatedCitizen?.total_points ?? updatedPoints,
+      tier: updatedCitizen?.tier ?? computeTier(updatedPoints),
       photo_ai_score: aiResult.photo_ai_score,
       ai_analysis: aiResult,
       zone_risk_score: computed.risk_score,

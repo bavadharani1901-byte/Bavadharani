@@ -8,15 +8,20 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { email, password, displayName, role } = body;
+    const normalizedEmail =
+      typeof email === "string" ? email.trim().toLowerCase() : "";
 
-    if (!email || !password) {
+    if (!normalizedEmail || !password) {
       return NextResponse.json(
         { error: "Email and password are required" },
         { status: 400 }
       );
     }
 
-    const existing = await db.select().from(users).where(eq(users.email, email));
+    const existing = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, normalizedEmail));
     if (existing.length > 0) {
       return NextResponse.json(
         { error: "Email already in use" },
@@ -28,7 +33,7 @@ export async function POST(req: Request) {
     const [user] = await db
       .insert(users)
       .values({
-        email,
+        email: normalizedEmail,
         passwordHash,
         displayName: displayName || null,
         role: role || "PUBLIC",

@@ -50,7 +50,7 @@ function StatItem({ value, label, delay, isVisible }: StatItemProps) {
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <span className="text-4xl font-bold uppercase leading-[1.1] text-[#000000] md:text-5xl">
+      <span className="text-4xl leading-[1.1] font-bold text-[#000000] uppercase md:text-5xl">
         {displayValue}
       </span>
       <span className="mt-2 max-w-[200px] text-center text-sm font-bold text-[#757575]">
@@ -85,7 +85,7 @@ export default function StatsBand() {
     { value: "2,360+", label: "rivers monitored" },
     { value: "41,000", label: "km total length" },
     { value: "9,000", label: "deaths/year from unsafe water" },
-    { value: "75%", label: "industrial wastewater untreated" },
+    // { value: "75%", label: "industrial wastewater untreated" },
   ];
 
   return (

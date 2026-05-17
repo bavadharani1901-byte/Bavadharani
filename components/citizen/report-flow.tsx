@@ -43,6 +43,7 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
   const [photoUrl, setPhotoUrl] = useState("");
   const [description, setDescription] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [result, setResult] = useState<{
     report_id: string;
     points_earned: number;
@@ -59,6 +60,7 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
 
   const handleSubmit = async () => {
     setSubmitting(true);
+    setSubmitError("");
     try {
       const res = await fetch("/api/v1/reports", {
         method: "POST",
@@ -72,8 +74,16 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
         }),
       });
       const data = await res.json();
+      if (!res.ok) {
+        setSubmitError(
+          typeof data?.error === "string" ? data.error : "Failed to submit report",
+        );
+        return;
+      }
       setResult(data);
       setStep(4);
+    } catch {
+      setSubmitError("Failed to submit report");
     } finally {
       setSubmitting(false);
     }
@@ -166,6 +176,9 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
             >
               {submitting ? "Submitting..." : "Submit Report"}
             </button>
+            {submitError && (
+              <p className="mt-3 text-sm text-[#e52020]">{submitError}</p>
+            )}
           </div>
         )}
 

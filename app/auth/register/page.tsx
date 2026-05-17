@@ -28,7 +28,7 @@ export default function RegisterPage() {
       return;
     }
 
-    router.push("/auth/login");
+    router.push("/auth/login?registered=1");
   };
 
   return (

@@ -27,6 +27,7 @@ export default function ZoneMap({ zones, selectedZoneId, onSelectZone }: MapProp
   const mapInstance = useRef<any>(null);
   const initializingRef = useRef(false);
   const markersRef = useRef<Record<string, any>>({});
+  const lastCenteredZoneIdRef = useRef<string | null>(null);
   const [mapReadyKey, setMapReadyKey] = useState(0);
 
   const initMap = useCallback(async () => {
@@ -231,10 +232,18 @@ export default function ZoneMap({ zones, selectedZoneId, onSelectZone }: MapProp
 
   // Pan to selected zone
   useEffect(() => {
-    if (!mapInstance.current || !selectedZoneId) return;
+    if (!selectedZoneId) {
+      lastCenteredZoneIdRef.current = null;
+      return;
+    }
+
+    if (!mapInstance.current) return;
+    if (lastCenteredZoneIdRef.current === selectedZoneId) return;
+
     const zone = zones.find((z) => z.id === selectedZoneId);
     if (zone) {
       mapInstance.current.setView([zone.lat, zone.lng], 12, { animate: true });
+      lastCenteredZoneIdRef.current = selectedZoneId;
     }
   }, [selectedZoneId, zones]);
 

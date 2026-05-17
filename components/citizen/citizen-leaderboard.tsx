@@ -23,6 +23,19 @@ export default function CitizenLeaderboard() {
         <div className="space-y-2">
           {citizens.map((citizen, index) => {
             const isCurrent = citizen.id === currentUserId;
+            const displayName =
+              typeof citizen.display_name === "string" && citizen.display_name.trim().length > 0
+                ? citizen.display_name
+                : "Anonymous Citizen";
+            const tier =
+              typeof citizen.tier === "string" && citizen.tier.length > 0
+                ? citizen.tier.toUpperCase()
+                : "BRONZE";
+            const points =
+              typeof citizen.total_points === "number" && Number.isFinite(citizen.total_points)
+                ? citizen.total_points
+                : 0;
+
             return (
               <div
                 key={citizen.id}
@@ -37,7 +50,7 @@ export default function CitizenLeaderboard() {
                 </span>
                 <div className="flex-1">
                   <p className="text-sm font-bold text-[#000000]">
-                    {citizen.display_name}
+                    {displayName}
                     {isCurrent && (
                       <span className="ml-2 text-[10px] uppercase tracking-wide text-[#757575]">
                         You
@@ -45,11 +58,11 @@ export default function CitizenLeaderboard() {
                     )}
                   </p>
                   <p className="text-xs text-[#757575]">
-                    {citizen.tier.toUpperCase()}
+                    {tier}
                   </p>
                 </div>
                 <span className="text-sm font-bold text-[#000000]">
-                  {citizen.total_points} pts
+                  {points} pts
                 </span>
               </div>
             );

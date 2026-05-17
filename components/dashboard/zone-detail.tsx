@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import type { Zone } from "@/hooks/use-zones";
 import { useReports } from "@/hooks/use-reports";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,6 +16,47 @@ import { cn } from "@/lib/utils";
 interface ZoneDetailProps {
   zone: Zone | null;
   onInspect: (zoneId: string) => void;
+}
+
+const REAL_RIVER_PHOTO_FALLBACKS = [
+  "https://commons.wikimedia.org/wiki/Special:FilePath/River%20Pollution%20in%20Baltimore.jpg",
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Pollution%20of%20the%20Snohomish%20river,%20Everett,%20Washington%20State.jpg",
+  "https://commons.wikimedia.org/wiki/Special:FilePath/RAW%20SEWAGE%20BUBBLES%20UP%20INTO%20THE%20SPOKANE%20RIVER%20FROM%20THE%20SPOKANE%20CITY%20TREATMENT%20PLANT%20ABOUT%20FIVE%20MILES%20WEST%20OF%20THE%20CITY%20-%20NARA%20-%20548090.jpg",
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Waste%20Runs%20Into%20the%20Columbia%20River%20From%20Sluice%20at%20Vancouver%27s%20Interstate%20Bridge%2005-1973%20%284271671439%29.jpg",
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Hudson%20River%20debris.jpg",
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Usine%20UNION%20CARBIDE%20SOUTH%20CHARLESTON%20KANAWHA%20RIVER.%20from%20NARA%20551180.jpg",
+  "/uploads/river_pollution_01.svg",
+  "/uploads/river_pollution_02.svg",
+];
+
+function PhotoWithFallback({
+  src,
+  alt,
+  className,
+  loading,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+  loading?: "lazy" | "eager";
+}) {
+  const [idx, setIdx] = useState(0);
+  const chain = [src, ...REAL_RIVER_PHOTO_FALLBACKS.filter((u) => u !== src)];
+
+  useEffect(() => {
+    setIdx(0);
+  }, [src]);
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={chain[Math.min(idx, chain.length - 1)]}
+      alt={alt}
+      className={className}
+      loading={loading}
+      onError={() => setIdx((prev) => Math.min(prev + 1, chain.length - 1))}
+    />
+  );
 }
 
 interface SatelliteDetail {
@@ -166,8 +208,36 @@ export default function ZoneDetail({ zone, onInspect }: ZoneDetailProps) {
     { key: "reports", label: "Reports" },
   ];
 
+  const photoLightbox =
+    photoModal && typeof document !== "undefined"
+      ? createPortal(
+          <div
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/85 p-4"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setPhotoModal(null);
+            }}
+          >
+            <button
+              onClick={() => setPhotoModal(null)}
+              className="absolute top-4 right-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-sm bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+              aria-label="Close"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <PhotoWithFallback
+              src={photoModal}
+              alt="Citizen report full size"
+              className="relative z-10 max-h-[85vh] max-w-full rounded-sm object-contain"
+              loading="eager"
+            />
+          </div>,
+          document.body,
+        )
+      : null;
+
   return (
-    <div className="bg-background flex h-full flex-col border-t">
+    <>
+      <div className="bg-background flex h-full flex-col border-t">
       {/* Header */}
       <div className="px-4 py-3">
         <div className="flex items-start justify-between gap-3">
@@ -383,8 +453,7 @@ export default function ZoneDetail({ zone, onInspect }: ZoneDetailProps) {
                       onClick={() => setPhotoModal(r.photo_url)}
                       className="group relative aspect-square overflow-hidden rounded-sm border bg-[#f7f7f7] text-left focus:outline-none focus:ring-2 focus:ring-[#76b900]"
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <PhotoWithFallback
                         src={r.photo_url}
                         alt="Citizen report"
                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -445,28 +514,9 @@ export default function ZoneDetail({ zone, onInspect }: ZoneDetailProps) {
         </div>
       </Tabs>
 
-      {/* Photo lightbox */}
-      {photoModal && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
-          onClick={() => setPhotoModal(null)}
-        >
-          <button
-            onClick={() => setPhotoModal(null)}
-            className="absolute top-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-sm bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-            aria-label="Close"
-          >
-            <X className="h-5 w-5" />
-          </button>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={photoModal}
-            alt="Citizen report full size"
-            className="max-h-[85vh] max-w-full rounded-sm object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
-    </div>
+      </div>
+      {photoLightbox}
+    </>
   );
 }
+

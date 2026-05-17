@@ -1,28 +1,55 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const getDefaultRedirectByRole = (role?: string) => {
+    if (role === "PUBLIC") return "/citizen";
+    return "/dashboard";
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    const callbackUrl = searchParams.get("callbackUrl") || undefined;
+
     const res = await signIn("credentials", {
       email,
       password,
       redirect: false,
+      callbackUrl,
     });
+
     if (res?.error) {
       setError("Invalid email or password");
-    } else {
-      window.location.assign("/dashboard");
+      return;
     }
+
+    if (!res?.ok) {
+      setError("Unable to sign in. Please try again.");
+      return;
+    }
+
+    if (callbackUrl) {
+      router.push(callbackUrl);
+      return;
+    }
+
+    const session = await getSession();
+    const role = session?.user?.role;
+    router.push(getDefaultRedirectByRole(role));
   };
+
+  const registered = searchParams.get("registered") === "1";
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-white px-4">
@@ -39,6 +66,11 @@ export default function LoginPage() {
         <h1 className="text-2xl font-bold uppercase leading-[0.95] text-[#000000]">
           Sign In
         </h1>
+        {registered && (
+          <p className="text-sm text-[#3f8500]">
+            Account created. Please sign in.
+          </p>
+        )}
         {error && (
           <p className="text-sm text-[#e52020]">{error}</p>
         )}

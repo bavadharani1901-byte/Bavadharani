@@ -3,368 +3,429 @@
     {
       "id": "saigon_river_01",
       "name": "Saigon River - HCMC Segment",
-      "lat": 10.7769,
-      "lng": 106.7009,
+      "lat": 10.7746,
+      "lng": 106.7063,
       "radius_km": 2,
       "river_name": "Saigon River",
       "province": "Ho Chi Minh City",
       "basin": "Dong Nai",
       "risk_score": 44,
       "risk_level": "medium",
-      "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T18:10:25.318Z"
+      "created_at": "2026-05-17T07:41:45.5550619Z",
+      "updated_at": "2026-05-17T08:49:08.028Z"
     },
     {
       "id": "mekong_delta_01",
       "name": "Mekong Delta - Can Tho Segment",
-      "lat": 10.0341,
-      "lng": 105.7878,
+      "lat": 10.034,
+      "lng": 105.7905,
       "radius_km": 3,
       "river_name": "Mekong River",
       "province": "Can Tho",
       "basin": "Mekong",
-      "risk_score": 20,
-      "risk_level": "low",
-      "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T18:10:48.302Z"
+      "risk_score": 38,
+      "risk_level": "medium",
+      "created_at": "2026-05-17T07:41:45.5550619Z",
+      "updated_at": "2026-05-17T07:41:45.5550619Z"
     },
     {
       "id": "red_river_hanoi_01",
       "name": "Red River - Hanoi Segment",
-      "lat": 21.0245,
-      "lng": 105.8412,
+      "lat": 21.0438,
+      "lng": 105.865,
       "radius_km": 2.5,
       "river_name": "Red River",
       "province": "Hanoi",
       "basin": "Red River",
-      "risk_score": 19,
+      "risk_score": 29,
       "risk_level": "low",
-      "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T09:18:36.340Z"
+      "created_at": "2026-05-17T07:41:45.5550619Z",
+      "updated_at": "2026-05-17T08:54:14.300Z"
     },
     {
       "id": "thai_binh_river_01",
       "name": "Thai Binh River - Nam Dinh Segment",
-      "lat": 20.25,
-      "lng": 106.35,
+      "lat": 20.4465,
+      "lng": 106.3402,
       "radius_km": 2,
       "river_name": "Thai Binh River",
       "province": "Nam Dinh",
       "basin": "Thai Binh",
-      "risk_score": 24,
-      "risk_level": "low",
-      "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T19:46:05.326Z"
+      "risk_score": 36,
+      "risk_level": "medium",
+      "created_at": "2026-05-17T07:41:45.5550619Z",
+      "updated_at": "2026-05-17T08:44:36.067Z"
     },
     {
       "id": "dong_nai_river_01",
       "name": "Dong Nai River - Bien Hoa Segment",
-      "lat": 10.95,
-      "lng": 106.82,
+      "lat": 10.9478,
+      "lng": 106.8232,
       "radius_km": 2.5,
       "river_name": "Dong Nai River",
       "province": "Dong Nai",
       "basin": "Dong Nai",
-      "risk_score": 27,
-      "risk_level": "low",
-      "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T09:18:36.342Z"
+      "risk_score": 48,
+      "risk_level": "medium",
+      "created_at": "2026-05-17T07:41:45.5550619Z",
+      "updated_at": "2026-05-17T07:41:45.5550619Z"
     },
     {
       "id": "perfume_river_01",
       "name": "Perfume River - Hue Segment",
-      "lat": 16.47,
-      "lng": 107.58,
+      "lat": 16.4637,
+      "lng": 107.5909,
       "radius_km": 2,
       "river_name": "Perfume River",
       "province": "Thua Thien Hue",
       "basin": "Perfume",
-      "risk_score": 17,
+      "risk_score": 23,
       "risk_level": "low",
-      "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T09:18:36.343Z"
+      "created_at": "2026-05-17T07:41:45.5550619Z",
+      "updated_at": "2026-05-17T08:57:07.992Z"
     },
     {
       "id": "ca_river_01",
       "name": "Ca River - Nghe An Segment",
-      "lat": 18.67,
-      "lng": 105.68,
+      "lat": 18.6658,
+      "lng": 105.6948,
       "radius_km": 3,
       "river_name": "Ca River",
       "province": "Nghe An",
       "basin": "Ca",
-      "risk_score": 10,
-      "risk_level": "low",
-      "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T09:18:36.343Z"
+      "risk_score": 83,
+      "risk_level": "critical",
+      "created_at": "2026-05-17T07:41:45.5550619Z",
+      "updated_at": "2026-05-17T07:41:45.5550619Z"
     },
     {
       "id": "hanoi_canal_01",
       "name": "To Lich River - Hanoi Urban",
-      "lat": 21.03,
-      "lng": 105.82,
+      "lat": 21.0012,
+      "lng": 105.8125,
       "radius_km": 1.5,
       "river_name": "To Lich River",
       "province": "Hanoi",
       "basin": "Red River",
       "risk_score": 45,
       "risk_level": "medium",
-      "created_at": "2026-05-16T09:18:36.296Z",
-      "updated_at": "2026-05-16T18:11:44.236Z"
+      "created_at": "2026-05-17T07:41:45.5550619Z",
+      "updated_at": "2026-05-17T07:41:45.5550619Z"
     }
   ],
   "citizen_reports": [
     {
-      "zone_id": "thai_binh_river_01",
-      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
-      "photo_url": "https://awsimages.detik.net.id/community/media/visual/2022/01/26/seorang-warga-tengah-mengais-sampah-di-aliran-sungai-cicadas-kota-bandung_169.jpeg?w=600&q=90",
+      "zone_id": "perfume_river_01",
+      "citizen_id": "16ded13c-21f3-4d9b-a311-2482f570ca9a",
+      "photo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsGJ9NfkcAJnF27_2Pjp76MfVNXdvboitE4w&s",
       "lat": 10.7769,
       "lng": 106.7009,
-      "description": "",
+      "description": "many dirty waste trapped",
       "status": "verified",
       "points_awarded": 10,
-      "photo_ai_score": 0.63,
+      "photo_ai_score": 0.451,
       "ai_analysis": {
         "is_water_scene": true,
         "image_quality": "good",
-        "quality_score": 0.75,
+        "quality_score": 0.967,
         "quality_issues": [
-          "low_resolution"
+          "too_dark"
         ],
         "floating_trash": true,
         "turbid_water": true,
         "turbidity_level": "turbid",
         "water_color": "unknown",
-        "severity_score": 0.874,
-        "severity_level": "critical",
-        "confidence": 0.961,
-        "photo_ai_score": 0.63,
-        "needs_review": false,
-        "source": "wave_cv_model_v1",
-        "debug": null
-      },
-      "id": "report_1778955140518_3w13hp",
-      "created_at": "2026-05-16T18:12:20.518Z"
-    },
-    {
-      "zone_id": "hanoi_canal_01",
-      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
-      "photo_url": "https://images.squarespace-cdn.com/content/v1/5eb4846f9318591c9e20daa2/1732390633544-0YF9SYKB565Q506RCZ85/Untitled+%281600+x+600+px%29.jpg",
-      "lat": 10.7769,
-      "lng": 106.7009,
-      "description": "",
-      "status": "verified",
-      "points_awarded": 10,
-      "photo_ai_score": 0.47,
-      "ai_analysis": {
-        "is_water_scene": true,
-        "image_quality": "good",
-        "quality_score": 1,
-        "quality_issues": [],
-        "floating_trash": true,
-        "turbid_water": false,
-        "turbidity_level": "clear",
-        "water_color": "green",
-        "severity_score": 0.493,
-        "severity_level": "moderate",
-        "confidence": 0.953,
-        "photo_ai_score": 0.47,
-        "needs_review": false,
-        "source": "wave_cv_model_v1",
-        "debug": null
-      },
-      "id": "report_1778955104233_i3vkoy",
-      "created_at": "2026-05-16T18:11:44.233Z"
-    },
-    {
-      "zone_id": "thai_binh_river_01",
-      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
-      "photo_url": "https://lh4.googleusercontent.com/proxy/Je9RIncoU0SzEsm5oRcfTb-7zv8HZ4zGe7FUJImdQHT0X378JPB08Ol8VN4HYZA-TFjV8_NjHrBMe3zqugj6TJ2oDfQ5T8FIiiY9t7HjsHfAYjEhc2fiFV_Ofs87GhQF5WIcEkrBwPrehYCokaU-FGQV_nmtPgEWkKI",
-      "lat": 10.7769,
-      "lng": 106.7009,
-      "description": "",
-      "status": "verified",
-      "points_awarded": 10,
-      "photo_ai_score": 0.556,
-      "ai_analysis": {
-        "is_water_scene": true,
-        "image_quality": "good",
-        "quality_score": 0.75,
-        "quality_issues": [
-          "low_resolution"
-        ],
-        "floating_trash": true,
-        "turbid_water": true,
-        "turbidity_level": "turbid",
-        "water_color": "unknown",
-        "severity_score": 0.814,
-        "severity_level": "critical",
-        "confidence": 0.912,
-        "photo_ai_score": 0.556,
-        "needs_review": false,
-        "source": "wave_cv_model_v1",
-        "debug": null
-      },
-      "id": "report_1778955075958_czp2m1",
-      "created_at": "2026-05-16T18:11:15.958Z"
-    },
-    {
-      "zone_id": "mekong_delta_01",
-      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
-      "photo_url": "https://waste4change.com/blog/wp-content/uploads/image-434.png",
-      "lat": 10.7769,
-      "lng": 106.7009,
-      "description": "",
-      "status": "pending",
-      "points_awarded": 5,
-      "photo_ai_score": 0.106,
-      "ai_analysis": {
-        "is_water_scene": true,
-        "image_quality": "acceptable",
-        "quality_score": 0.692,
-        "quality_issues": [],
-        "floating_trash": false,
-        "turbid_water": true,
-        "turbidity_level": "turbid",
-        "water_color": "dark_brown",
-        "severity_score": 0.289,
-        "severity_level": "moderate",
-        "confidence": 0.528,
-        "photo_ai_score": 0.106,
-        "needs_review": true,
-        "source": "mock_fallback"
-      },
-      "id": "report_1778955048299_0cdt2s",
-      "created_at": "2026-05-16T18:10:48.299Z"
-    },
-    {
-      "zone_id": "saigon_river_01",
-      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
-      "photo_url": "https://waste4change.com/blog/wp-content/uploads/image-431.png",
-      "lat": 10.7769,
-      "lng": 106.7009,
-      "description": "",
-      "status": "pending",
-      "points_awarded": 5,
-      "photo_ai_score": 0.106,
-      "ai_analysis": {
-        "is_water_scene": true,
-        "image_quality": "acceptable",
-        "quality_score": 0.692,
-        "quality_issues": [],
-        "floating_trash": false,
-        "turbid_water": true,
-        "turbidity_level": "turbid",
-        "water_color": "dark_brown",
-        "severity_score": 0.289,
-        "severity_level": "moderate",
-        "confidence": 0.528,
-        "photo_ai_score": 0.106,
-        "needs_review": true,
-        "source": "mock_fallback"
-      },
-      "id": "report_1778955025316_srr6ui",
-      "created_at": "2026-05-16T18:10:25.316Z"
-    },
-    {
-      "zone_id": "saigon_river_01",
-      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
-      "photo_url": "https://waste4change.com/blog/wp-content/uploads/image-430-1024x682.png",
-      "lat": 10.7769,
-      "lng": 106.7009,
-      "description": "",
-      "status": "verified",
-      "points_awarded": 10,
-      "photo_ai_score": 0.416,
-      "ai_analysis": {
-        "is_water_scene": true,
-        "image_quality": "acceptable",
-        "quality_score": 0.707,
-        "quality_issues": [],
-        "floating_trash": true,
-        "turbid_water": true,
-        "turbidity_level": "turbid",
-        "water_color": "dark_brown",
-        "severity_score": 0.742,
+        "severity_score": 0.65,
         "severity_level": "high",
-        "confidence": 0.793,
-        "photo_ai_score": 0.416,
+        "confidence": 0.717,
+        "photo_ai_score": 0.451,
         "needs_review": false,
         "source": "mock_fallback"
       },
-      "id": "report_1778954996299_fto2nr",
-      "created_at": "2026-05-16T18:09:56.299Z"
+      "id": "report_1779007961337_uet5mj",
+      "created_at": "2026-05-17T08:52:41.337Z"
     },
     {
       "zone_id": "saigon_river_01",
-      "citizen_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
-      "photo_url": "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,f_auto,q_auto:best,w_640/v1629274856/limbah_20rumah_20tangga_frttz8.jpg",
+      "citizen_id": "7c1df61e-2fcf-40d2-b0c6-ce214202b1a1",
+      "photo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsGJ9NfkcAJnF27_2Pjp76MfVNXdvboitE4w&s",
       "lat": 10.7769,
       "lng": 106.7009,
-      "description": "",
+      "description": "many waste",
       "status": "verified",
       "points_awarded": 10,
-      "photo_ai_score": 0.54,
+      "photo_ai_score": 0.451,
       "ai_analysis": {
         "is_water_scene": true,
         "image_quality": "good",
-        "quality_score": 0.75,
+        "quality_score": 0.967,
         "quality_issues": [
-          "low_resolution"
+          "too_dark"
         ],
         "floating_trash": true,
         "turbid_water": true,
         "turbidity_level": "turbid",
-        "water_color": "gray",
-        "severity_score": 0.823,
-        "severity_level": "critical",
-        "confidence": 0.875,
-        "photo_ai_score": 0.54,
+        "water_color": "unknown",
+        "severity_score": 0.65,
+        "severity_level": "high",
+        "confidence": 0.717,
+        "photo_ai_score": 0.451,
         "needs_review": false,
-        "source": "wave_cv_model_v1",
-        "debug": null
+        "source": "mock_fallback"
       },
-      "id": "report_1778954103795_j0hz05",
-      "created_at": "2026-05-16T17:55:03.795Z"
+      "id": "report_1779007748025_giml6b",
+      "created_at": "2026-05-17T08:49:08.025Z"
     },
     {
-      "zone_id": "saigon_river_01",
-      "citizen_id": "750ae9ff-b252-43f1-bce7-ff07d7aa9b58",
-      "photo_url": "https://i.pinimg.com/736x/52/f4/6a/52f46acaa677bd88c6dcc28a3992fa92.jpg",
+      "zone_id": "thai_binh_river_01",
+      "citizen_id": "7c1df61e-2fcf-40d2-b0c6-ce214202b1a1",
+      "photo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsGJ9NfkcAJnF27_2Pjp76MfVNXdvboitE4w&s",
       "lat": 10.7769,
       "lng": 106.7009,
-      "description": "I see my wealth incomingggggggggggggggggggggggggggg",
-      "status": "pending",
-      "points_awarded": 5,
-      "photo_ai_score": 0.081,
+      "description": "Dirty waste",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.451,
       "ai_analysis": {
         "is_water_scene": true,
-        "image_quality": "acceptable",
-        "quality_score": 0.646,
-        "quality_issues": [],
-        "floating_trash": false,
+        "image_quality": "good",
+        "quality_score": 0.967,
+        "quality_issues": [
+          "too_dark"
+        ],
+        "floating_trash": true,
         "turbid_water": true,
         "turbidity_level": "turbid",
-        "water_color": "dark_brown",
-        "severity_score": 0.251,
-        "severity_level": "moderate",
-        "confidence": 0.497,
-        "photo_ai_score": 0.081,
-        "needs_review": true
+        "water_color": "unknown",
+        "severity_score": 0.65,
+        "severity_level": "high",
+        "confidence": 0.717,
+        "photo_ai_score": 0.451,
+        "needs_review": false,
+        "source": "mock_fallback"
       },
-      "id": "report_1778934795032_mzzm9k",
-      "created_at": "2026-05-16T12:33:15.032Z"
+      "id": "report_1779007476062_4ytvyj",
+      "created_at": "2026-05-17T08:44:36.062Z"
     },
     {
-      "id": "report_03",
-      "zone_id": "red_river_hanoi_01",
-      "citizen_id": "citizen_03",
-      "photo_url": "/uploads/report_03.jpg",
-      "lat": 21.0245,
-      "lng": 105.8412,
-      "description": "Smell of chemicals near the bridge.",
+      "id": "report_039",
+      "zone_id": "ca_river_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/River%20Pollution%20in%20Baltimore.jpg",
+      "lat": 18.6669,
+      "lng": 105.6935,
+      "description": "Turbid flow and sediment plume observed at midstream.",
       "status": "pending",
-      "points_awarded": 0,
+      "points_awarded": 5,
+      "photo_ai_score": 0.46,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-05-17T07:00:00.000Z"
+    },
+    {
+      "id": "report_035",
+      "zone_id": "perfume_river_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pollution%20of%20the%20Snohomish%20river,%20Everett,%20Washington%20State.jpg",
+      "lat": 16.4637,
+      "lng": 107.5922,
+      "description": "Turbid flow and sediment plume observed at midstream.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.77,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "critical"
+      },
+      "created_at": "2026-05-15T07:00:00.000Z"
+    },
+    {
+      "id": "report_001",
+      "zone_id": "saigon_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/RAW%20SEWAGE%20BUBBLES%20UP%20INTO%20THE%20SPOKANE%20RIVER%20FROM%20THE%20SPOKANE%20CITY%20TREATMENT%20PLANT%20ABOUT%20FIVE%20MILES%20WEST%20OF%20THE%20CITY%20-%20NARA%20-%20548090.jpg",
+      "lat": 10.7735,
+      "lng": 106.7063,
+      "description": "Water color darker than usual with visible foam streaks.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.39,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": false,
+        "severity_level": "low"
+      },
+      "created_at": "2026-05-15T07:00:00.000Z"
+    },
+    {
+      "id": "report_044",
+      "zone_id": "hanoi_canal_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waste%20Runs%20Into%20the%20Columbia%20River%20From%20Sluice%20at%20Vancouver%27s%20Interstate%20Bridge%2005-1973%20%284271671439%29.jpg",
+      "lat": 21.0012,
+      "lng": 105.8138,
+      "description": "Mixed household litter and organic debris along shoreline.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.78,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "critical"
+      },
+      "created_at": "2026-05-12T07:00:00.000Z"
+    },
+    {
+      "id": "report_040",
+      "zone_id": "ca_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hudson%20River%20debris.jpg",
+      "lat": 18.6647,
+      "lng": 105.6948,
+      "description": "Mixed household litter and organic debris along shoreline.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.56,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-05-10T07:00:00.000Z"
+    },
+    {
+      "id": "report_002",
+      "zone_id": "saigon_river_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Usine%20UNION%20CARBIDE%20SOUTH%20CHARLESTON%20KANAWHA%20RIVER.%20from%20NARA%20551180.jpg",
+      "lat": 10.7746,
+      "lng": 106.7076,
+      "description": "Strong odor reported near drainage outfall into river.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.49,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-05-08T07:00:00.000Z"
+    },
+    {
+      "id": "report_036",
+      "zone_id": "perfume_river_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/River%20Pollution%20in%20Baltimore.jpg",
+      "lat": 16.4648,
+      "lng": 107.5896,
+      "description": "Mixed household litter and organic debris along shoreline.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.34,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": false,
+        "severity_level": "low"
+      },
+      "created_at": "2026-05-08T07:00:00.000Z"
+    },
+    {
+      "id": "report_045",
+      "zone_id": "hanoi_canal_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pollution%20of%20the%20Snohomish%20river,%20Everett,%20Washington%20State.jpg",
+      "lat": 21.0023,
+      "lng": 105.8112,
+      "description": "Water color darker than usual with visible foam streaks.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.35,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": false,
+        "severity_level": "low"
+      },
+      "created_at": "2026-05-05T07:00:00.000Z"
+    },
+    {
+      "id": "report_041",
+      "zone_id": "ca_river_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/RAW%20SEWAGE%20BUBBLES%20UP%20INTO%20THE%20SPOKANE%20RIVER%20FROM%20THE%20SPOKANE%20CITY%20TREATMENT%20PLANT%20ABOUT%20FIVE%20MILES%20WEST%20OF%20THE%20CITY%20-%20NARA%20-%20548090.jpg",
+      "lat": 18.6658,
+      "lng": 105.6961,
+      "description": "Water color darker than usual with visible foam streaks.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.66,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-05-03T07:00:00.000Z"
+    },
+    {
+      "id": "report_007",
+      "zone_id": "mekong_delta_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waste%20Runs%20Into%20the%20Columbia%20River%20From%20Sluice%20at%20Vancouver%27s%20Interstate%20Bridge%2005-1973%20%284271671439%29.jpg",
+      "lat": 10.0329,
+      "lng": 105.7905,
+      "description": "Water clarity dropped significantly compared to last week.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.81,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "critical"
+      },
+      "created_at": "2026-05-03T07:00:00.000Z"
+    },
+    {
+      "id": "report_003",
+      "zone_id": "saigon_river_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hudson%20River%20debris.jpg",
+      "lat": 10.7757,
+      "lng": 106.705,
+      "description": "Water clarity dropped significantly compared to last week.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.59,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-05-01T07:00:00.000Z"
+    },
+    {
+      "id": "report_046",
+      "zone_id": "hanoi_canal_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Usine%20UNION%20CARBIDE%20SOUTH%20CHARLESTON%20KANAWHA%20RIVER.%20from%20NARA%20551180.jpg",
+      "lat": 21.0001,
+      "lng": 105.8125,
+      "description": "Strong odor reported near drainage outfall into river.",
+      "status": "pending",
+      "points_awarded": 5,
       "photo_ai_score": 0.45,
       "ai_analysis": {
         "is_water_scene": true,
@@ -372,132 +433,772 @@
         "turbid_water": true,
         "severity_level": "moderate"
       },
-      "created_at": "2026-05-15T09:18:36.296Z"
+      "created_at": "2026-04-28T07:00:00.000Z"
     },
     {
-      "id": "report_01",
-      "zone_id": "saigon_river_01",
-      "citizen_id": "citizen_01",
-      "photo_url": "/uploads/report_01.jpg",
-      "lat": 10.7769,
-      "lng": 106.7009,
-      "description": "Dark water with visible foam near the embankment.",
+      "id": "report_042",
+      "zone_id": "ca_river_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/River%20Pollution%20in%20Baltimore.jpg",
+      "lat": 18.6669,
+      "lng": 105.6935,
+      "description": "Strong odor reported near drainage outfall into river.",
       "status": "verified",
-      "points_awarded": 15,
-      "photo_ai_score": 0.65,
-      "ai_analysis": {
-        "is_water_scene": true,
-        "floating_trash": false,
-        "turbid_water": true,
-        "severity_level": "high"
-      },
-      "created_at": "2026-05-14T09:18:36.296Z"
-    },
-    {
-      "id": "report_02",
-      "zone_id": "saigon_river_01",
-      "citizen_id": "citizen_02",
-      "photo_url": "/uploads/report_02.jpg",
-      "lat": 10.7775,
-      "lng": 106.7015,
-      "description": "Plastic bottles and bags floating downstream.",
-      "status": "verified",
-      "points_awarded": 20,
-      "photo_ai_score": 0.82,
+      "points_awarded": 10,
+      "photo_ai_score": 0.76,
       "ai_analysis": {
         "is_water_scene": true,
         "floating_trash": true,
         "turbid_water": true,
         "severity_level": "critical"
       },
-      "created_at": "2026-05-11T09:18:36.296Z"
+      "created_at": "2026-04-26T07:00:00.000Z"
+    },
+    {
+      "id": "report_008",
+      "zone_id": "mekong_delta_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pollution%20of%20the%20Snohomish%20river,%20Everett,%20Washington%20State.jpg",
+      "lat": 10.034,
+      "lng": 105.7918,
+      "description": "Plastic bags and bottles trapped around riverbank vegetation.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.38,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": false,
+        "severity_level": "low"
+      },
+      "created_at": "2026-04-26T07:00:00.000Z"
+    },
+    {
+      "id": "report_004",
+      "zone_id": "saigon_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/RAW%20SEWAGE%20BUBBLES%20UP%20INTO%20THE%20SPOKANE%20RIVER%20FROM%20THE%20SPOKANE%20CITY%20TREATMENT%20PLANT%20ABOUT%20FIVE%20MILES%20WEST%20OF%20THE%20CITY%20-%20NARA%20-%20548090.jpg",
+      "lat": 10.7735,
+      "lng": 106.7063,
+      "description": "Plastic bags and bottles trapped around riverbank vegetation.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.69,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-04-24T07:00:00.000Z"
+    },
+    {
+      "id": "report_047",
+      "zone_id": "hanoi_canal_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waste%20Runs%20Into%20the%20Columbia%20River%20From%20Sluice%20at%20Vancouver%27s%20Interstate%20Bridge%2005-1973%20%284271671439%29.jpg",
+      "lat": 21.0012,
+      "lng": 105.8138,
+      "description": "Water clarity dropped significantly compared to last week.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.55,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-04-21T07:00:00.000Z"
+    },
+    {
+      "id": "report_013",
+      "zone_id": "red_river_hanoi_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hudson%20River%20debris.jpg",
+      "lat": 21.0427,
+      "lng": 105.865,
+      "description": "Surface sheen seen around slow-moving section of water.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.7,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-04-21T07:00:00.000Z"
+    },
+    {
+      "id": "report_009",
+      "zone_id": "mekong_delta_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Usine%20UNION%20CARBIDE%20SOUTH%20CHARLESTON%20KANAWHA%20RIVER.%20from%20NARA%20551180.jpg",
+      "lat": 10.0351,
+      "lng": 105.7892,
+      "description": "Surface sheen seen around slow-moving section of water.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.48,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-04-19T07:00:00.000Z"
+    },
+    {
+      "id": "report_005",
+      "zone_id": "saigon_river_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/River%20Pollution%20in%20Baltimore.jpg",
+      "lat": 10.7746,
+      "lng": 106.7076,
+      "description": "Surface sheen seen around slow-moving section of water.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.79,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "critical"
+      },
+      "created_at": "2026-04-17T07:00:00.000Z"
+    },
+    {
+      "id": "report_014",
+      "zone_id": "red_river_hanoi_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pollution%20of%20the%20Snohomish%20river,%20Everett,%20Washington%20State.jpg",
+      "lat": 21.0438,
+      "lng": 105.8663,
+      "description": "Floating waste gathering near embankment after rainfall.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.8,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "critical"
+      },
+      "created_at": "2026-04-14T07:00:00.000Z"
+    },
+    {
+      "id": "report_048",
+      "zone_id": "hanoi_canal_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/RAW%20SEWAGE%20BUBBLES%20UP%20INTO%20THE%20SPOKANE%20RIVER%20FROM%20THE%20SPOKANE%20CITY%20TREATMENT%20PLANT%20ABOUT%20FIVE%20MILES%20WEST%20OF%20THE%20CITY%20-%20NARA%20-%20548090.jpg",
+      "lat": 21.0023,
+      "lng": 105.8112,
+      "description": "Plastic bags and bottles trapped around riverbank vegetation.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.65,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-04-14T07:00:00.000Z"
+    },
+    {
+      "id": "report_010",
+      "zone_id": "mekong_delta_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waste%20Runs%20Into%20the%20Columbia%20River%20From%20Sluice%20at%20Vancouver%27s%20Interstate%20Bridge%2005-1973%20%284271671439%29.jpg",
+      "lat": 10.0329,
+      "lng": 105.7905,
+      "description": "Floating waste gathering near embankment after rainfall.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.58,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-04-12T07:00:00.000Z"
+    },
+    {
+      "id": "report_006",
+      "zone_id": "saigon_river_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hudson%20River%20debris.jpg",
+      "lat": 10.7757,
+      "lng": 106.705,
+      "description": "Floating waste gathering near embankment after rainfall.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.36,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": false,
+        "severity_level": "low"
+      },
+      "created_at": "2026-04-10T07:00:00.000Z"
+    },
+    {
+      "id": "report_019",
+      "zone_id": "thai_binh_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Usine%20UNION%20CARBIDE%20SOUTH%20CHARLESTON%20KANAWHA%20RIVER.%20from%20NARA%20551180.jpg",
+      "lat": 20.4454,
+      "lng": 106.3402,
+      "description": "Turbid flow and sediment plume observed at midstream.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.59,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-04-09T07:00:00.000Z"
+    },
+    {
+      "id": "report_015",
+      "zone_id": "red_river_hanoi_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/River%20Pollution%20in%20Baltimore.jpg",
+      "lat": 21.0449,
+      "lng": 105.8637,
+      "description": "Turbid flow and sediment plume observed at midstream.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.37,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": false,
+        "severity_level": "low"
+      },
+      "created_at": "2026-04-07T07:00:00.000Z"
+    },
+    {
+      "id": "report_011",
+      "zone_id": "mekong_delta_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pollution%20of%20the%20Snohomish%20river,%20Everett,%20Washington%20State.jpg",
+      "lat": 10.034,
+      "lng": 105.7918,
+      "description": "Turbid flow and sediment plume observed at midstream.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.68,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-04-05T07:00:00.000Z"
+    },
+    {
+      "id": "report_020",
+      "zone_id": "thai_binh_river_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/RAW%20SEWAGE%20BUBBLES%20UP%20INTO%20THE%20SPOKANE%20RIVER%20FROM%20THE%20SPOKANE%20CITY%20TREATMENT%20PLANT%20ABOUT%20FIVE%20MILES%20WEST%20OF%20THE%20CITY%20-%20NARA%20-%20548090.jpg",
+      "lat": 20.4465,
+      "lng": 106.3415,
+      "description": "Mixed household litter and organic debris along shoreline.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.69,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-04-02T07:00:00.000Z"
+    },
+    {
+      "id": "report_016",
+      "zone_id": "red_river_hanoi_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waste%20Runs%20Into%20the%20Columbia%20River%20From%20Sluice%20at%20Vancouver%27s%20Interstate%20Bridge%2005-1973%20%284271671439%29.jpg",
+      "lat": 21.0427,
+      "lng": 105.865,
+      "description": "Mixed household litter and organic debris along shoreline.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.47,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-03-31T07:00:00.000Z"
+    },
+    {
+      "id": "report_012",
+      "zone_id": "mekong_delta_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hudson%20River%20debris.jpg",
+      "lat": 10.0351,
+      "lng": 105.7892,
+      "description": "Mixed household litter and organic debris along shoreline.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.78,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "critical"
+      },
+      "created_at": "2026-03-29T07:00:00.000Z"
+    },
+    {
+      "id": "report_025",
+      "zone_id": "dong_nai_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Usine%20UNION%20CARBIDE%20SOUTH%20CHARLESTON%20KANAWHA%20RIVER.%20from%20NARA%20551180.jpg",
+      "lat": 10.9467,
+      "lng": 106.8232,
+      "description": "Water color darker than usual with visible foam streaks.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.48,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-03-28T07:00:00.000Z"
+    },
+    {
+      "id": "report_021",
+      "zone_id": "thai_binh_river_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/River%20Pollution%20in%20Baltimore.jpg",
+      "lat": 20.4476,
+      "lng": 106.3389,
+      "description": "Water color darker than usual with visible foam streaks.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.79,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "critical"
+      },
+      "created_at": "2026-03-26T07:00:00.000Z"
+    },
+    {
+      "id": "report_017",
+      "zone_id": "red_river_hanoi_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pollution%20of%20the%20Snohomish%20river,%20Everett,%20Washington%20State.jpg",
+      "lat": 21.0438,
+      "lng": 105.8663,
+      "description": "Water color darker than usual with visible foam streaks.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.57,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-03-24T07:00:00.000Z"
+    },
+    {
+      "id": "report_026",
+      "zone_id": "dong_nai_river_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/RAW%20SEWAGE%20BUBBLES%20UP%20INTO%20THE%20SPOKANE%20RIVER%20FROM%20THE%20SPOKANE%20CITY%20TREATMENT%20PLANT%20ABOUT%20FIVE%20MILES%20WEST%20OF%20THE%20CITY%20-%20NARA%20-%20548090.jpg",
+      "lat": 10.9478,
+      "lng": 106.8245,
+      "description": "Strong odor reported near drainage outfall into river.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.58,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-03-21T07:00:00.000Z"
+    },
+    {
+      "id": "report_022",
+      "zone_id": "thai_binh_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waste%20Runs%20Into%20the%20Columbia%20River%20From%20Sluice%20at%20Vancouver%27s%20Interstate%20Bridge%2005-1973%20%284271671439%29.jpg",
+      "lat": 20.4454,
+      "lng": 106.3402,
+      "description": "Strong odor reported near drainage outfall into river.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.36,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": false,
+        "severity_level": "low"
+      },
+      "created_at": "2026-03-19T07:00:00.000Z"
+    },
+    {
+      "id": "report_018",
+      "zone_id": "red_river_hanoi_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hudson%20River%20debris.jpg",
+      "lat": 21.0449,
+      "lng": 105.8637,
+      "description": "Strong odor reported near drainage outfall into river.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.67,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-03-17T07:00:00.000Z"
+    },
+    {
+      "id": "report_031",
+      "zone_id": "perfume_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Usine%20UNION%20CARBIDE%20SOUTH%20CHARLESTON%20KANAWHA%20RIVER.%20from%20NARA%20551180.jpg",
+      "lat": 16.4626,
+      "lng": 107.5909,
+      "description": "Water clarity dropped significantly compared to last week.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.37,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": false,
+        "severity_level": "low"
+      },
+      "created_at": "2026-03-16T07:00:00.000Z"
+    },
+    {
+      "id": "report_027",
+      "zone_id": "dong_nai_river_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/River%20Pollution%20in%20Baltimore.jpg",
+      "lat": 10.9489,
+      "lng": 106.8219,
+      "description": "Water clarity dropped significantly compared to last week.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.68,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-03-14T07:00:00.000Z"
+    },
+    {
+      "id": "report_023",
+      "zone_id": "thai_binh_river_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pollution%20of%20the%20Snohomish%20river,%20Everett,%20Washington%20State.jpg",
+      "lat": 20.4465,
+      "lng": 106.3415,
+      "description": "Water clarity dropped significantly compared to last week.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.46,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-03-12T07:00:00.000Z"
+    },
+    {
+      "id": "report_032",
+      "zone_id": "perfume_river_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/RAW%20SEWAGE%20BUBBLES%20UP%20INTO%20THE%20SPOKANE%20RIVER%20FROM%20THE%20SPOKANE%20CITY%20TREATMENT%20PLANT%20ABOUT%20FIVE%20MILES%20WEST%20OF%20THE%20CITY%20-%20NARA%20-%20548090.jpg",
+      "lat": 16.4637,
+      "lng": 107.5922,
+      "description": "Plastic bags and bottles trapped around riverbank vegetation.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.47,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-03-09T07:00:00.000Z"
+    },
+    {
+      "id": "report_028",
+      "zone_id": "dong_nai_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waste%20Runs%20Into%20the%20Columbia%20River%20From%20Sluice%20at%20Vancouver%27s%20Interstate%20Bridge%2005-1973%20%284271671439%29.jpg",
+      "lat": 10.9467,
+      "lng": 106.8232,
+      "description": "Plastic bags and bottles trapped around riverbank vegetation.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.78,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "critical"
+      },
+      "created_at": "2026-03-07T07:00:00.000Z"
+    },
+    {
+      "id": "report_024",
+      "zone_id": "thai_binh_river_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hudson%20River%20debris.jpg",
+      "lat": 20.4476,
+      "lng": 106.3389,
+      "description": "Plastic bags and bottles trapped around riverbank vegetation.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.56,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-03-05T07:00:00.000Z"
+    },
+    {
+      "id": "report_037",
+      "zone_id": "ca_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Usine%20UNION%20CARBIDE%20SOUTH%20CHARLESTON%20KANAWHA%20RIVER.%20from%20NARA%20551180.jpg",
+      "lat": 18.6647,
+      "lng": 105.6948,
+      "description": "Surface sheen seen around slow-moving section of water.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.79,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "critical"
+      },
+      "created_at": "2026-03-04T07:00:00.000Z"
+    },
+    {
+      "id": "report_033",
+      "zone_id": "perfume_river_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/River%20Pollution%20in%20Baltimore.jpg",
+      "lat": 16.4648,
+      "lng": 107.5896,
+      "description": "Surface sheen seen around slow-moving section of water.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.57,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-03-02T07:00:00.000Z"
+    },
+    {
+      "id": "report_029",
+      "zone_id": "dong_nai_river_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pollution%20of%20the%20Snohomish%20river,%20Everett,%20Washington%20State.jpg",
+      "lat": 10.9478,
+      "lng": 106.8245,
+      "description": "Surface sheen seen around slow-moving section of water.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.35,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": false,
+        "severity_level": "low"
+      },
+      "created_at": "2026-02-28T07:00:00.000Z"
+    },
+    {
+      "id": "report_038",
+      "zone_id": "ca_river_01",
+      "citizen_id": "citizen_04",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/RAW%20SEWAGE%20BUBBLES%20UP%20INTO%20THE%20SPOKANE%20RIVER%20FROM%20THE%20SPOKANE%20CITY%20TREATMENT%20PLANT%20ABOUT%20FIVE%20MILES%20WEST%20OF%20THE%20CITY%20-%20NARA%20-%20548090.jpg",
+      "lat": 18.6658,
+      "lng": 105.6961,
+      "description": "Floating waste gathering near embankment after rainfall.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.36,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": false,
+        "severity_level": "low"
+      },
+      "created_at": "2026-02-25T07:00:00.000Z"
+    },
+    {
+      "id": "report_034",
+      "zone_id": "perfume_river_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waste%20Runs%20Into%20the%20Columbia%20River%20From%20Sluice%20at%20Vancouver%27s%20Interstate%20Bridge%2005-1973%20%284271671439%29.jpg",
+      "lat": 16.4626,
+      "lng": 107.5909,
+      "description": "Floating waste gathering near embankment after rainfall.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.67,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-02-23T07:00:00.000Z"
+    },
+    {
+      "id": "report_030",
+      "zone_id": "dong_nai_river_01",
+      "citizen_id": "citizen_06",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hudson%20River%20debris.jpg",
+      "lat": 10.9489,
+      "lng": 106.8219,
+      "description": "Floating waste gathering near embankment after rainfall.",
+      "status": "pending",
+      "points_awarded": 5,
+      "photo_ai_score": 0.45,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": false,
+        "turbid_water": true,
+        "severity_level": "moderate"
+      },
+      "created_at": "2026-02-21T07:00:00.000Z"
+    },
+    {
+      "id": "report_043",
+      "zone_id": "hanoi_canal_01",
+      "citizen_id": "citizen_02",
+      "photo_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Usine%20UNION%20CARBIDE%20SOUTH%20CHARLESTON%20KANAWHA%20RIVER.%20from%20NARA%20551180.jpg",
+      "lat": 21.0001,
+      "lng": 105.8125,
+      "description": "Turbid flow and sediment plume observed at midstream.",
+      "status": "verified",
+      "points_awarded": 10,
+      "photo_ai_score": 0.68,
+      "ai_analysis": {
+        "is_water_scene": true,
+        "floating_trash": true,
+        "turbid_water": true,
+        "severity_level": "high"
+      },
+      "created_at": "2026-02-20T07:00:00.000Z"
     }
   ],
   "citizens": [
     {
-      "id": "citizen_01",
-      "display_name": "Nguyen Van A",
-      "total_points": 420,
-      "tier": "silver",
-      "created_at": "2026-05-16T09:18:36.296Z"
-    },
-    {
-      "id": "citizen_02",
-      "display_name": "Tran Thi B",
-      "total_points": 850,
-      "tier": "gold",
-      "created_at": "2026-05-16T09:18:36.296Z"
-    },
-    {
-      "id": "citizen_03",
-      "display_name": "Le Van C",
-      "total_points": 120,
-      "tier": "bronze",
-      "created_at": "2026-05-16T09:18:36.296Z"
-    },
-    {
-      "id": "citizen_04",
-      "display_name": "Pham Thi D",
-      "total_points": 310,
-      "tier": "silver",
-      "created_at": "2026-05-16T09:18:36.296Z"
-    },
-    {
-      "id": "citizen_05",
-      "display_name": "Hoang Van E",
-      "total_points": 60,
-      "tier": "bronze",
-      "created_at": "2026-05-16T09:18:36.296Z"
-    },
-    {
       "id": "750ae9ff-b252-43f1-bce7-ff07d7aa9b58",
       "user_id": "750ae9ff-b252-43f1-bce7-ff07d7aa9b58",
       "display_name": "NGO User",
-      "total_points": 5,
-      "tier": "bronze",
-      "created_at": "2026-05-16T12:31:45.033Z"
-    },
-    {
-      "id": "fa0e5acd-248d-466c-9cbc-6da496fd8a8f",
-      "user_id": "fa0e5acd-248d-466c-9cbc-6da496fd8a8f",
-      "display_name": "Government User",
       "total_points": 0,
       "tier": "bronze",
-      "created_at": "2026-05-16T17:07:34.668Z"
+      "created_at": "2026-05-17T08:26:37.608Z"
     },
     {
-      "id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
-      "user_id": "84729a5f-9b6b-43e8-ad1e-d8f56bc58146",
-      "display_name": "NGO User",
-      "total_points": 60,
+      "id": "7c1df61e-2fcf-40d2-b0c6-ce214202b1a1",
+      "user_id": "7c1df61e-2fcf-40d2-b0c6-ce214202b1a1",
+      "display_name": "User X",
+      "total_points": 20,
       "tier": "bronze",
-      "created_at": "2026-05-16T17:53:53.650Z"
+      "created_at": "2026-05-17T08:41:48.376Z"
+    },
+    {
+      "id": "16ded13c-21f3-4d9b-a311-2482f570ca9a",
+      "user_id": "16ded13c-21f3-4d9b-a311-2482f570ca9a",
+      "display_name": "User Y",
+      "total_points": 10,
+      "tier": "bronze",
+      "created_at": "2026-05-17T08:52:41.335Z"
     }
   ],
   "inspector_actions": [
     {
-      "zone_id": "saigon_river_01",
-      "inspector_id": "inspector_01",
-      "action": "inspected",
-      "notes": "",
-      "resolved_at": "2026-05-16T12:47:58.660Z",
-      "id": "inspector_1778935678660_ou6j44"
+      "value": [
+        {
+          "id": "inspect_01",
+          "zone_id": "saigon_river_01",
+          "inspector_id": "inspector_hcm_01",
+          "action": "inspected",
+          "notes": "Confirmed floating waste hotspot near bridge segment; cleanup ticket opened.",
+          "resolved_at": "2026-05-13T08:10:00.000Z"
+        },
+        {
+          "id": "inspect_02",
+          "zone_id": "dong_nai_river_01",
+          "inspector_id": "inspector_dn_02",
+          "action": "inspected",
+          "notes": "Sample collected near industrial discharge outlet for lab validation.",
+          "resolved_at": "2026-05-12T06:30:00.000Z"
+        },
+        {
+          "id": "inspect_03",
+          "zone_id": "hanoi_canal_01",
+          "inspector_id": "inspector_hn_01",
+          "action": "inspected",
+          "notes": "Confirmed domestic drainage input; reported to urban sanitation team.",
+          "resolved_at": "2026-05-14T03:05:00.000Z"
+        },
+        {
+          "id": "inspect_04",
+          "zone_id": "ca_river_01",
+          "inspector_id": "inspector_na_03",
+          "action": "inspected",
+          "notes": "Elevated turbidity after rainfall event; follow-up scheduled in 48 hours.",
+          "resolved_at": "2026-05-16T02:50:00.000Z"
+        }
+      ],
+      "Count": 4
     },
     {
-      "zone_id": "thai_binh_river_01",
+      "zone_id": "red_river_hanoi_01",
       "inspector_id": "inspector_01",
       "action": "inspected",
       "notes": "",
-      "resolved_at": "2026-05-16T19:46:03.506Z",
-      "id": "inspector_1778960763506_syxfag"
+      "resolved_at": "2026-05-17T08:54:14.298Z",
+      "id": "inspector_1779008054298_f6aios"
     },
     {
-      "zone_id": "thai_binh_river_01",
+      "zone_id": "perfume_river_01",
       "inspector_id": "inspector_01",
       "action": "inspected",
       "notes": "",
-      "resolved_at": "2026-05-16T19:46:05.325Z",
-      "id": "inspector_1778960765325_wtt9o3"
+      "resolved_at": "2026-05-17T08:57:07.989Z",
+      "id": "inspector_1779008227990_xj7ax6"
     }
   ],
   "satellite_observations": [
@@ -635,7 +1336,7 @@
       "id": "sat_anom_0",
       "zone_id": "saigon_river_01",
       "observation_id": "sat_obs_0",
-      "z_score": 1.136,
+      "z_score": 1.14,
       "anomaly_score": 0.379,
       "anomaly_level": "medium",
       "confidence": 0.967,
@@ -649,7 +1350,7 @@
       "id": "sat_anom_1",
       "zone_id": "mekong_delta_01",
       "observation_id": "sat_obs_1",
-      "z_score": -0.906,
+      "z_score": -0.91,
       "anomaly_score": 0.302,
       "anomaly_level": "medium",
       "confidence": 0.902,
@@ -663,7 +1364,7 @@
       "id": "sat_anom_2",
       "zone_id": "red_river_hanoi_01",
       "observation_id": "sat_obs_2",
-      "z_score": -0.513,
+      "z_score": -0.51,
       "anomaly_score": 0.171,
       "anomaly_level": "low",
       "confidence": 0.823,
@@ -677,7 +1378,7 @@
       "id": "sat_anom_3",
       "zone_id": "thai_binh_river_01",
       "observation_id": "sat_obs_3",
-      "z_score": -1.039,
+      "z_score": -1.04,
       "anomaly_score": 0.346,
       "anomaly_level": "medium",
       "confidence": 0.894,
@@ -691,7 +1392,7 @@
       "id": "sat_anom_4",
       "zone_id": "dong_nai_river_01",
       "observation_id": "sat_obs_4",
-      "z_score": 0.835,
+      "z_score": 0.84,
       "anomaly_score": 0.278,
       "anomaly_level": "low",
       "confidence": 0.967,
@@ -705,7 +1406,7 @@
       "id": "sat_anom_5",
       "zone_id": "perfume_river_01",
       "observation_id": "sat_obs_5",
-      "z_score": 0.712,
+      "z_score": 0.71,
       "anomaly_score": 0.237,
       "anomaly_level": "low",
       "confidence": 0.933,
@@ -719,7 +1420,7 @@
       "id": "sat_anom_6",
       "zone_id": "ca_river_01",
       "observation_id": "sat_obs_6",
-      "z_score": -3.292,
+      "z_score": -3.29,
       "anomaly_score": 1,
       "anomaly_level": "critical",
       "confidence": 0.782,
@@ -733,7 +1434,7 @@
       "id": "sat_anom_7",
       "zone_id": "hanoi_canal_01",
       "observation_id": "sat_obs_7",
-      "z_score": -0.166,
+      "z_score": -0.17,
       "anomaly_score": 0.055,
       "anomaly_level": "low",
       "confidence": 0.823,
@@ -764,6 +1465,86 @@
       "position_context": "upstream",
       "risk_contribution": 0.24,
       "osm_id": "osm_0_1"
+    },
+    {
+      "id": "osm_1_0",
+      "zone_id": "mekong_delta_01",
+      "source_type": "agricultural",
+      "name": "Rice Paddy Cluster NW",
+      "distance_km": 0.5,
+      "position_context": "upstream",
+      "risk_contribution": 0.28,
+      "osm_id": "osm_1_0"
+    },
+    {
+      "id": "osm_2_0",
+      "zone_id": "red_river_hanoi_01",
+      "source_type": "domestic",
+      "name": "Urban Drainage Outlet A",
+      "distance_km": 0.3,
+      "position_context": "within",
+      "risk_contribution": 0.35,
+      "osm_id": "osm_2_0"
+    },
+    {
+      "id": "osm_2_1",
+      "zone_id": "red_river_hanoi_01",
+      "source_type": "industrial_area",
+      "name": "Long Bien Industrial Area",
+      "distance_km": 1.2,
+      "position_context": "upstream",
+      "risk_contribution": 0.22,
+      "osm_id": "osm_2_1"
+    },
+    {
+      "id": "osm_3_0",
+      "zone_id": "thai_binh_river_01",
+      "source_type": "agricultural",
+      "name": "Coastal Shrimp Farm Cluster",
+      "distance_km": 0.8,
+      "position_context": "downstream",
+      "risk_contribution": 0.26,
+      "osm_id": "osm_3_0"
+    },
+    {
+      "id": "osm_4_0",
+      "zone_id": "dong_nai_river_01",
+      "source_type": "industrial_area",
+      "name": "Bien Hoa Industrial Zone 1",
+      "distance_km": 0.9,
+      "position_context": "upstream",
+      "risk_contribution": 0.3,
+      "osm_id": "osm_4_0"
+    },
+    {
+      "id": "osm_5_0",
+      "zone_id": "perfume_river_01",
+      "source_type": "domestic",
+      "name": "Hue City Drainage Outlet",
+      "distance_km": 0.4,
+      "position_context": "within",
+      "risk_contribution": 0.24,
+      "osm_id": "osm_5_0"
+    },
+    {
+      "id": "osm_6_0",
+      "zone_id": "ca_river_01",
+      "source_type": "agricultural",
+      "name": "Nghe An Farm Belt",
+      "distance_km": 1,
+      "position_context": "upstream",
+      "risk_contribution": 0.25,
+      "osm_id": "osm_6_0"
+    },
+    {
+      "id": "osm_7_0",
+      "zone_id": "hanoi_canal_01",
+      "source_type": "domestic",
+      "name": "Cau Giay Residential Drainage",
+      "distance_km": 0.2,
+      "position_context": "within",
+      "risk_contribution": 0.4,
+      "osm_id": "osm_7_0"
     }
   ]
 }

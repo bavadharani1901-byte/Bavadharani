@@ -16,7 +16,7 @@ export function useCitizenMe() {
 
   const fetchCitizen = useCallback(async () => {
     try {
-      const res = await fetch("/api/v1/citizens/me");
+      const res = await fetch("/api/v1/citizens/me", { cache: "no-store" });
       if (!res.ok) throw new Error("Failed to fetch citizen");
       const data = await res.json();
       setCitizen(data.citizen ?? null);

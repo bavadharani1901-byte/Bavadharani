@@ -16,7 +16,9 @@ export function useLeaderboard(limit = 10) {
 
   const fetchLeaderboard = useCallback(async () => {
     try {
-      const res = await fetch(`/api/v1/leaderboard?limit=${limit}`);
+      const res = await fetch(`/api/v1/leaderboard?limit=${limit}`, {
+        cache: "no-store",
+      });
       if (!res.ok) throw new Error("Failed to fetch leaderboard");
       const data = await res.json();
       setCitizens(data.leaderboard ?? []);

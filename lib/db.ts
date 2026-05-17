@@ -171,6 +171,10 @@ function initDb(): DbSchema {
     explanation: string;
   }>("seed_osm_sources.json");
 
+  const seedCitizens = loadSeed<Citizen>("seed_citizens.json");
+  const seedReports = loadSeed<CitizenReport>("seed_reports.json");
+  const seedInspectorActions = loadSeed<InspectorAction>("seed_inspector_actions.json");
+
   const zones: Zone[] = seedZones.map((z) => ({
     id: z.zone_id,
     name: z.name,
@@ -249,111 +253,50 @@ function initDb(): DbSchema {
     }));
   });
 
-  // Pre-seed citizens
-  const citizens: Citizen[] = [
-    {
-      id: "citizen_01",
-      display_name: "Nguyen Van A",
-      total_points: 420,
-      tier: "silver",
-      created_at: nowIso(),
-    },
-    {
-      id: "citizen_02",
-      display_name: "Tran Thi B",
-      total_points: 850,
-      tier: "gold",
-      created_at: nowIso(),
-    },
-    {
-      id: "citizen_03",
-      display_name: "Le Van C",
-      total_points: 120,
-      tier: "bronze",
-      created_at: nowIso(),
-    },
-    {
-      id: "citizen_04",
-      display_name: "Pham Thi D",
-      total_points: 310,
-      tier: "silver",
-      created_at: nowIso(),
-    },
-    {
-      id: "citizen_05",
-      display_name: "Hoang Van E",
-      total_points: 60,
-      tier: "bronze",
-      created_at: nowIso(),
-    },
-  ];
+  const citizens: Citizen[] =
+    seedCitizens.length > 0
+      ? seedCitizens
+      : [
+          {
+            id: "citizen_01",
+            display_name: "Nguyen Van A",
+            total_points: 120,
+            tier: "silver",
+            created_at: nowIso(),
+          },
+        ];
 
-  // Pre-seed some reports
-  const citizen_reports: CitizenReport[] = [
-    {
-      id: "report_01",
-      zone_id: "saigon_river_01",
-      citizen_id: "citizen_01",
-      photo_url: "/uploads/report_01.jpg",
-      lat: 10.7769,
-      lng: 106.7009,
-      description: "Dark water with visible foam near the embankment.",
-      status: "verified",
-      points_awarded: 15,
-      photo_ai_score: 0.65,
-      ai_analysis: {
-        is_water_scene: true,
-        floating_trash: false,
-        turbid_water: true,
-        severity_level: "high",
-      },
-      created_at: new Date(Date.now() - 86400000 * 2).toISOString(),
-    },
-    {
-      id: "report_02",
-      zone_id: "saigon_river_01",
-      citizen_id: "citizen_02",
-      photo_url: "/uploads/report_02.jpg",
-      lat: 10.7775,
-      lng: 106.7015,
-      description: "Plastic bottles and bags floating downstream.",
-      status: "verified",
-      points_awarded: 20,
-      photo_ai_score: 0.82,
-      ai_analysis: {
-        is_water_scene: true,
-        floating_trash: true,
-        turbid_water: true,
-        severity_level: "critical",
-      },
-      created_at: new Date(Date.now() - 86400000 * 5).toISOString(),
-    },
-    {
-      id: "report_03",
-      zone_id: "red_river_hanoi_01",
-      citizen_id: "citizen_03",
-      photo_url: "/uploads/report_03.jpg",
-      lat: 21.0245,
-      lng: 105.8412,
-      description: "Smell of chemicals near the bridge.",
-      status: "pending",
-      points_awarded: 0,
-      photo_ai_score: 0.45,
-      ai_analysis: {
-        is_water_scene: true,
-        floating_trash: false,
-        turbid_water: true,
-        severity_level: "moderate",
-      },
-      created_at: new Date(Date.now() - 86400000 * 1).toISOString(),
-    },
-  ];
+  const citizen_reports: CitizenReport[] =
+    seedReports.length > 0
+      ? seedReports
+      : [
+          {
+            id: "report_01",
+            zone_id: "saigon_river_01",
+            citizen_id: "citizen_01",
+            photo_url:
+              "https://images.unsplash.com/photo-1611273426858-4502b0f3c2c5?auto=format&fit=crop&w=1200&q=80",
+            lat: 10.7746,
+            lng: 106.7063,
+            description: "Foam patches spotted near shoreline after rain.",
+            status: "verified",
+            points_awarded: 10,
+            photo_ai_score: 0.61,
+            ai_analysis: {
+              is_water_scene: true,
+              floating_trash: true,
+              turbid_water: true,
+              severity_level: "high",
+            },
+            created_at: nowIso(),
+          },
+        ];
 
   return {
     zones,
     citizen_reports,
     citizens,
-    inspector_actions: [],
+    inspector_actions: seedInspectorActions,
     satellite_observations,
     satellite_anomalies,
     osm_sources,
@@ -363,7 +306,17 @@ function initDb(): DbSchema {
 function loadDb(): DbSchema {
   if (fs.existsSync(DB_PATH)) {
     try {
-      return JSON.parse(fs.readFileSync(DB_PATH, "utf-8")) as DbSchema;
+      const raw = JSON.parse(fs.readFileSync(DB_PATH, "utf-8")) as Partial<DbSchema>;
+      const normalized: DbSchema = {
+        zones: ensureArray(raw.zones),
+        citizen_reports: ensureArray(raw.citizen_reports),
+        citizens: ensureArray(raw.citizens),
+        inspector_actions: ensureArray(raw.inspector_actions),
+        satellite_observations: ensureArray(raw.satellite_observations),
+        satellite_anomalies: ensureArray(raw.satellite_anomalies),
+        osm_sources: ensureArray(raw.osm_sources),
+      };
+      return normalized;
     } catch {
       // corrupted, re-init
     }
@@ -380,6 +333,12 @@ function saveDb(db: DbSchema) {
   } catch {
     // ignore write errors in read-only environments
   }
+}
+
+function ensureArray<T>(value: T[] | T | undefined | null): T[] {
+  if (Array.isArray(value)) return value;
+  if (value === null || value === undefined) return [];
+  return [value];
 }
 
 let _db: DbSchema | null = null;
@@ -542,6 +501,26 @@ export function getOsmSources(zoneId?: string): OsmSource[] {
 export function getLeaderboard(limit = 10): Citizen[] {
   return getDb()
     .citizens.slice()
+    .filter((c) => c && typeof c.id === "string" && c.id.length > 0)
+    .map((c) => ({
+      ...c,
+      display_name:
+        typeof c.display_name === "string" && c.display_name.trim().length > 0
+          ? c.display_name
+          : "Anonymous Citizen",
+      total_points:
+        typeof c.total_points === "number" && Number.isFinite(c.total_points)
+          ? c.total_points
+          : 0,
+      tier:
+        c.tier === "gold" || c.tier === "silver" || c.tier === "bronze"
+          ? c.tier
+          : "bronze",
+      created_at:
+        typeof c.created_at === "string" && c.created_at.length > 0
+          ? c.created_at
+          : nowIso(),
+    }))
     .sort((a, b) => b.total_points - a.total_points)
     .slice(0, limit);
 }

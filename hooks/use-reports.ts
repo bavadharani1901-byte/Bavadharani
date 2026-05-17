@@ -26,7 +26,7 @@ export function useReports(zoneId?: string) {
       const url = zoneId
         ? `/api/v1/reports?zone_id=${zoneId}`
         : "/api/v1/reports";
-      const res = await fetch(url);
+      const res = await fetch(url, { cache: "no-store" });
       if (!res.ok) throw new Error("Failed to fetch reports");
       const data = await res.json();
       setReports(data.reports ?? []);

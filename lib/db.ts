@@ -259,7 +259,7 @@ function initDb(): DbSchema {
       : [
           {
             id: "citizen_01",
-            display_name: "Nguyen Van A",
+            display_name: "Chennai Citizen",
             total_points: 120,
             tier: "silver",
             created_at: nowIso(),
@@ -272,13 +272,13 @@ function initDb(): DbSchema {
       : [
           {
             id: "report_01",
-            zone_id: "saigon_river_01",
+            zone_id: "adyar_river_01",
             citizen_id: "citizen_01",
             photo_url:
               "https://images.unsplash.com/photo-1611273426858-4502b0f3c2c5?auto=format&fit=crop&w=1200&q=80",
-            lat: 10.7746,
-            lng: 106.7063,
-            description: "Foam patches spotted near shoreline after rain.",
+            lat: 13.0067,
+            lng: 80.2206,
+            description: "Foam patches spotted along Adyar River after rain.",
             status: "verified",
             points_awarded: 10,
             photo_ai_score: 0.61,
@@ -342,16 +342,31 @@ function ensureArray<T>(value: T[] | T | undefined | null): T[] {
 }
 
 let _db: DbSchema | null = null;
+let _dbMtime: number = 0;
 
 function getDb(): DbSchema {
-  if (!_db) {
-    _db = loadDb();
+  // Always check if the on-disk file is newer (handles multi-worker dev servers)
+  try {
+    const stat = fs.statSync(DB_PATH);
+    const mtime = stat.mtimeMs;
+    if (!_db || mtime > _dbMtime) {
+      _db = loadDb();
+      _dbMtime = mtime;
+    }
+  } catch {
+    if (!_db) {
+      _db = loadDb();
+    }
   }
   return _db;
 }
 
 function persist() {
-  if (_db) saveDb(_db);
+  if (_db) {
+    saveDb(_db);
+    // Update mtime tracker so this worker knows the file is current
+    try { _dbMtime = fs.statSync(DB_PATH).mtimeMs; } catch { /* noop */ }
+  }
 }
 
 // Zone operations

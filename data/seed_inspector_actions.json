@@ -1,7 +1,7 @@
 [
   {
     "id": "inspect_01",
-    "zone_id": "saigon_river_01",
+    "zone_id": "adyar_river_01",
     "inspector_id": "inspector_hcm_01",
     "action": "inspected",
     "notes": "Confirmed floating waste hotspot near bridge segment; cleanup ticket opened.",
@@ -9,7 +9,7 @@
   },
   {
     "id": "inspect_02",
-    "zone_id": "dong_nai_river_01",
+    "zone_id": "yamuna_river_01",
     "inspector_id": "inspector_dn_02",
     "action": "inspected",
     "notes": "Sample collected near industrial discharge outlet for lab validation.",
@@ -17,7 +17,7 @@
   },
   {
     "id": "inspect_03",
-    "zone_id": "hanoi_canal_01",
+    "zone_id": "adyar_river_01",
     "inspector_id": "inspector_hn_01",
     "action": "inspected",
     "notes": "Confirmed domestic drainage input; reported to urban sanitation team.",
@@ -25,7 +25,7 @@
   },
   {
     "id": "inspect_04",
-    "zone_id": "ca_river_01",
+    "zone_id": "godavari_river_01",
     "inspector_id": "inspector_na_03",
     "action": "inspected",
     "notes": "Elevated turbidity after rainfall event; follow-up scheduled in 48 hours.",

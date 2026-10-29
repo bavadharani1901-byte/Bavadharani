@@ -1,4 +1,4 @@
-import { spawn, spawnSync } from "node:child_process";
+﻿import { spawn, spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 
 const skipSatellite = process.env.SKIP_SATELLITE_PRECOMPUTE === "true";
@@ -26,12 +26,7 @@ if (skipSatellite) {
     stdio: "inherit",
     shell: process.platform === "win32",
   });
-
-  if (result.status === 0) {
-    console.log("[satellite] precompute done");
-  } else {
-    console.warn("[satellite] precompute failed, continuing with cached data");
-  }
+  if (result.status !== 0) console.warn("[satellite] precompute failed, continuing");
 }
 
 if (skipOsm) {
@@ -44,52 +39,38 @@ if (skipOsm) {
     stdio: "inherit",
     shell: process.platform === "win32",
   });
-
-  if (result.status === 0) {
-    console.log("[osm] precompute done");
-  } else {
-    console.warn("[osm] precompute failed, continuing with cached data");
-  }
+  if (result.status !== 0) console.warn("[osm] precompute failed, continuing");
 }
 
 const processes = [
-  {
-    name: "next",
-    command: "bunx",
-    args: ["next", "dev"],
-  },
+  { name: "next", command: "bunx", args: ["next", "dev"] },
   {
     name: "photo-ai",
-    command: "uvicorn",
-    args: ["ai.photo_ai.api:app", "--reload", "--host", "0.0.0.0", "--port", "8000"],
+    command: "python",
+    args: ["-m", "uvicorn", "ai.photo_ai.api:app", "--reload", "--host", "0.0.0.0", "--port", "8000"],
   },
 ];
 
+let shuttingDown = false;
 const children = processes.map(({ name, command, args }) => {
   const child = spawn(command, args, {
     stdio: "inherit",
     shell: process.platform === "win32",
   });
-
   child.on("exit", (code, signal) => {
     if (shuttingDown) return;
     console.error(`[${name}] exited`, signal ?? code);
     shutdown(code ?? 1);
   });
-
   return child;
 });
-
-let shuttingDown = false;
 
 function shutdown(code = 0) {
   if (shuttingDown) return;
   shuttingDown = true;
-
   for (const child of children) {
     if (!child.killed) child.kill("SIGTERM");
   }
-
   setTimeout(() => process.exit(code), 300);
 }
 

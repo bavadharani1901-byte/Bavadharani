@@ -7,7 +7,7 @@ import bcrypt from "bcryptjs";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { email, password, displayName, role } = body;
+    const { email, password, displayName } = body;
     const normalizedEmail =
       typeof email === "string" ? email.trim().toLowerCase() : "";
 
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
         email: normalizedEmail,
         passwordHash,
         displayName: displayName || null,
-        role: role || "PUBLIC",
+        role: "PUBLIC",
       })
       .returning();
 

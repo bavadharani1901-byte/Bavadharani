@@ -44,7 +44,7 @@ export default function ZoneMap({ zones, selectedZoneId, onSelectZone }: MapProp
 
     const map = L.map(container, {
       zoomControl: false,
-    }).setView([15.0, 108.0], 5);
+    }).setView([20.5937, 78.9629], 5);
 
     // Base layers
     const cartoLight = L.tileLayer(
@@ -242,10 +242,11 @@ export default function ZoneMap({ zones, selectedZoneId, onSelectZone }: MapProp
 
     const zone = zones.find((z) => z.id === selectedZoneId);
     if (zone) {
-      mapInstance.current.setView([zone.lat, zone.lng], 12, { animate: true });
+      mapInstance.current.setView([zone.lat, zone.lng], 12, { animate: false });
       lastCenteredZoneIdRef.current = selectedZoneId;
     }
   }, [selectedZoneId, zones]);
 
   return <div ref={mapRef} className="h-full w-full min-h-[400px]" />;
 }
+

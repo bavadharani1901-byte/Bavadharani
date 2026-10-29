@@ -82,9 +82,9 @@ export default function StatsBand() {
   }, []);
 
   const stats = [
-    { value: "2,360+", label: "rivers monitored" },
-    { value: "41,000", label: "km total length" },
-    { value: "9,000", label: "deaths/year from unsafe water" },
+    { value: "3", label: "Chennai rivers monitored" },
+    { value: "48+", label: "km total river length" },
+    { value: "250+", label: "citizen reports submitted" },
     // { value: "75%", label: "industrial wastewater untreated" },
   ];
 

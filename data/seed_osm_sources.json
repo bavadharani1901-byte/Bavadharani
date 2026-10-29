@@ -1,23 +1,23 @@
 [
   {
-    "zone_id": "saigon_river_01",
+    "zone_id": "adyar_river_01",
     "source_risk_score": 0.82,
     "dominant_source_type": "industrial",
     "source_attribution": {
       "industrial": 0.65,
-      "domestic": 0.20,
+      "domestic": 0.2,
       "agricultural": 0.15
     },
     "nearby_sources": [
       {
-        "name": "Binh Duong Industrial Zone",
+        "name": "Industrial Area Demo A",
         "type": "industrial_area",
         "distance_km": 0.7,
         "position_context": "upstream",
         "risk_contribution": 0.31
       },
       {
-        "name": "Wastewater Treatment Plant B",
+        "name": "Wastewater Facility Demo B",
         "type": "wastewater_plant",
         "distance_km": 1.4,
         "position_context": "upstream",
@@ -28,17 +28,17 @@
     "explanation": "Industrial area and wastewater facility found within upstream river buffer."
   },
   {
-    "zone_id": "mekong_delta_01",
+    "zone_id": "cauvery_river_01",
     "source_risk_score": 0.55,
     "dominant_source_type": "agricultural",
     "source_attribution": {
       "industrial": 0.15,
       "domestic": 0.25,
-      "agricultural": 0.60
+      "agricultural": 0.6
     },
     "nearby_sources": [
       {
-        "name": "Rice Paddy Cluster NW",
+        "name": "Agricultural Area Demo A",
         "type": "agricultural",
         "distance_km": 0.5,
         "position_context": "upstream",
@@ -49,13 +49,13 @@
     "explanation": "Agricultural runoff from upstream rice paddies is the dominant source."
   },
   {
-    "zone_id": "red_river_hanoi_01",
+    "zone_id": "krishna_river_01",
     "source_risk_score": 0.72,
     "dominant_source_type": "domestic",
     "source_attribution": {
-      "industrial": 0.30,
-      "domestic": 0.50,
-      "agricultural": 0.20
+      "industrial": 0.3,
+      "domestic": 0.5,
+      "agricultural": 0.2
     },
     "nearby_sources": [
       {
@@ -66,28 +66,28 @@
         "risk_contribution": 0.35
       },
       {
-        "name": "Long Bien Industrial Area",
+        "name": "Industrial Area Demo C",
         "type": "industrial_area",
         "distance_km": 1.2,
         "position_context": "upstream",
         "risk_contribution": 0.22
       }
     ],
-    "confidence": 0.70,
+    "confidence": 0.7,
     "explanation": "Urban domestic discharge and nearby industrial area contribute to risk."
   },
   {
-    "zone_id": "thai_binh_river_01",
+    "zone_id": "ganga_river_01",
     "source_risk_score": 0.48,
     "dominant_source_type": "agricultural",
     "source_attribution": {
-      "industrial": 0.10,
-      "domestic": 0.20,
-      "agricultural": 0.70
+      "industrial": 0.1,
+      "domestic": 0.2,
+      "agricultural": 0.7
     },
     "nearby_sources": [
       {
-        "name": "Coastal Shrimp Farm Cluster",
+        "name": "Agricultural Area Demo B",
         "type": "agricultural",
         "distance_km": 0.8,
         "position_context": "downstream",
@@ -98,61 +98,61 @@
     "explanation": "Agricultural runoff from coastal aquaculture is the primary concern."
   },
   {
-    "zone_id": "dong_nai_river_01",
+    "zone_id": "yamuna_river_01",
     "source_risk_score": 0.65,
     "dominant_source_type": "industrial",
     "source_attribution": {
       "industrial": 0.55,
       "domestic": 0.25,
-      "agricultural": 0.20
+      "agricultural": 0.2
     },
     "nearby_sources": [
       {
-        "name": "Bien Hoa Industrial Zone 1",
+        "name": "Industrial Area Demo D",
         "type": "industrial_area",
         "distance_km": 0.9,
         "position_context": "upstream",
-        "risk_contribution": 0.30
+        "risk_contribution": 0.3
       }
     ],
     "confidence": 0.72,
     "explanation": "Major industrial zone upstream contributes significant pollution risk."
   },
   {
-    "zone_id": "perfume_river_01",
+    "zone_id": "brahmaputra_river_01",
     "source_risk_score": 0.38,
     "dominant_source_type": "domestic",
     "source_attribution": {
-      "industrial": 0.10,
+      "industrial": 0.1,
       "domestic": 0.55,
       "agricultural": 0.35
     },
     "nearby_sources": [
       {
-        "name": "Hue City Drainage Outlet",
+        "name": "Urban Drainage Demo A",
         "type": "domestic",
         "distance_km": 0.4,
         "position_context": "within",
         "risk_contribution": 0.24
       }
     ],
-    "confidence": 0.60,
+    "confidence": 0.6,
     "explanation": "Urban domestic discharge within city limits is the main contributor."
   },
   {
-    "zone_id": "ca_river_01",
+    "zone_id": "godavari_river_01",
     "source_risk_score": 0.45,
     "dominant_source_type": "agricultural",
     "source_attribution": {
       "industrial": 0.15,
-      "domestic": 0.20,
+      "domestic": 0.2,
       "agricultural": 0.65
     },
     "nearby_sources": [
       {
-        "name": "Nghe An Farm Belt",
+        "name": "Agricultural Area Demo C",
         "type": "agricultural",
-        "distance_km": 1.0,
+        "distance_km": 1,
         "position_context": "upstream",
         "risk_contribution": 0.25
       }
@@ -161,21 +161,21 @@
     "explanation": "Upstream agricultural belt contributes moderate pollution risk."
   },
   {
-    "zone_id": "hanoi_canal_01",
+    "zone_id": "adyar_river_01",
     "source_risk_score": 0.78,
     "dominant_source_type": "domestic",
     "source_attribution": {
-      "industrial": 0.20,
-      "domestic": 0.60,
-      "agricultural": 0.20
+      "industrial": 0.2,
+      "domestic": 0.6,
+      "agricultural": 0.2
     },
     "nearby_sources": [
       {
-        "name": "Cau Giay Residential Drainage",
+        "name": "Chennai Residential Drainage Demo",
         "type": "domestic",
         "distance_km": 0.2,
         "position_context": "within",
-        "risk_contribution": 0.40
+        "risk_contribution": 0.4
       }
     ],
     "confidence": 0.75,

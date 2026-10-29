@@ -44,7 +44,7 @@ export default function HeroSection() {
               <span className="absolute inline-flex h-full w-full animate-ping bg-[#76b900]/70" />
               <span className="relative inline-flex h-2.5 w-2.5 bg-[#76b900]" />
             </span>
-            AI-Powered Water Intelligence for Vietnam
+            AI-Powered River Intelligence for Chennai
           </span>
 
           {/* Display headline */}
@@ -53,7 +53,7 @@ export default function HeroSection() {
               loaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}
           >
-            WAVE
+            RIVERGUARD AI
           </h1>
 
           {/* Subheading */}
@@ -62,7 +62,7 @@ export default function HeroSection() {
               loaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}
           >
-            Water Anomaly & Validation Engine
+            River Pollution Monitoring & Restoration
           </p>
 
           <p
@@ -70,8 +70,8 @@ export default function HeroSection() {
               loaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}
           >
-            Fusing satellite anomaly detection, AI photo validation, and
-            geospatial intelligence into one explainable risk score.
+            Monitoring Adyar, Cooum and Kosasthalaiyar rivers with AI
+            pollution detection, citizen reporting, and restoration coordination.
           </p>
 
           {/* CTA Buttons */}
@@ -84,7 +84,7 @@ export default function HeroSection() {
               href="/dashboard"
               className="flex h-12 items-center justify-center gap-2 rounded-sm bg-[#76b900] px-8 text-base font-bold text-black transition-all duration-150 hover:bg-[#5a8d00] active:scale-[0.98]"
             >
-              View Dashboard
+              Government Dashboard
             </Link>
             <Link
               href="/citizen"

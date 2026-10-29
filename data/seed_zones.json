@@ -1,82 +1,82 @@
 [
-    {
-        "zone_id":  "saigon_river_01",
-        "name":  "Saigon River - HCMC Segment",
-        "river_name":  "Saigon River",
-        "province":  "Ho Chi Minh City",
-        "lat":  10.7746,
-        "lng":  106.7063,
-        "radius_km":  2.0,
-        "basin":  "Dong Nai"
-    },
-    {
-        "zone_id":  "mekong_delta_01",
-        "name":  "Mekong Delta - Can Tho Segment",
-        "river_name":  "Mekong River",
-        "province":  "Can Tho",
-        "lat":  10.034,
-        "lng":  105.7905,
-        "radius_km":  3.0,
-        "basin":  "Mekong"
-    },
-    {
-        "zone_id":  "red_river_hanoi_01",
-        "name":  "Red River - Hanoi Segment",
-        "river_name":  "Red River",
-        "province":  "Hanoi",
-        "lat":  21.0438,
-        "lng":  105.865,
-        "radius_km":  2.5,
-        "basin":  "Red River"
-    },
-    {
-        "zone_id":  "thai_binh_river_01",
-        "name":  "Thai Binh River - Nam Dinh Segment",
-        "river_name":  "Thai Binh River",
-        "province":  "Nam Dinh",
-        "lat":  20.4465,
-        "lng":  106.3402,
-        "radius_km":  2.0,
-        "basin":  "Thai Binh"
-    },
-    {
-        "zone_id":  "dong_nai_river_01",
-        "name":  "Dong Nai River - Bien Hoa Segment",
-        "river_name":  "Dong Nai River",
-        "province":  "Dong Nai",
-        "lat":  10.9478,
-        "lng":  106.8232,
-        "radius_km":  2.5,
-        "basin":  "Dong Nai"
-    },
-    {
-        "zone_id":  "perfume_river_01",
-        "name":  "Perfume River - Hue Segment",
-        "river_name":  "Perfume River",
-        "province":  "Thua Thien Hue",
-        "lat":  16.4637,
-        "lng":  107.5909,
-        "radius_km":  2.0,
-        "basin":  "Perfume"
-    },
-    {
-        "zone_id":  "ca_river_01",
-        "name":  "Ca River - Nghe An Segment",
-        "river_name":  "Ca River",
-        "province":  "Nghe An",
-        "lat":  18.6658,
-        "lng":  105.6948,
-        "radius_km":  3.0,
-        "basin":  "Ca"
-    },
-    {
-        "zone_id":  "hanoi_canal_01",
-        "name":  "To Lich River - Hanoi Urban",
-        "river_name":  "To Lich River",
-        "province":  "Hanoi",
-        "lat":  21.0012,
-        "lng":  105.8125,
-        "radius_km":  1.5,
-        "basin":  "Red River"
-    }
+  {
+    "zone_id": "adyar_river_01",
+    "name": "Adyar River - Chennai Segment",
+    "river_name": "Adyar River",
+    "province": "Tamil Nadu",
+    "lat": 13.0067,
+    "lng": 80.2206,
+    "radius_km": 2,
+    "basin": "Adyar River Basin"
+  },
+  {
+    "zone_id": "cauvery_river_01",
+    "name": "Cauvery River - Trichy Segment",
+    "river_name": "Cauvery River",
+    "province": "Tamil Nadu",
+    "lat": 10.7905,
+    "lng": 78.7047,
+    "radius_km": 3,
+    "basin": "Cauvery River Basin"
+  },
+  {
+    "zone_id": "koovam_river_01",
+    "name": "Cooum River - Chennai Segment",
+    "river_name": "Cooum River",
+    "province": "Tamil Nadu",
+    "lat": 13.0827,
+    "lng": 80.2707,
+    "radius_km": 2.5,
+    "basin": "Cooum River Basin"
+  },
+  {
+    "zone_id": "ganga_river_01",
+    "name": "Ganga River - Varanasi Segment",
+    "river_name": "Ganga River",
+    "province": "Uttar Pradesh",
+    "lat": 25.3176,
+    "lng": 83.0068,
+    "radius_km": 2,
+    "basin": "Ganga River Basin"
+  },
+  {
+    "zone_id": "yamuna_river_01",
+    "name": "Yamuna River - Delhi Segment",
+    "river_name": "Yamuna River",
+    "province": "Delhi",
+    "lat": 28.6139,
+    "lng": 77.209,
+    "radius_km": 2.5,
+    "basin": "Yamuna River Basin"
+  },
+  {
+    "zone_id": "brahmaputra_river_01",
+    "name": "Brahmaputra River - Guwahati Segment",
+    "river_name": "Brahmaputra River",
+    "province": "Assam",
+    "lat": 26.1445,
+    "lng": 91.7362,
+    "radius_km": 2,
+    "basin": "Brahmaputra River Basin"
+  },
+  {
+    "zone_id": "godavari_river_01",
+    "name": "Godavari River - Rajahmundry Segment",
+    "river_name": "Godavari River",
+    "province": "Andhra Pradesh",
+    "lat": 17.0005,
+    "lng": 81.804,
+    "radius_km": 3,
+    "basin": "Godavari River Basin"
+  },
+  {
+    "zone_id": "krishna_river_01",
+    "name": "Krishna River - Vijayawada Segment",
+    "river_name": "Krishna River",
+    "province": "Andhra Pradesh",
+    "lat": 16.5062,
+    "lng": 80.648,
+    "radius_km": 2.5,
+    "basin": "Krishna River Basin"
+  }
 ]

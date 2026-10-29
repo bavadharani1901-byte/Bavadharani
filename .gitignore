@@ -42,3 +42,16 @@ next-env.d.ts
 
 *.md
 !README.md
+
+# Backup files
+*.bak
+data/db_backup*
+data/db_before*
+data/seed_*_before*
+data_backup_before_india/
+
+# Nested repo
+Wave/
+
+# Temp scripts
+scripts/*.cjs

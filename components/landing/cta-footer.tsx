@@ -39,7 +39,7 @@ export default function CtaFooter() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#898989]">
             Whether you are a government official, NGO worker, or concerned
-            citizen - WAVE puts water intelligence in your hands.
+            citizen - RiverGuard AI puts water intelligence in your hands.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

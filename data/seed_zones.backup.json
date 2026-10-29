@@ -1,0 +1,82 @@
+[
+    {
+        "zone_id":  "saigon_river_01",
+        "name":  "Saigon River - HCMC Segment",
+        "river_name":  "Saigon River",
+        "province":  "Ho Chi Minh City",
+        "lat":  10.7746,
+        "lng":  106.7063,
+        "radius_km":  2.0,
+        "basin":  "Dong Nai"
+    },
+    {
+        "zone_id":  "mekong_delta_01",
+        "name":  "Mekong Delta - Can Tho Segment",
+        "river_name":  "Mekong River",
+        "province":  "Can Tho",
+        "lat":  10.034,
+        "lng":  105.7905,
+        "radius_km":  3.0,
+        "basin":  "Mekong"
+    },
+    {
+        "zone_id":  "red_river_hanoi_01",
+        "name":  "Red River - Hanoi Segment",
+        "river_name":  "Red River",
+        "province":  "Hanoi",
+        "lat":  21.0438,
+        "lng":  105.865,
+        "radius_km":  2.5,
+        "basin":  "Red River"
+    },
+    {
+        "zone_id":  "thai_binh_river_01",
+        "name":  "Thai Binh River - Nam Dinh Segment",
+        "river_name":  "Thai Binh River",
+        "province":  "Nam Dinh",
+        "lat":  20.4465,
+        "lng":  106.3402,
+        "radius_km":  2.0,
+        "basin":  "Thai Binh"
+    },
+    {
+        "zone_id":  "dong_nai_river_01",
+        "name":  "Dong Nai River - Bien Hoa Segment",
+        "river_name":  "Dong Nai River",
+        "province":  "Dong Nai",
+        "lat":  10.9478,
+        "lng":  106.8232,
+        "radius_km":  2.5,
+        "basin":  "Dong Nai"
+    },
+    {
+        "zone_id":  "perfume_river_01",
+        "name":  "Perfume River - Hue Segment",
+        "river_name":  "Perfume River",
+        "province":  "Thua Thien Hue",
+        "lat":  16.4637,
+        "lng":  107.5909,
+        "radius_km":  2.0,
+        "basin":  "Perfume"
+    },
+    {
+        "zone_id":  "ca_river_01",
+        "name":  "Ca River - Nghe An Segment",
+        "river_name":  "Ca River",
+        "province":  "Nghe An",
+        "lat":  18.6658,
+        "lng":  105.6948,
+        "radius_km":  3.0,
+        "basin":  "Ca"
+    },
+    {
+  "zone_id": "koovam_river_01",
+  "name": "Koovam River - Chennai",
+  "river_name": "Koovam River",
+  "province": "Tamil Nadu",
+  "lat": 13.0827,
+  "lng": 80.2707,
+  "radius_km": 1.5,
+  "basin": "Koovam River Basin"
+}
+]

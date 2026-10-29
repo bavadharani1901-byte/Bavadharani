@@ -25,7 +25,7 @@ export default function CitizenNav() {
           href="/"
           className="text-lg font-bold uppercase leading-none tracking-tight text-[#000000]"
         >
-          WAVE
+          RIVERGUARD
         </Link>
         <span className="hidden text-xs text-[#757575] sm:inline">
           {session?.user?.name || "Citizen"}

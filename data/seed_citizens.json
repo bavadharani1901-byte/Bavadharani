@@ -1,42 +1,42 @@
 [
   {
     "id": "citizen_01",
-    "display_name": "Nguyen Van A",
+    "display_name": "Chennai Citizen 1",
     "total_points": 230,
     "tier": "silver",
     "created_at": "2026-04-21T08:00:00.000Z"
   },
   {
     "id": "citizen_02",
-    "display_name": "Tran Thi B",
+    "display_name": "Chennai Citizen 2",
     "total_points": 540,
     "tier": "gold",
     "created_at": "2026-04-19T07:40:00.000Z"
   },
   {
     "id": "citizen_03",
-    "display_name": "Le Van C",
+    "display_name": "Chennai Citizen 3",
     "total_points": 145,
     "tier": "silver",
     "created_at": "2026-04-22T06:30:00.000Z"
   },
   {
     "id": "citizen_04",
-    "display_name": "Pham Thi D",
+    "display_name": "Chennai Citizen 4",
     "total_points": 80,
     "tier": "bronze",
     "created_at": "2026-04-28T10:15:00.000Z"
   },
   {
     "id": "citizen_05",
-    "display_name": "Hoang Van E",
+    "display_name": "Chennai Citizen 5",
     "total_points": 65,
     "tier": "bronze",
     "created_at": "2026-04-30T09:20:00.000Z"
   },
   {
     "id": "citizen_06",
-    "display_name": "Do Thi F",
+    "display_name": "Chennai Citizen 6",
     "total_points": 315,
     "tier": "silver",
     "created_at": "2026-04-18T04:55:00.000Z"

@@ -29,7 +29,7 @@ const steps: Step[] = [
   {
     icon: <Zap className="h-6 w-6 text-[#76b900]" />,
     title: "Risk Score",
-    description: "Explainable AI risk score for each zone",
+    description: "Rule-based AI risk score for each zone",
   },
 ];
 

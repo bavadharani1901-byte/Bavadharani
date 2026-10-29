@@ -10,14 +10,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "WAVE - Water Anomaly & Validation Engine",
+  title: "RiverGuard AI — River Pollution Monitoring & Restoration",
   description:
-    "Vietnam's AI-powered water pollution intelligence platform. Fusing satellite data, citizen reports, and geospatial AI into one explainable risk score - for every river, every day.",
+    "AI-powered river pollution monitoring and restoration system for Chennai, Tamil Nadu. Citizen reporting, AI risk scoring, and government officer management for Adyar, Cooum and Kosasthalaiyar rivers.",
   manifest: "/manifest.json",
 };
 
 export const viewport = {
-  themeColor: "#76b900",
+  themeColor: "#0d9488",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,

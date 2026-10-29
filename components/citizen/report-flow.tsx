@@ -40,6 +40,7 @@ function formatLabel(value: string) {
 export default function ReportFlow({ zones }: ReportFlowProps) {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [selectedZone, setSelectedZone] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [description, setDescription] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -50,6 +51,8 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
     photo_ai_score: number;
     ai_analysis: Record<string, unknown>;
   } | null>(null);
+  const [agentResult, setAgentResult] = useState<Record<string, unknown> | null>(null);
+  const [agentError, setAgentError] = useState("");
   const aiAnalysis = result?.ai_analysis ?? {};
   const photoAiScore = result?.photo_ai_score ?? 0;
   const modelConfidence = getNumberValue(aiAnalysis, "confidence");
@@ -68,9 +71,10 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
         body: JSON.stringify({
           zone_id: selectedZone,
           photo_url: photoUrl || "/uploads/mock.jpg",
-          lat: 10.7769,
-          lng: 106.7009,
-          description,
+          lat: 13.0067,
+          lng: 80.2206,
+          description: `[${selectedCategory || "General"}] ${description}`,
+          pollution_type: selectedCategory || "General",
         }),
       });
       const data = await res.json();
@@ -80,7 +84,36 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
         );
         return;
       }
-      setResult(data);
+            setResult(data);
+
+      try {
+        const selectedRiver =
+          zones.find((zone) => zone.id === selectedZone)?.name ?? "Unknown river";
+
+        const pollutionType = selectedCategory || "general pollution";
+
+        const agentResponse = await fetch("/api/v1/river-agent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            report_id: data.report_id,
+            river_name: selectedRiver,
+            pollution_type: pollutionType,
+            description,
+          }),
+        });
+
+        const agentData = await agentResponse.json();
+
+        if (agentResponse.ok) {
+          setAgentResult(agentData);
+        } else {
+          setAgentError("Agent analysis is currently unavailable.");
+        }
+      } catch {
+        setAgentError("Agent analysis is currently unavailable.");
+      }
+
       setStep(4);
     } catch {
       setSubmitError("Failed to submit report");
@@ -133,37 +166,48 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
         {step === 2 && (
           <div>
             <h2 className="mb-4 text-2xl font-bold uppercase leading-[1.1] text-[#000000]">
-              Add Photo
+              Pollution Category
             </h2>
-            <div className="mb-4 border-2 border-dashed border-[#cccccc] p-8 text-center rounded-sm">
-              <p className="text-sm text-[#757575] mb-2">
-                Tap to take a photo or choose from gallery
-              </p>
-              <input
-                type="text"
-                placeholder="Or paste a photo URL..."
-                value={photoUrl}
-                onChange={(e) => setPhotoUrl(e.target.value)}
-                className="w-full rounded-sm border border-[#cccccc] bg-[#f7f7f7] px-4 py-2 text-sm text-[#000000] outline-none focus:border-[#76b900] focus:ring-1 focus:ring-[#76b900]"
-              />
+            <p className="mb-4 text-sm text-[#757575]">Select the type of pollution you observed</p>
+            <div className="space-y-2">
+              {["Chemical Waste", "Sewage/Drainage", "Oil Spill", "Plastic/Trash", "Turbidity/Muddy Water", "Other"].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    setSelectedCategory(cat);
+                    setStep(3);
+                  }}
+                  className={`flex w-full items-center justify-between border p-3 text-left transition-colors rounded-sm ${
+                    selectedCategory === cat
+                      ? "border-[#76b900] bg-[#f7f7f7]"
+                      : "border-[#e5e5e5] hover:bg-[#f7f7f7]/50"
+                  }`}
+                >
+                  <span className="text-sm text-[#000000]">{cat}</span>
+                  <span className="text-xs text-[#757575]">Select</span>
+                </button>
+              ))}
             </div>
-            <button
-              onClick={() => setStep(3)}
-              disabled={!photoUrl}
-              className="flex h-11 w-full items-center justify-center rounded-sm bg-[#76b900] text-sm font-bold text-black disabled:opacity-50 transition-all hover:bg-[#5a8d00] active:scale-[0.98]"
-            >
-              Continue
-            </button>
           </div>
         )}
 
         {step === 3 && (
           <div>
             <h2 className="mb-4 text-2xl font-bold uppercase leading-[1.1] text-[#000000]">
-              Describe
+              Report Details
             </h2>
+            <div className="mb-4 border-2 border-dashed border-[#cccccc] p-6 text-center rounded-sm">
+              <p className="text-sm text-[#757575] mb-2">Add a photo (optional)</p>
+              <input
+                type="text"
+                placeholder="Paste a photo URL..."
+                value={photoUrl}
+                onChange={(e) => setPhotoUrl(e.target.value)}
+                className="w-full rounded-sm border border-[#cccccc] bg-[#f7f7f7] px-4 py-2 text-sm text-[#000000] outline-none focus:border-[#76b900] focus:ring-1 focus:ring-[#76b900]"
+              />
+            </div>
             <textarea
-              placeholder="What do you see? (optional)"
+              placeholder="Describe the pollution you observed..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
@@ -195,6 +239,56 @@ export default function ReportFlow({ zones }: ReportFlowProps) {
             </p>
 
             {/* AI Score */}
+                         {/* RiverGuard Agent Analysis */}
+            <div className="mb-6 rounded-lg border border-[#b7d8d0] bg-[#f0faf7] p-4 text-left">
+              <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-[#14594c]">
+                RiverGuard Agent Analysis
+              </h3>
+
+              {agentResult ? (
+                <>
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-sm text-[#374151]">Priority</span>
+                    <span className="rounded px-3 py-1 text-xs font-bold uppercase text-white bg-[#14594c]">
+                      {getStringValue(agentResult, "priority", "Pending")}
+                    </span>
+                  </div>
+
+                  <div className="mb-3">
+                    <p className="text-xs font-bold uppercase text-[#6b7280]">
+                      River
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-[#111827]">
+                      {getStringValue(agentResult, "river_name", "Unknown river")}
+                    </p>
+                  </div>
+
+                  <div className="mb-3">
+                    <p className="text-xs font-bold uppercase text-[#6b7280]">
+                      Recommended Action
+                    </p>
+                    <p className="mt-1 text-sm text-[#111827]">
+                      {getStringValue(
+                        agentResult,
+                        "recommended_action",
+                        "Awaiting further assessment.",
+                      )}
+                    </p>
+                  </div>
+
+                  <p className="text-xs text-[#6b7280]">
+                    Status: {getStringValue(agentResult, "status", "Awaiting review")}
+                  </p>
+                  <p className="mt-2 text-xs text-[#6b7280]">
+                    Demo rule-based assessment. Officer verification is required.
+                  </p>
+                </>
+              ) : (
+                <p className="text-sm text-[#374151]">
+                  {agentError || "Agent analysis is not available for this report."}
+                </p>
+              )}
+            </div>
             <div className="mb-4 text-left">
               <div className="mb-1 flex items-center justify-between">
                 <span className="text-xs font-bold uppercase tracking-wide text-[#757575]">

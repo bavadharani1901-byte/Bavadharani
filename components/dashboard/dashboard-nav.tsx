@@ -46,11 +46,12 @@ export default function DashboardNav({ role, loading }: DashboardNavProps) {
           href="/"
           className="text-xl font-bold uppercase leading-none tracking-tight"
         >
-          WAVE
+          RIVERGUARD AI
         </Link>
         <Separator orientation="vertical" className="h-6" />
         <div className="hidden items-center gap-1 md:flex">
           <NavLink href="/dashboard">Dashboard</NavLink>
+          {role === "government" && <NavLink href="/dashboard/reports">Reports Review</NavLink>}
           {role === "ngo" && <NavLink href="/dashboard/ngo">Analytics</NavLink>}
         </div>
       </div>
@@ -80,3 +81,4 @@ export default function DashboardNav({ role, loading }: DashboardNavProps) {
     </nav>
   );
 }
+

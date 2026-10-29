@@ -8,7 +8,6 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [role, setRole] = useState("PUBLIC");
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -19,7 +18,7 @@ export default function RegisterPage() {
     const res = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, displayName, role }),
+      body: JSON.stringify({ email, password, displayName }),
     });
 
     if (!res.ok) {
@@ -72,15 +71,6 @@ export default function RegisterPage() {
           className="w-full rounded-sm border border-[#cccccc] bg-[#f7f7f7] px-4 py-2 text-sm text-[#000000] outline-none focus:border-[#76b900] focus:ring-1 focus:ring-[#76b900]"
           required
         />
-        <select
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          className="w-full rounded-sm border border-[#cccccc] bg-[#f7f7f7] px-4 py-2 text-sm text-[#000000] outline-none focus:border-[#76b900] focus:ring-1 focus:ring-[#76b900]"
-        >
-          <option value="PUBLIC">Public</option>
-          <option value="GOVERNMENT">Government</option>
-          <option value="NGO">NGO</option>
-        </select>
         <button
           type="submit"
           className="flex h-11 w-full items-center justify-center rounded-sm bg-[#76b900] text-sm font-bold text-black transition-all hover:bg-[#5a8d00] active:scale-[0.98]"

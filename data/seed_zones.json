@@ -10,16 +10,6 @@
     "basin": "Adyar River Basin"
   },
   {
-    "zone_id": "cauvery_river_01",
-    "name": "Cauvery River - Trichy Segment",
-    "river_name": "Cauvery River",
-    "province": "Tamil Nadu",
-    "lat": 10.7905,
-    "lng": 78.7047,
-    "radius_km": 3,
-    "basin": "Cauvery River Basin"
-  },
-  {
     "zone_id": "koovam_river_01",
     "name": "Cooum River - Chennai Segment",
     "river_name": "Cooum River",
@@ -30,53 +20,63 @@
     "basin": "Cooum River Basin"
   },
   {
-    "zone_id": "ganga_river_01",
-    "name": "Ganga River - Varanasi Segment",
-    "river_name": "Ganga River",
-    "province": "Uttar Pradesh",
-    "lat": 25.3176,
-    "lng": 83.0068,
-    "radius_km": 2,
-    "basin": "Ganga River Basin"
+    "id": "zone_adyar_2",
+    "name": "Adyar River - Kotturpuram",
+    "lat": 13.012,
+    "lng": 80.235,
+    "risk_score": 62,
+    "risk_level": "HIGH",
+    "description": "Near Kotturpuram bridge, Adyar River",
+    "created_at": "2026-01-15T08:00:00Z"
   },
   {
-    "zone_id": "yamuna_river_01",
-    "name": "Yamuna River - Delhi Segment",
-    "river_name": "Yamuna River",
-    "province": "Delhi",
-    "lat": 28.6139,
-    "lng": 77.209,
-    "radius_km": 2.5,
-    "basin": "Yamuna River Basin"
+    "id": "zone_cooum_2",
+    "name": "Cooum River - Napier Bridge",
+    "lat": 13.072,
+    "lng": 80.285,
+    "risk_score": 71,
+    "risk_level": "HIGH",
+    "description": "Cooum River near Napier Bridge area",
+    "created_at": "2026-01-15T08:00:00Z"
   },
   {
-    "zone_id": "brahmaputra_river_01",
-    "name": "Brahmaputra River - Guwahati Segment",
-    "river_name": "Brahmaputra River",
-    "province": "Assam",
-    "lat": 26.1445,
-    "lng": 91.7362,
-    "radius_km": 2,
-    "basin": "Brahmaputra River Basin"
+    "id": "zone_kosasthalaiyar_1",
+    "name": "Kosasthalaiyar River - Ennore",
+    "lat": 13.21,
+    "lng": 80.22,
+    "risk_score": 55,
+    "risk_level": "MEDIUM",
+    "description": "Kosasthalaiyar near Ennore creek",
+    "created_at": "2026-01-15T08:00:00Z"
   },
   {
-    "zone_id": "godavari_river_01",
-    "name": "Godavari River - Rajahmundry Segment",
-    "river_name": "Godavari River",
-    "province": "Andhra Pradesh",
-    "lat": 17.0005,
-    "lng": 81.804,
-    "radius_km": 3,
-    "basin": "Godavari River Basin"
+    "id": "zone_adyar_estuary",
+    "name": "Adyar Estuary - Besant Nagar",
+    "lat": 12.998,
+    "lng": 80.272,
+    "risk_score": 48,
+    "risk_level": "MEDIUM",
+    "description": "Adyar River estuary near Besant Nagar",
+    "created_at": "2026-01-15T08:00:00Z"
   },
   {
-    "zone_id": "krishna_river_01",
-    "name": "Krishna River - Vijayawada Segment",
-    "river_name": "Krishna River",
-    "province": "Andhra Pradesh",
-    "lat": 16.5062,
-    "lng": 80.648,
-    "radius_km": 2.5,
-    "basin": "Krishna River Basin"
+    "id": "zone_cooum_3",
+    "name": "Cooum River - Chetpet",
+    "lat": 13.078,
+    "lng": 80.238,
+    "risk_score": 67,
+    "risk_level": "HIGH",
+    "description": "Cooum River near Chetpet",
+    "created_at": "2026-01-15T08:00:00Z"
+  },
+  {
+    "id": "zone_buckingham",
+    "name": "Buckingham Canal - Mylapore",
+    "lat": 13.034,
+    "lng": 80.269,
+    "risk_score": 59,
+    "risk_level": "MEDIUM",
+    "description": "Buckingham Canal near Mylapore, Chennai",
+    "created_at": "2026-01-15T08:00:00Z"
   }
 ]

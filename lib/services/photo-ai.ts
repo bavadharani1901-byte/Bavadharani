@@ -82,6 +82,7 @@ export interface PhotoAiResult {
   photo_ai_score: number;
   needs_review: boolean;
   source?: string;
+  disclaimer?: string;
 }
 
 export async function analyzePhoto(imagePath: string): Promise<PhotoAiResult> {
@@ -210,5 +211,6 @@ async function analyzePhotoWithMock(imagePath: string): Promise<PhotoAiResult> {
     photo_ai_score: parseFloat(photoAiScore.toFixed(3)),
     needs_review: needsReview,
     source: "mock_fallback",
+    disclaimer: "This is a deterministic mock analysis (PHOTO_AI_API_URL not configured). Values are synthetic, not from real image analysis.",
   };
 }

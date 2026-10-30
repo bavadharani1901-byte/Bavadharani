@@ -3,6 +3,28 @@ import { spawn } from "node:child_process";
 
 export const runtime = "nodejs";
 
+
+function generateRuleBasedFallback(report: Record<string, unknown> | null) {
+  const desc = String(report?.description || '').toLowerCase();
+  const type = String(report?.pollution_type || 'unknown');
+  let severity = 'moderate';
+  let priority = 'medium';
+  if (desc.includes('chemical') || desc.includes('toxic') || desc.includes('dead fish')) { severity = 'critical'; priority = 'immediate'; }
+  else if (desc.includes('sewage') || desc.includes('oil')) { severity = 'high'; priority = 'high'; }
+  else if (desc.includes('plastic') || desc.includes('trash')) { severity = 'moderate'; priority = 'medium'; }
+  return {
+    assessment: `Rule-based assessment for ${type}: severity=${severity}, priority=${priority}. This is NOT an AI analysis.`,
+    severity,
+    priority,
+    pollution_type: type,
+    recommendations: [
+      severity === 'critical' ? 'Immediate inspection recommended' : 'Schedule routine inspection',
+      'Collect water samples for lab analysis',
+      'Document with photographs',
+    ],
+  };
+}
+
 export async function POST(request: Request) {
   try {
     const report = await request.json();
@@ -48,17 +70,18 @@ export async function POST(request: Request) {
     if (result.code !== 0) {
       console.error("River agent failed:", stderr);
       return NextResponse.json(
-        { error: "River agent could not process the report." },
-        { status: 500 }
+        { ...generateRuleBasedFallback(report), source: "rule_based_fallback", disclaimer: "Python river-agent sidecar not available. This is a rule-based fallback, not AI analysis." },
+        { status: 200 }
       );
     }
 
     return NextResponse.json(JSON.parse(stdout));
   } catch (error) {
     console.error("River agent API error:", error);
+    // Graceful fallback when Python sidecar is unavailable
     return NextResponse.json(
-      { error: "Invalid request or agent error." },
-      { status: 500 }
-    );
+        { ...generateRuleBasedFallback(null), source: "rule_based_fallback", disclaimer: "Python river-agent sidecar not running. Using rule-based fallback." },
+        { status: 200 }
+      );
   }
 }

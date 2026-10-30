@@ -1,7 +1,7 @@
 ﻿import { NextResponse } from "next/server";
-import { spawn } from "node:child_process";
-
-export const runtime = "nodejs";
+// spawn is loaded dynamically — unavailable on Cloudflare Workers
+let spawn: typeof import("node:child_process").spawn | null = null;
+try { spawn = require("node:child_process").spawn; } catch { /* Workers */ }
 
 
 function generateRuleBasedFallback(report: Record<string, unknown> | null) {
@@ -42,6 +42,7 @@ export async function POST(request: Request) {
     }
 
     const input = JSON.stringify(report);
+    if (!spawn) throw new Error("child_process unavailable (serverless runtime)");
     const python = spawn(
       "python",
       ["-c", [

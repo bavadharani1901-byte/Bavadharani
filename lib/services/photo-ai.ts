@@ -1,5 +1,6 @@
-import fs from "fs";
-import path from "path";
+let fs: typeof import("fs") | null = null;
+let path: typeof import("path") | null = null;
+try { fs = require("fs"); path = require("path"); } catch { /* Workers */ }
 
 // Calls the FastAPI Photo AI service when PHOTO_AI_API_URL is configured.
 // Falls back to deterministic mock data so local demos still work if the
@@ -28,13 +29,13 @@ let _config: PhotoAiConfig | null = null;
 
 function loadConfig(): PhotoAiConfig {
   if (_config) return _config;
-  const configPath = path.join(
+  const configPath = path ? path.join(
     process.cwd(),
     "ai",
     "water-cv",
     "photo_ai_config_v1.json",
-  );
-  if (fs.existsSync(configPath)) {
+  ) : "";
+  if (fs && configPath && fs.existsSync(configPath)) {
     _config = JSON.parse(fs.readFileSync(configPath, "utf-8")) as PhotoAiConfig;
   } else {
     _config = {

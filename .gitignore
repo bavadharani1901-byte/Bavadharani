@@ -55,3 +55,8 @@ Wave/
 
 # Temp scripts
 scripts/*.cjs
+
+# Cloudflare
+.open-next/
+.wrangler/
+.dev.vars

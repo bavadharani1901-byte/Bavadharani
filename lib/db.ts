@@ -1,10 +1,17 @@
-import fs from "fs";
-import path from "path";
-
 // Simple file-based JSON database for MVP
 // Loads seed data on first run, persists to data/db.json
+// Falls back to in-memory-only mode on serverless/edge runtimes (Cloudflare Workers, Vercel)
 
-const DB_PATH = path.join(process.cwd(), "data", "db.json");
+let fs: typeof import("fs") | null = null;
+let path: typeof import("path") | null = null;
+try {
+  fs = require("fs");
+  path = require("path");
+} catch {
+  // Workers environment — fs/path unavailable, will use in-memory DB only
+}
+
+const DB_PATH = path ? path.join(process.cwd(), "data", "db.json") : "";
 
 // Types
 export interface Zone {
@@ -304,7 +311,7 @@ function initDb(): DbSchema {
 }
 
 function loadDb(): DbSchema {
-  if (fs.existsSync(DB_PATH)) {
+  if (fs && DB_PATH && fs.existsSync(DB_PATH)) {
     try {
       const raw = JSON.parse(fs.readFileSync(DB_PATH, "utf-8")) as Partial<DbSchema>;
       const normalized: DbSchema = {
@@ -327,6 +334,7 @@ function loadDb(): DbSchema {
 }
 
 function saveDb(db: DbSchema) {
+  if (!fs || !path || !DB_PATH) return; // read-only in Workers
   try {
     fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
     fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2), "utf-8");
@@ -347,6 +355,7 @@ let _dbMtime: number = 0;
 function getDb(): DbSchema {
   // Always check if the on-disk file is newer (handles multi-worker dev servers)
   try {
+    if (!fs || !DB_PATH) throw new Error("no fs");
     const stat = fs.statSync(DB_PATH);
     const mtime = stat.mtimeMs;
     if (!_db || mtime > _dbMtime) {
